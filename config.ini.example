@@ -1,0 +1,24 @@
+[dev]
+# Change this to the actual location of your site
+protocol=http
+domain=localhost:5000
+# Change this value to something random and secret
+secret-key=hello world
+
+# On the debug server, this lets you choose what to bind to
+debug-host=0.0.0.0
+debug-port=5000
+
+# Fill out these details with your mail server
+smtp-host=mail.you.com
+smtp-port=587
+smtp-user=you
+smtp-password=password
+smtp-from=donate@you.com
+
+# Your information
+your_name=Joe Bloe
+your_email=joe@bloe.com
+
+# SQL connection string
+connection-string=postgresql://postgres@localhost/fosspay

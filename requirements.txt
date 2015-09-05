@@ -1,0 +1,5 @@
+stripe
+Flask
+Jinja2
+Flask-Misaka
+gunicorn
