@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
-{% block body %} 
+{% block title %}
+<title>Donation Admin</title>
+{% endblock %}
+{% block container %} 
 <a href="/logout" class="pull-right">Log out</a>
 <h1>Fosspay Admin</h1>
 {% if first %}
@@ -50,11 +53,19 @@
                     <td><a href="#" class="btn btn-primary btn-sm">Get Markdown</a></td>
                 </tr>
                 {% endfor %}
+                <tr>
+                    <td></td>
+                    <td>(not specified)</td>
+                    <td>${{ unspecified_one_times }}</td>
+                    <td>${{ unspecified_recurring }}</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 well">
         <h4>Add Project</h4>
+        <p>Donors will not be given a choice of project unless you have at least 2.</p>
         <form method="POST" action="/create-project">
             <div class="form-group">
                 <input class="form-control" type="text" placeholder="Project name" name="name" />
