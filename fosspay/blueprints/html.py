@@ -35,5 +35,26 @@ def setup():
 @html.route("/admin")
 @adminrequired
 def admin():
-    first=bool(request.args.get("first-run"))
-    return render_template("admin.html", first=first)
+    first = request.args.get("first-run") is not None
+    projects = Project.query.all()
+    return render_template("admin.html",
+            first=first,
+            projects=projects,
+            one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
+            recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.recurring])
+        )
+
+@html.route("/create-project", methods=["POST"])
+@adminrequired
+def create_project():
+    name = request.form.get("name")
+    project = Project(name)
+    db.add(project)
+    db.commit()
+    return redirect("/admin")
+
+@html.route("/logout")
+@loginrequired
+def logout():
+    logout_user()
+    return redirect("/")

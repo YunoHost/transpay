@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %} 
+<a href="/logout" class="pull-right">Log out</a>
 <h1>Fosspay Admin</h1>
 {% if first %}
 <div class="well">
@@ -32,11 +33,24 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th style="width: 10%"></th>
                     <th>Project Name</th>
-                    <th>One-off donations</th>
-                    <th>Recurring donations</th>
+                    <th>One-time</th>
+                    <th>Recurring</th>
+                    <th>README Button</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td><button type="button" class="close">&times;</button></td>
+                    <td>{{ project.name }}</td>
+                    <td>${{ one_times(project) }}</td>
+                    <td>${{ recurring(project) }}</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">Get Markdown</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
     <div class="col-md-6">
@@ -45,7 +59,7 @@
             <div class="form-group">
                 <input class="form-control" type="text" placeholder="Project name" name="name" />
             </div>
-            <input type="submit" value="Add" />
+            <input type="submit" value="Add" class="btn btn-default pull-right" />
         </form>
     </div>
 </div>
