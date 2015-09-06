@@ -7,6 +7,7 @@ from fosspay.config import _cfg, load_config
 
 import locale
 import bcrypt
+import hashlib
 
 encoding = locale.getdefaultlocale()[1]
 html = Blueprint('html', __name__, template_folder='../../templates')
@@ -17,7 +18,8 @@ def index():
         load_config()
         return render_template("setup.html")
     projects = sorted(Project.query.all(), key=lambda p: p.name)
-    return render_template("index.html", projects=projects)
+    avatar = "//www.gravatar.com/avatar/" + hashlib.md5(_cfg("your-email").encode("utf-8")).hexdigest()
+    return render_template("index.html", projects=projects, avatar=avatar)
 
 @html.route("/setup", methods=["POST"])
 def setup():

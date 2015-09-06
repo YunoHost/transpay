@@ -1,9 +1,29 @@
 {% extends "layout.html" %}
+{% block scripts %}
+<script>
+window.stripe_key = "{{ _cfg("stripe-publish") }}";
+window.avatar = "{{ avatar }}";
+window.your_name = "{{ _cfg("your-name") }}";
+</script>
+<script src="//checkout.stripe.com/checkout.js"></script>
+<script src="static/index.js"></script>
+{% endblock %}
 {% block body %} 
 <div class="well">
     <div class="container">
         <h1>Donate to {{ _cfg("your-name") }}</h1>
-        <p><a href="#" data-toggle="modal" data-target="#how-this-works-modal">How does this work?</a></p>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p>
+                Donations accumulate until there's enough to fund one week of
+                full time development. The project you specify influences which
+                projects receive the most time. Each donated-to project will
+                receive attention, even if there's just one donation for it.
+                Monthly donations will help me keep doing this for a long time,
+                but one-offs are also great.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <noscript>
@@ -14,25 +34,44 @@
         </div>
     </div>
 </noscript>
-<div class="container text-center">
+<div class="container text-center hidden" id="thanks">
+    {% include "post-donation-message.html" %}
+    <div id="new-donor-password" class="hidden">
+        <p>Set a password now if you want to manage your donations later:</p>
+        <input type="password" placeholder="Password" />
+        <button class="btn btn-primary btn-sm">Submit</button>
+    </div>
+</div>
+<div class="container text-center" id="donation-stuff">
     <h3>How much?</h3>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group btn-group-justified amounts" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">$5</button>
+                    <button data-amount="5" type="button" class="btn btn-default">$5</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">$10</button>
+                    <button data-amount="10" type="button" class="btn btn-default active">$10</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">$20</button>
+                    <button data-amount="20" type="button" class="btn btn-default">$20</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">$50</button>
+                    <button data-amount="50" type="button" class="btn btn-default">$50</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">Custom</button>
+                    <button data-amount="custom" type="button" class="btn btn-default">Custom</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row hidden" id="custom-amount" style="margin-top: 20px;">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input id="custom-amount-text" type="text" value="1"
+                        class="form-control" placeholder="Amount" />
                 </div>
             </div>
         </div>
@@ -40,12 +79,17 @@
     <h3>How often?</h3>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">Once</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">Monthly</button>
+            <p class="text-muted"><small>Bitcoin is only supported for one-time donations.</small></p>
+            <div class="form-group">
+                <div class="btn-group btn-group-justified frequencies" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button data-frequency="once" type="button"
+                            class="btn btn-default">Once</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button data-frequency="monthly" type="button"
+                            class="btn btn-default active">Monthly</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,8 +99,8 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
-                <select>
-                    <option value="none">None in particular</option>
+                <select id="project" class="form-control">
+                    <option value="null">None in particular</option>
                     {% for project in projects %}
                     <option value="{{ project.id }}">{{ project.name }}</option>
                     {% endfor %}
@@ -68,13 +112,13 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Any comments?" />
+                <input type="text" id="comments" class="form-control" placeholder="Any comments?" />
             </div>
         </div>
     </div>
     <div class="row" style="margin-top: 50px">
         <div class="col-md-4 col-md-offset-4">
-            <button class="btn btn-block btn-success">Donate</button>
+            <button class="btn btn-block btn-success" id="donate-button">Donate</button>
         </div>
     </div>
 </div>
@@ -91,22 +135,5 @@
             Powered by <a href="https://github.com/SirCmpwn/fosspay">fosspay</a>.
         </small>
     </p>
-</div>
-
-<div class="modal fade" id="how-this-works-modal" tabindex="-1" role="dialog" aria-labelledby="how-label">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="how-label">How does this work?</h4>
-            </div>
-            <div class="modal-body">
-                {% include "how-this-works.html" %}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Dismiss</button>
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}

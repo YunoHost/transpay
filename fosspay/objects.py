@@ -58,12 +58,14 @@ class Donation(Base):
     type = Column(ChoiceType(DonationType, impl=String()))
     amount = Column(Integer, nullable=False)
     created = Column(DateTime, nullable=False)
+    emailed_about = Column(Boolean, nullable=False)
 
     def __init__(self, user, type, amount):
         self.user = user
         self.type = type
         self.amount = amount
         self.created = datetime.now()
+        self.emailed_about = False
 
     def __repr__(self):
         return "<Donation {} from {}: ${} ({})>".format(

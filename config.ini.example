@@ -19,6 +19,7 @@ smtp-from=donate@you.com
 # Your information
 your_name=Joe Bloe
 your_email=joe@bloe.com
+# ^ you should have a gravatar that works with this email
 
 # SQL connection string
 connection-string=postgresql://postgres@localhost/fosspay

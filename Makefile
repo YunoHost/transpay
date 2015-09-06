@@ -1,7 +1,6 @@
 # Builds static assets
 # Depends on:
 # - scss
-# - coffeescript
 # - inotify-tools
 # Run `make` to compile static assets
 # Run `make watch` to recompile whenever a change is made
@@ -10,8 +9,7 @@
 
 STYLES:=$(patsubst styles/%.scss,static/%.css,$(wildcard styles/*.scss))
 STYLES+=$(patsubst styles/%.css,static/%.css,$(wildcard styles/*.css))
-SCRIPTS:=$(patsubst scripts/%.coffee,static/%.js,$(wildcard scripts/*.coffee))
-SCRIPTS+=$(patsubst scripts/%.js,static/%.js,$(wildcard scripts/*.js))
+SCRIPTS:=$(patsubst scripts/%.js,static/%.js,$(wildcard scripts/*.js))
 _STATIC:=$(patsubst _static/%,static/%,$(wildcard _static/*))
 
 static/%: _static/%
@@ -29,10 +27,6 @@ static/%.css: styles/%.scss
 static/%.js: scripts/%.js
 	@mkdir -p static/
 	cp $< $@
-
-static/%.js: scripts/%.coffee
-	@mkdir -p static/
-	coffee -m -o static/ -c $<
 
 static: $(STYLES) $(SCRIPTS) $(_STATIC)
 

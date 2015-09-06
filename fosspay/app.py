@@ -12,6 +12,8 @@ from fosspay.objects import User
 from fosspay.common import *
 from fosspay.network import *
 
+import fosspay.stripe
+
 from fosspay.blueprints.html import html
 
 app = Flask(__name__)
