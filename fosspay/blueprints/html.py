@@ -110,6 +110,11 @@ def donate():
         else:
             project_id = int(project_id)
             project = Project.query.filter(Project.id == project_id).first()
+
+        if type == "once":
+            type = DonationType.one_time
+        else:
+            type = DonationType.monthly
     except:
         return { "success": False, "reason": "Invalid request" }, 400
 
@@ -120,9 +125,26 @@ def donate():
         user = User(email, binascii.b2a_hex(os.urandom(20)).decode("utf-8"))
         user.passwordReset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
         user.passwordResetExpiry = datetime.now() + timedelta(days=1)
-        db.add(user)
+        print(stripe_token)
         customer = stripe.Customer.create(email=user.email, card=stripe_token)
+        print(customer)
         user.stripe_customer = customer.id
+        db.add(user)
+
+    donation = Donation(user, type, amount, project)
+    db.add(donation)
+
+    try:
+        charge = stripe.Charge.create(
+            amount=amount,
+            currency="usd",
+            customer=user.stripe_customer,
+            description="Donation to " + _cfg("your-name")
+        )
+    except stripe.error.CardError as e:
+        db.rollback()
+        db.close()
+        return { "success": False, "reason": "Your card was declined." }
 
     db.commit()
 

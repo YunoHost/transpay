@@ -61,12 +61,13 @@ class Donation(Base):
     created = Column(DateTime, nullable=False)
     emailed_about = Column(Boolean, nullable=False)
 
-    def __init__(self, user, type, amount):
+    def __init__(self, user, type, amount, project=None):
         self.user = user
         self.type = type
         self.amount = amount
         self.created = datetime.now()
         self.emailed_about = False
+        self.project = project
 
     def __repr__(self):
         return "<Donation {} from {}: ${} ({})>".format(

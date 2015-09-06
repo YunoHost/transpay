@@ -91,12 +91,20 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "donate");
                 xhr.onload = function() {
-                    document.getElementById("donation-stuff").classList.add("hidden");
-                    document.getElementById("thanks").classList.remove("hidden");
                     var res = JSON.parse(this.responseText);
-                    if (res.new_account) {
-                        document.getElementById("new-donor-password").classList.remove("hidden");
-                        document.getElementById("reset-token").value = res.password_reset;
+                    if (res.success) {
+                        document.getElementById("donation-stuff").classList.add("hidden");
+                        document.getElementById("thanks").classList.remove("hidden");
+                        if (res.new_account) {
+                            document.getElementById("new-donor-password").classList.remove("hidden");
+                            document.getElementById("reset-token").value = res.password_reset;
+                        }
+                    } else {
+                        var errors = document.getElementById("errors");
+                        errors.classList.remove("hidden");
+                        errors.querySelector("p").textContent = res.reason;
+                        e.target.removeAttribute("disabled");
+                        e.target.textContent = "Donate";
                     }
                 };
                 xhr.send(data);
