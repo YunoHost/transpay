@@ -82,7 +82,9 @@
                 data.append("email", token.email);
                 data.append("amount", donation.amount);
                 data.append("type", donation.type);
-                data.append("comment", donation.comment);
+                if (donation.comment !== null) {
+                    data.append("comment", donation.comment);
+                }
                 if (donation.project !== null) {
                     data.append("project", donation.project);
                 }
@@ -92,8 +94,9 @@
                     document.getElementById("donation-stuff").classList.add("hidden");
                     document.getElementById("thanks").classList.remove("hidden");
                     var res = JSON.parse(this.responseText);
-                    if (res.newAccount) {
+                    if (res.new_account) {
                         document.getElementById("new-donor-password").classList.remove("hidden");
+                        document.getElementById("reset-token").value = res.password_reset;
                     }
                 };
                 xhr.send(data);

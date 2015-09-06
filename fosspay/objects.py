@@ -36,7 +36,7 @@ class User(Base):
         self.set_password(password)
 
     def __repr__(self):
-        return "<User {}>".format(self.username)
+        return "<User {}>".format(self.email)
 
     # Flask.Login stuff
     # We don't use most of these features

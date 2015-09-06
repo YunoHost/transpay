@@ -1,13 +1,17 @@
 from flask import Blueprint, render_template, abort, request, redirect, session, url_for, send_file, Response
 from flask.ext.login import current_user, login_user, logout_user
+from datetime import datetime, timedelta
 from fosspay.objects import *
 from fosspay.database import db
 from fosspay.common import *
 from fosspay.config import _cfg, load_config
 
+import os
 import locale
 import bcrypt
 import hashlib
+import stripe
+import binascii
 
 encoding = locale.getdefaultlocale()[1]
 html = Blueprint('html', __name__, template_folder='../../templates')
@@ -19,7 +23,14 @@ def index():
         return render_template("setup.html")
     projects = sorted(Project.query.all(), key=lambda p: p.name)
     avatar = "//www.gravatar.com/avatar/" + hashlib.md5(_cfg("your-email").encode("utf-8")).hexdigest()
-    return render_template("index.html", projects=projects, avatar=avatar)
+    selected_project = request.args.get("project")
+    if selected_project:
+        try:
+            selected_project = int(selected_project)
+        except:
+            selected_project = None
+    return render_template("index.html", projects=projects,
+            avatar=avatar, selected_project=selected_project)
 
 @html.route("/setup", methods=["POST"])
 def setup():
@@ -81,3 +92,79 @@ def login():
 def logout():
     logout_user()
     return redirect("/")
+
+@html.route("/donate", methods=["POST"])
+@json_output
+def donate():
+    email = request.form.get("email")
+    stripe_token = request.form.get("stripe_token")
+    amount = request.form.get("amount")
+    type = request.form.get("type")
+    comment = request.form.get("comment")
+    project_id = request.form.get("project")
+    if not email or not stripe_token or not amount or not type:
+        return { "success": False, "reason": "Invalid request" }, 400
+    try:
+        if project_id is None or project_id == "null":
+            project = None
+        else:
+            project_id = int(project_id)
+            project = Project.query.filter(Project.id == project_id).first()
+    except:
+        return { "success": False, "reason": "Invalid request" }, 400
+
+    new_account = False
+    user = User.query.filter(User.email == email).first()
+    if not user:
+        new_account = True
+        user = User(email, binascii.b2a_hex(os.urandom(20)).decode("utf-8"))
+        user.passwordReset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
+        user.passwordResetExpiry = datetime.now() + timedelta(days=1)
+        db.add(user)
+        customer = stripe.Customer.create(email=user.email, card=stripe_token)
+        user.stripe_customer = customer.id
+
+    db.commit()
+
+    if new_account:
+        return { "success": True, "new_account": new_account, "password_reset": user.password_reset }
+    else:
+        return { "success": True, "new_account": new_account }
+
+@html.route("/password-reset", methods=['GET', 'POST'], defaults={'token': None})
+@html.route("/password-reset/<token>", methods=['GET', 'POST'])
+def reset_password(token):
+    if not token and request.method == "POST":
+        token = request.form.get("token")
+        if not token:
+            redirect("/")
+    else:
+        redirect("/")
+    user = User.query.filter(User.password_reset == token).first()
+    if not user:
+        redirect("/")
+    if request.method == 'GET':
+        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
+            return render_template("reset.html", expired=True)
+        if user.password_reset != token:
+            redirect("/")
+        return render_template("reset.html", token=token)
+    else:
+        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
+            abort(401)
+        if user.password_reset != token:
+            abort(401)
+        password = request.form.get('password')
+        if not password:
+            return render_template("reset.html", token=token, errors="You need to type a new password.")
+        user.set_password(password)
+        user.password_reset = None
+        user.password_reset_expires = None
+        db.commit()
+        login_user(user)
+        return redirect("/panel")
+
+@html.route("/panel")
+@loginrequired
+def panel():
+    return render_template("panel.html")

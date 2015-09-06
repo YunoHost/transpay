@@ -17,14 +17,7 @@ window.default_type = "{{ _cfg("default-type") }}";
         <h1>Donate to {{ _cfg("your-name") }}</h1>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <p>
-                Donations accumulate until there's enough to fund one week of
-                full time development. The project you specify influences which
-                projects receive the most time. Each donated-to project will
-                receive attention, even if there's just one donation for it.
-                Monthly donations will help me keep doing this for a long time,
-                but one-offs are also great.
-                </p>
+                {% include "summary.html" %}
             </div>
         </div>
     </div>
@@ -39,11 +32,12 @@ window.default_type = "{{ _cfg("default-type") }}";
 </noscript>
 <div class="container text-center hidden" id="thanks">
     {% include "post-donation-message.html" %}
-    <div id="new-donor-password" class="hidden">
+    <form id="new-donor-password" class="hidden" action="/password-reset" method="POST">
         <p>Set a password now if you want to manage your donations later:</p>
-        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Password" name="password" />
+        <input type="hidden" name="token" id="reset-token" />
         <button class="btn btn-primary btn-sm">Submit</button>
-    </div>
+    </form>
 </div>
 <div class="container text-center" id="donation-stuff">
     <h3>How much?</h3>
@@ -115,9 +109,11 @@ window.default_type = "{{ _cfg("default-type") }}";
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
                 <select id="project" class="form-control">
-                    <option value="null">None in particular</option>
+                    <option value="null"
+                        {{ "selected" if selected_project == None else "" }}>None in particular</option>
                     {% for project in projects %}
-                    <option value="{{ project.id }}">{{ project.name }}</option>
+                    <option value="{{ project.id }}"
+                        {{ "selected" if selected_project == project.id else "" }}>{{ project.name }}</option>
                     {% endfor %}
                 </select>
             </div>

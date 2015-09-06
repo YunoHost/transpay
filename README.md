@@ -95,6 +95,10 @@ run this command to try the site in development mode:
 [Click here](http://localhost:5000) to visit your donation site and further
 instructions will be provided there.
 
+### Static Assets
+
+Run `make` to compile static assets.
+
 ### Production Deployment
 
 To deploy this to production, copy the systemd unit from `contrib/` to your
