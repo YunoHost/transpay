@@ -35,7 +35,7 @@ window.email = "{{user.email}}";
 </noscript>
 <div class="container text-center hidden" id="thanks">
     {% include "post-donation-message.html" %}
-    <form id="new-donor-password" class="hidden" action="password-reset" method="POST">
+    <form id="new-donor-password" class="hidden" action="{{root}}/password-reset" method="POST">
         <p>Set a password now if you want to manage your donations later:</p>
         <input type="password" placeholder="Password" name="password" />
         <input type="hidden" name="token" id="reset-token" />

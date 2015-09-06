@@ -90,7 +90,7 @@ host this on).
 Copy config.ini.example to config.ini and edit it to your liking. Then, you can
 run this command to try the site in development mode:
 
-    python app.py
+    python3 app.py
 
 [Click here](http://localhost:5000) to visit your donation site and further
 instructions will be provided there.
