@@ -123,11 +123,9 @@ def donate():
     if not user:
         new_account = True
         user = User(email, binascii.b2a_hex(os.urandom(20)).decode("utf-8"))
-        user.passwordReset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
-        user.passwordResetExpiry = datetime.now() + timedelta(days=1)
-        print(stripe_token)
+        user.password_reset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
+        user.password_reset_expires = datetime.now() + timedelta(days=1)
         customer = stripe.Customer.create(email=user.email, card=stripe_token)
-        print(customer)
         user.stripe_customer = customer.id
         db.add(user)
 
