@@ -26,3 +26,9 @@ connection-string=postgresql://postgres@localhost/fosspay
 
 # Click here first: https://dashboard.stripe.com/account/bitcoin/enable
 enable-bitcoin=no
+
+# Pick between 5, 10, 20, or 50
+default-amount=10
+
+# Pick between "monthly" and "once"
+default-type=monthly

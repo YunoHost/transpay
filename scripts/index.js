@@ -1,7 +1,7 @@
 (function() {
     var donation = {
-        type: "monthly",
-        amount: 1000, // cents
+        type: window.default_type,
+        amount: window.default_amount * 100, // cents
         project: null,
         comment: null
     };

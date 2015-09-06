@@ -5,6 +5,8 @@ window.stripe_key = "{{ _cfg("stripe-publish") }}";
 window.avatar = "{{ avatar }}";
 window.your_name = "{{ _cfg("your-name") }}";
 window.bitcoin = "{{ _cfg("enable-bitcoin") }}" === "yes";
+window.default_amount = {{ _cfg("default-amount") }};
+window.default_type = "{{ _cfg("default-type") }}";
 </script>
 <script src="//checkout.stripe.com/checkout.js"></script>
 <script src="static/index.js"></script>
@@ -49,16 +51,24 @@ window.bitcoin = "{{ _cfg("enable-bitcoin") }}" === "yes";
         <div class="col-md-8 col-md-offset-2">
             <div class="btn-group btn-group-justified amounts" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <button data-amount="5" type="button" class="btn btn-default">$5</button>
+                    <button data-amount="5" type="button"
+                        class="btn btn-default {{"active" if _cfgi("default-amount") == 5 else ""}}">
+                        $5</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button data-amount="10" type="button" class="btn btn-default active">$10</button>
+                    <button data-amount="10" type="button"
+                        class="btn btn-default {{"active" if _cfgi("default-amount") == 10 else ""}}">
+                        $10</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button data-amount="20" type="button" class="btn btn-default">$20</button>
+                    <button data-amount="20" type="button"
+                        class="btn btn-default {{"active" if _cfgi("default-amount") == 20 else ""}}">
+                        $20</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button data-amount="50" type="button" class="btn btn-default">$50</button>
+                    <button data-amount="50" type="button"
+                        class="btn btn-default {{"active" if _cfgi("default-amount") == 50 else ""}}">
+                        $50</button>
                 </div>
                 <div class="btn-group" role="group">
                     <button data-amount="custom" type="button" class="btn btn-default">Custom</button>
@@ -87,11 +97,13 @@ window.bitcoin = "{{ _cfg("enable-bitcoin") }}" === "yes";
                 <div class="btn-group btn-group-justified frequencies" role="group" aria-label="...">
                     <div class="btn-group" role="group">
                         <button data-frequency="once" type="button"
-                            class="btn btn-default">Once</button>
+                            class="btn btn-default {{"active" if _cfg("default-type")=="once" else ""}}">
+                            Once</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button data-frequency="monthly" type="button"
-                            class="btn btn-default active">Monthly</button>
+                            class="btn btn-default {{"active" if _cfg("default-type")=="monthly" else ""}}">
+                            Monthly</button>
                     </div>
                 </div>
             </div>
