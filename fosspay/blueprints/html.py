@@ -5,6 +5,7 @@ from fosspay.objects import *
 from fosspay.database import db
 from fosspay.common import *
 from fosspay.config import _cfg, load_config
+from fosspay.email import send_thank_you
 
 import os
 import locale
@@ -125,6 +126,8 @@ def donate():
             type = DonationType.one_time
         else:
             type = DonationType.monthly
+
+        amount = int(amount)
     except:
         return { "success": False, "reason": "Invalid request" }, 400
 
@@ -160,6 +163,8 @@ def donate():
         return { "success": False, "reason": "Your card was declined." }
 
     db.commit()
+
+    send_thank_you(user, amount, type == DonationType.monthly)
 
     if new_account:
         return { "success": True, "new_account": new_account, "password_reset": user.password_reset }
