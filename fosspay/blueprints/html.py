@@ -100,7 +100,7 @@ def login():
 @loginrequired
 def logout():
     logout_user()
-    return redirect("..")
+    return redirect(_cfg("protocol") + "://" + _cfg("domain"))
 
 @html.route("/donate", methods=["POST"])
 @json_output
