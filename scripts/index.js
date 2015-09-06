@@ -68,6 +68,7 @@
 
         var handler = StripeCheckout.configure({
             name: your_name,
+            email: window.email,
             key: window.stripe_key,
             image: window.avatar,
             locale: 'auto',

@@ -7,6 +7,9 @@ window.your_name = "{{ _cfg("your-name") }}";
 window.bitcoin = "{{ _cfg("enable-bitcoin") }}" === "yes";
 window.default_amount = {{ _cfg("default-amount") }};
 window.default_type = "{{ _cfg("default-type") }}";
+{% if user %}
+window.email = "{{user.email}}";
+{% endif %}
 </script>
 <script src="//checkout.stripe.com/checkout.js"></script>
 <script src="static/index.js"></script>
@@ -32,7 +35,7 @@ window.default_type = "{{ _cfg("default-type") }}";
 </noscript>
 <div class="container text-center hidden" id="thanks">
     {% include "post-donation-message.html" %}
-    <form id="new-donor-password" class="hidden" action="/password-reset" method="POST">
+    <form id="new-donor-password" class="hidden" action="password-reset" method="POST">
         <p>Set a password now if you want to manage your donations later:</p>
         <input type="password" placeholder="Password" name="password" />
         <input type="hidden" name="token" id="reset-token" />
@@ -138,12 +141,14 @@ window.default_type = "{{ _cfg("default-type") }}";
 </div>
 <hr />
 <div class="container text-center">
+    {% if not user %}
     <p>
         <small class="text-muted">
             Been here before? <a href="login">Log in</a> to view your donation
             history, edit recurring donations, and so on.
         </small>
     </p>
+    {% endif %}
     <p>
         <small class="text-muted">
             Powered by <a href="https://github.com/SirCmpwn/fosspay">fosspay</a>.

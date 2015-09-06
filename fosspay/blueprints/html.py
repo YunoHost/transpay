@@ -93,7 +93,7 @@ def login():
     login_user(user)
     if user.admin:
         return redirect("/admin")
-    return redirect("/")
+    return redirect("/panel")
 
 @html.route("/logout")
 @loginrequired
