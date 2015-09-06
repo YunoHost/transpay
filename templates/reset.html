@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block body %} 
+<div class="well">
+    <div class="container">
+        <h1>Donate to {{ _cfg("your-name") }}</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Reset Password</h1>
+            {% if errors %}
+                <div class="alert alert-danger">
+                    <p>
+                    {{ errors }}
+                    </p>
+                </div>
+            {% endif %}
+            {% if done %}
+                <p>
+                    An email should arrive shortly. If you need help, contact
+                    <a href="mailto:{{_cfg("your-email")}}">{{_cfg("your-email")}}</a>.
+                </p>
+            {% elif token %}
+                <form action="{{root}}/password-reset" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="New password" />
+                        <input type="hidden" name="token" value="{{ token }}" />
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </form>
+            {% else %}
+                <form action="{{root}}/password-reset" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="email" placeholder="your@email.com" />
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -31,3 +31,23 @@ def send_thank_you(user, amount, monthly):
     message['To'] = user.email
     smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
     smtp.quit()
+
+def send_password_reset(user):
+    if _cfg("smtp-host") == "":
+        return
+    smtp = smtplib.SMTP(_cfg("smtp-host"), _cfgi("smtp-port"))
+    smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
+    with open("emails/reset-password") as f:
+        message = MIMEText(html.parser.HTMLParser().unescape(\
+            pystache.render(f.read(), {
+                "user": user,
+                "root": _cfg("protocol") + "://" + _cfg("domain"),
+                "your_name": _cfg("your-name"),
+                "your_email": _cfg("your-email")
+            })))
+    message['X-MC-PreserveRecipients'] = "false"
+    message['Subject'] = "Reset your donor password"
+    message['From'] = _cfg("smtp-from")
+    message['To'] = user.email
+    smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
+    smtp.quit()

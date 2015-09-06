@@ -5,7 +5,7 @@ from fosspay.objects import *
 from fosspay.database import db
 from fosspay.common import *
 from fosspay.config import _cfg, load_config
-from fosspay.email import send_thank_you
+from fosspay.email import send_thank_you, send_password_reset
 
 import os
 import locale
@@ -40,13 +40,13 @@ def setup():
     email = request.form.get("email")
     password = request.form.get("password")
     if not email or not password:
-        return redirect("/") # TODO: Tell them what they did wrong (i.e. being stupid)
+        return redirect("..") # TODO: Tell them what they did wrong (i.e. being stupid)
     user = User(email, password)
     user.admin = True
     db.add(user)
     db.commit()
     login_user(user)
-    return redirect("/admin?first-run=1")
+    return redirect("admin?first-run=1")
 
 @html.route("/admin")
 @adminrequired
@@ -72,14 +72,14 @@ def create_project():
     project = Project(name)
     db.add(project)
     db.commit()
-    return redirect("/admin")
+    return redirect("admin")
 
 @html.route("/login", methods=["GET", "POST"])
 def login():
     if current_user:
         if current_user.admin:
-            return redirect("/admin")
-        return redirect("/panel")
+            return redirect("admin")
+        return redirect("panel")
     if request.method == "GET":
         return render_template("login.html")
     email = request.form.get("email")
@@ -93,14 +93,14 @@ def login():
         return render_template("login.html", errors=True)
     login_user(user)
     if user.admin:
-        return redirect("/admin")
-    return redirect("/panel")
+        return redirect("admin")
+    return redirect("panel")
 
 @html.route("/logout")
 @loginrequired
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("..")
 
 @html.route("/donate", methods=["POST"])
 @json_output
@@ -171,23 +171,41 @@ def donate():
     else:
         return { "success": True, "new_account": new_account }
 
+def issue_password_reset(email):
+    user = User.query.filter(User.email == email).first()
+    if not user:
+        return render_template("reset.html", errors="No one with that email found.")
+    user.password_reset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
+    user.password_reset_expires = datetime.now() + timedelta(days=1)
+    send_password_reset(user)
+    db.commit()
+    return render_template("reset.html", done=True)
+
 @html.route("/password-reset", methods=['GET', 'POST'], defaults={'token': None})
 @html.route("/password-reset/<token>", methods=['GET', 'POST'])
 def reset_password(token):
-    if not token and request.method == "POST":
+    if request.method == "GET" and not token:
+        return render_template("reset.html")
+
+    if request.method == "POST":
         token = request.form.get("token")
+        email = request.form.get("email")
+
+        if email:
+            return issue_password_reset(email)
+
         if not token:
-            redirect("/")
-    else:
-        redirect("/")
+            return redirect("..")
+
     user = User.query.filter(User.password_reset == token).first()
     if not user:
-        redirect("/")
+        return render_template("reset.html", errors="This link has expired.")
+
     if request.method == 'GET':
         if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-            return render_template("reset.html", expired=True)
+            return render_template("reset.html", errors="This link has expired.")
         if user.password_reset != token:
-            redirect("/")
+            redirect("..")
         return render_template("reset.html", token=token)
     else:
         if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
@@ -202,7 +220,7 @@ def reset_password(token):
         user.password_reset_expires = None
         db.commit()
         login_user(user)
-        return redirect("/panel")
+        return redirect("panel")
 
 @html.route("/panel")
 @loginrequired
