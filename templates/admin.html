@@ -106,7 +106,10 @@
                 <td>{{ donation.project.name if donation.project else "" }}</td>
                 <td title="{{ donation.comment }}">{{ donation.comment if donation.comment else "" }}</td>
                 <td>${{ "{:.2f}".format(donation.amount / 100) }}</td>
-                <td>{{ "Once" if str(donation.type) == "DonationType.one_time" else "Monthly" }}</td>
+                <td>
+                    {{ "Once" if str(donation.type) == "DonationType.one_time" else "Monthly" }}
+                    {{ "(cancelled)" if not donation.active else "" }}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
