@@ -10,6 +10,35 @@
     </div>
 </div>
 <div class="container">
+    {% if any(recurring(user)) %}
+    <h2>Monthly Donations</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 10%"></th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Project</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for donation in recurring(user) %}
+            <tr>
+                <td>
+                    <form method="DELETE" action="cancel/{{ donation.id }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                </td>
+                <td>{{ donation.created.strftime("%Y-%m-%d") }}</td>
+                <td>${{ "{:.2f}".format(donation.amount / 100) }}</td>
+                <td>{{ donation.project.name if donation.project else "Not specified" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% if any(one_times(user)) %}
+    <h2>One-time Donations</h2>
     <table class="table">
         <thead>
             <tr>
@@ -28,5 +57,6 @@
         {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 </div>
 {% endblock %}
