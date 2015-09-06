@@ -23,3 +23,6 @@ your_email=joe@bloe.com
 
 # SQL connection string
 connection-string=postgresql://postgres@localhost/fosspay
+
+# Click here first: https://dashboard.stripe.com/account/bitcoin/enable
+enable-bitcoin=no
