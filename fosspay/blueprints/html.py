@@ -57,9 +57,9 @@ def admin():
         first=first,
         projects=projects,
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
-        recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.recurring]),
+        recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly]),
         unspecified_one_times=sum([d.amount for d in unspecified if d.type == DonationType.one_time]),
-        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.recurring])
+        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly])
     )
 
 @html.route("/create-project", methods=["POST"])
@@ -73,6 +73,10 @@ def create_project():
 
 @html.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user:
+        if current_user.admin:
+            return redirect("/admin")
+        return redirect("/panel")
     if request.method == "GET":
         return render_template("login.html")
     email = request.form.get("email")
@@ -85,6 +89,8 @@ def login():
     if not bcrypt.hashpw(password.encode('UTF-8'), user.password.encode('UTF-8')) == user.password.encode('UTF-8'):
         return render_template("login.html", errors=True)
     login_user(user)
+    if user.admin:
+        return redirect("/admin")
     return redirect("/")
 
 @html.route("/logout")
@@ -187,4 +193,6 @@ def reset_password(token):
 @html.route("/panel")
 @loginrequired
 def panel():
-    return render_template("panel.html")
+    return render_template("panel.html",
+        one_times=lambda u: [d for d in u.donations if d.type == DonationType.one_time],
+        recurring=lambda u: next(d for d in u.donations if d.type == DonationType.recurring))

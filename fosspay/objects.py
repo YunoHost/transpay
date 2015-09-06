@@ -73,7 +73,7 @@ class Donation(Base):
         return "<Donation {} from {}: ${} ({})>".format(
                 self.id,
                 self.user.email,
-                self.amount,
+                "{:.2f}".format(self.amount / 100),
                 self.type
             )
 

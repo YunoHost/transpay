@@ -2,91 +2,101 @@
 {% block title %}
 <title>Donation Admin</title>
 {% endblock %}
-{% block container %} 
-<a href="/logout" class="pull-right">Log out</a>
-<h1>Fosspay Admin</h1>
-{% if first %}
+{% block body %} 
 <div class="well">
-    <p>
-        You're set up and ready to go! This is your admin panel.
-        Yeah, it's not pretty. Next steps:
-    </p>
-    <ol>
-        <li>
-            Set up a cron job to handle monthly donations. <a href="https://github.com/SirCmpwn/fosspay/wiki/Recurring-donations-cronjob">Relevant documentation</a>.
-        </li>
-        <li>
-            Add some projects. Donors can tell you which project they want to support
-            when they donate.
-        </li>
-        <li>
-            Customize the look &amp; feel. Look at the contents of the <code>templates</code>
-            directory - you can copy and paste any of these templates into the
-            <code>overrides</code> directory and change it to suit your needs.
-        </li>
-        <li>
-            <a href="https://drewdevault.com/donate?project=fosspay">Donate to fosspay upstream</a>?
-        </li>
-        <li>
-            <a href="https://github.com/SirCmpwn/fosspay">Contribute code to fosspay upstream</a>?
-        </li>
-    </ol>
-</div>
-{% endif %}
-<h2>Projects</h2>
-<div class="row">
-    <div class="col-md-6">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="width: 10%"></th>
-                    <th>Project Name</th>
-                    <th>One-time</th>
-                    <th>Recurring</th>
-                    <th>README Button</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for project in projects %}
-                <tr>
-                    <td><button type="button" class="close">&times;</button></td>
-                    <td>{{ project.name }}</td>
-                    <td>${{ one_times(project) }}</td>
-                    <td>${{ recurring(project) }}</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">Get Markdown</a></td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td>(not specified)</td>
-                    <td>${{ unspecified_one_times }}</td>
-                    <td>${{ unspecified_recurring }}</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6 well">
-        <h4>Add Project</h4>
-        <p>Donors will not be given a choice of project unless you have at least 2.</p>
-        <form method="POST" action="/create-project">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Project name" name="name" />
-            </div>
-            <input type="submit" value="Add" class="btn btn-default pull-right" />
-        </form>
+    <div class="container">
+        <p class="pull-right">
+            <a class="btn btn-default" href="logout">Log Out</a>
+        </p>
+        <h1>Donation Admin</h1>
     </div>
 </div>
-<h2>Donation History</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>Project</th>
-            <th>Comment</th>
-            <th>Amount</th>
-            <th style="width: 10%">Recurring</th>
-        </tr>
-    </thead>
-</table>
+<div class="container">
+    {% if first %}
+    <div class="well">
+        <p>
+            You're set up and ready to go! This is your admin panel. Next steps:
+        </p>
+        <ol>
+            <li>
+                <strong>Set up a cron job to handle monthly donations.</strong>
+                <a href="https://github.com/SirCmpwn/fosspay/wiki/Recurring-donations-cronjob">
+                    Relevant documentation
+                </a>.
+            </li>
+            <li>
+                Add some projects. Donors can tell you which project they want to support
+                when they donate.
+            </li>
+            <li>
+                Customize the look &amp; feel. Look at the contents of the <code>templates</code>
+                directory - you can copy and paste any of these templates into the
+                <code>overrides</code> directory and change it to suit your needs.
+            </li>
+            <li>
+                <a href="https://drewdevault.com/donate?project=fosspay">Donate to fosspay upstream</a>?
+            </li>
+            <li>
+                <a href="https://github.com/SirCmpwn/fosspay">Contribute code to fosspay upstream</a>?
+            </li>
+        </ol>
+    </div>
+    {% endif %}
+    <h2>Projects</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 10%"></th>
+                        <th>Project Name</th>
+                        <th>One-time</th>
+                        <th>Recurring</th>
+                        <th>README Button</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                    <tr>
+                        <td><button type="button" class="close">&times;</button></td>
+                        <td>{{ project.name }}</td>
+                        <td>${{ "{:.2f}".format(one_times(project) / 100) }}</td>
+                        <td>${{ "{:.2f}".format(recurring(project) / 100) }}</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">Get Markdown</a></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>(not specified)</td>
+                        <td>${{ "{:.2f}".format(unspecified_one_times / 100) }}</td>
+                        <td>${{ "{:.2f}".format(unspecified_recurring / 100) }}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 well">
+            <h4>Add Project</h4>
+            <p>Donors will not be given a choice of project unless you have at least 2.</p>
+            <form method="POST" action="/create-project">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Project name" name="name" />
+                </div>
+                <input type="submit" value="Add" class="btn btn-default pull-right" />
+            </form>
+        </div>
+    </div>
+    <h2>Donation History</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Project</th>
+                <th>Comment</th>
+                <th>Amount</th>
+                <th style="width: 10%">Recurring</th>
+            </tr>
+        </thead>
+    </table>
+</div>
 {% endblock %}
