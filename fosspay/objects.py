@@ -24,6 +24,7 @@ class User(Base):
     created = Column(DateTime)
     password_reset = Column(String(128))
     password_reset_expires = Column(DateTime)
+    stripe_customer = Column(String(256))
 
     def set_password(self, password):
         self.password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")

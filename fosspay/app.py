@@ -5,14 +5,13 @@ from jinja2 import FileSystemLoader, ChoiceLoader
 import sys
 import os
 import locale
+import stripe
 
 from fosspay.config import _cfg, _cfgi
 from fosspay.database import db, init_db
 from fosspay.objects import User
 from fosspay.common import *
 from fosspay.network import *
-
-import fosspay.stripe
 
 from fosspay.blueprints.html import html
 
@@ -27,6 +26,8 @@ app.jinja_loader = ChoiceLoader([
     FileSystemLoader("overrides"),
     FileSystemLoader("templates"),
 ])
+
+stripe.api_key = _cfg("stripe-secret")
 
 @login_manager.user_loader
 def load_user(email):
