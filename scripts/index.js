@@ -64,6 +64,8 @@
             return;
         }
 
+        donation.comment = document.getElementById("comments").value;
+
         var handler = StripeCheckout.configure({
             name: your_name,
             key: window.stripe_key,

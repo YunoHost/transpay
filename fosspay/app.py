@@ -74,5 +74,6 @@ def inject():
         'user': current_user,
         '_cfg': _cfg,
         '_cfgi': _cfgi,
-        'debug': app.debug
+        'debug': app.debug,
+        'str': str
     }

@@ -53,9 +53,11 @@ def admin():
     first = request.args.get("first-run") is not None
     projects = Project.query.all()
     unspecified = Donation.query.filter(Donation.project == None).all()
+    donations = Donation.query.order_by(Donation.created.desc()).limit(50).all()
     return render_template("admin.html",
         first=first,
         projects=projects,
+        donations=donations,
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
         recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly]),
         unspecified_one_times=sum([d.amount for d in unspecified if d.type == DonationType.one_time]),
@@ -108,6 +110,8 @@ def donate():
     type = request.form.get("type")
     comment = request.form.get("comment")
     project_id = request.form.get("project")
+
+    # validate and rejigger the form inputs
     if not email or not stripe_token or not amount or not type:
         return { "success": False, "reason": "Invalid request" }, 400
     try:
@@ -134,8 +138,13 @@ def donate():
         customer = stripe.Customer.create(email=user.email, card=stripe_token)
         user.stripe_customer = customer.id
         db.add(user)
+    else:
+        customer = stripe.Customer.retrieve(user.stripe_customer)
+        new_source = customer.sources.create(source=stripe_token)
+        customer.default_source = new_source.id
+        customer.save()
 
-    donation = Donation(user, type, amount, project)
+    donation = Donation(user, type, amount, project, comment)
     db.add(donation)
 
     try:
