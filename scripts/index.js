@@ -43,6 +43,9 @@
         if (isNaN(value)) {
             value = 1;
         }
+        if (value <= 0) {
+            value = 1;
+        }
         e.target.value = value;
         donation.amount = value * 100;
     });

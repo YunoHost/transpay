@@ -205,3 +205,15 @@ def panel():
     return render_template("panel.html",
         one_times=lambda u: [d for d in u.donations if d.type == DonationType.one_time],
         recurring=lambda u: [d for d in u.donations if d.type == DonationType.monthly and d.active])
+
+@html.route("/cancel/<id>")
+@loginrequired
+def cancel(id):
+    donation = Donation.query.filter(Donation.id == id).first()
+    if donation.user != current_user:
+        abort(401)
+    if donation.type != DonationType.monthly:
+        abort(400)
+    donation.active = False
+    db.commit()
+    return redirect("/panel")
