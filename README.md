@@ -1,111 +1,93 @@
-# fosspay
+# fosspay [![Donate with fosspay](https://drewdevault.com/donate/static/donate-with-fosspay.png)](https://drewdevault.com/donate?project=3)
 
-Helps you get paid for your open source work.
-
-[![](https://img.shields.io/badge/Donations-fosspay-brightgreen.svg)](https://drewdevault.com/donate)
+Donation collection for FOSS groups and individuals.
 
 ## Rationale
 
-I write a ton of open source software, but almost none of it is on the scale
-that I can expect reliable income from donations, or the sorts of projects that
-a business would be likely to fund. It's very unlikely that I'd receive enough
-donations from random folks to support full time open source work, but full time
-is the best way to make serious progress on your projects.
+Getting paid to write open source is *hard*. There are several problems with
+donations:
 
-So - here's how this works: supporters give you one-time or recurring donations,
-and after a while you get enough to take a week off from work to spend on open
-source work. Since I have several projects, I also ask supporters to tell me
-what project they're donating towards, and I distribute the load based on which
-projects receive the most support.
+* No job security
+* Not likely to be enough to switch to full time
+* Without being full time, it's hard to be productive
+
+Some projects get support from companies, but most projects are not on the right
+scale for that to happen, and some projects (like most of my own) do not provide
+business value and wouldn't get sponsored regardless of size.
+
+So, the solution: keep your job, and collect donations until you have raised
+enough to support one week of full time development on your open source
+projects. Take a week of unpaid leave and get some FOSS shit done.
+
+## fosspay
+
+This software will collect donations for you. Want to take it for a test drive?
+[Send me a buck](https://drewdevault.com/donate?project=3).
+
+* Supports one-time and monthly donations
+* Process cards with Stripe - also supports Bitcoin
+* Flexible and customizable
+
+It works for individuals (like me) and it works for organizations. Expect to
+spend about an hour or two setting up everything and then you're good to go.
 
 ## Before you start
 
-Talk to your employer. The way that this is designed to work is that you
-continue working full-time at your job, and collect donations. After a while,
-you should have enough donations to take some period of unpaid leave - a week, a
-month, or whatever works.
+Do these things first:
 
-* You keep your current job and job security
-* You get paid to work on FOSS even with flaky or inconsistent donations
-* Everyone wins
+1. Research the tax implications for your country
+1. Speak with your employer about it
 
-There are a few things you need to talk about with your employer:
+You will need a number of things set up before you start:
 
-1. Make sure you own the IP for the things you write during your open source
-    sprints.
-1. Make sure that you have a job to come back to afterwards.
-1. Research the tax implications of accepting these donations.
-
-### Stripe
-
-Payments are taken through Stripe, which is pretty headache-free for you to use.
-You need to set up an approved Stripe account, which you can get from here:
-
-https://stripe.com/
-
-### Mandrill
-
-You will need a mail server of some sort. If you don't want to go through the
-trouble of setting one up, you can use Mandrill:
-
-http://mandrill.com/
-
-You can probably also use your existing mail server, which is what I do, which
-makes it easy for people to email you questions and such.
-
-### SSL
-
-You will need an SSL certificate for your website (you also need a domain name).
-You can get a free SSL certificate from [StartSSL](http://www.startssl.com/),
-but they've always felt pretty... bad to me. You can pay for one instead at
-[RapidSSL](https://www.rapidssl.com/), which is what I use personally. You can
-also get one for free from [Let's Encrypt](https://letsencrypt.org/) if that
-ever happens.
-
-If you need a domain, you can use my referral link for
-[Namecheap](http://www.namecheap.com/?aff=84838) and that'd be super nice of
-you. Here's a link to Namecheap without the referral link:
-[Namecheap](http://www.namecheap.com).
+1. An approved [Stripe](https://stripe.com/) account
+1. A mail server (try [Mandrill](http://mandrill.com/) if you don't have one)
+1. A domain name and an SSL certificate (try [Namecheap](http://www.namecheap.com/?aff=84838) and [StartSSL](http://www.startssl.com/))
+1. A web server to host fosspay on (try [Linode](http://linode.com/) if you don't have one)
 
 ## Installation
 
-Install these things (Arch Linux packages in parenthesis):
+Install these things:
 
-* Python 3 (python)
-* PostgreSQL (postgresql)
-* scss (ruby-sass)
-* Flask (python-flask)
-* SQLAlchemy (python-sqlalchemy)
-* Flask-Login (python-flask-login)
-* psycopg2 (python-psycopg2)
-* bcrypt (python-bcrypt)
+* Python 3
+* pip (python 3)
+* PostgreSQL
 
-You'll have to configure PostgreSQL yourself and get a connection string that
-fosspay can use. Then you can clone this repository to wherever you want to run
-it from (I suggest making an unprivledged user account on the server you want to
-host this on).
+You're responsible for setting up PostgreSQL yourself. Prepare a connection
+string for later.
 
-### Configuration
+Clone the git repository on the server that you want to host fosspay on:
 
-Copy config.ini.example to config.ini and edit it to your liking. Then, you can
-run this command to try the site in development mode:
+    git clone git://github.com/SirCmpwn/fosspay.git
+    cd fosspay
+
+Install the Python packages:
+
+    sudo pip3 install -r requirements.txt
+
+Compile the static assets:
+
+    make
+
+Create a configuration file:
+
+    cp config.ini.example config.ini
+
+Edit `config.ini` to your liking. Then, you can run the following to start up
+the development server:
 
     python3 app.py
 
-[Click here](http://localhost:5000) to visit your donation site and further
-instructions will be provided there.
+Log into http://your-domain:5000, and you will receive further instructions.
 
-### Static Assets
+## Deployment
 
-Run `make` to compile static assets.
+Once you have everything configured, you will need to switch from the dev server
+into something more permanent. Install gunicorn on your server and use the
+systemd unit provided in `contrib/`. You will also probably want to run this
+through nginx instead of directly exposing gunicorn to the web, see
+`contrib/nginx.conf`. Neither the nginx configuration or the systemd unit are
+immediately ready to use - read them and change them to suit your needs.
 
-### Production Deployment
-
-To deploy this to production, copy the systemd unit from `contrib/` to your
-server at `/etc/systemd/system/` (or whatever's appropriate for your distro).
-Use `sytsemctl enable fosspay` and `systemctl start fosspay` to run the site on
-`127.0.0.1:8000` (you can change this port by editing the unit file). You should
-configure nginx to proxy through to fosspay from whatever other website you
-already have. My nginx config is provided in `contrib/` for you to take a look
-at - it proxies most requests to Github pages (my blog), and `/donate` to
-fosspay.
+Using nginx or something like it is necessary for SSL support, and you must
+serve your site with https for Stripe to work.
