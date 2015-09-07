@@ -1,0 +1,12 @@
+An attempt was just made to charge your card for your monthly donation to
+{{your_name}} for ${{amount}}. Unfortunately, your card was declined.
+
+The donation has been disabled. If you would like to, you may create a new
+recurring donation here:
+
+{{root}}
+
+Thanks!
+
+--
+{{your_name}}

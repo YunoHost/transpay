@@ -51,3 +51,23 @@ def send_password_reset(user):
     message['To'] = user.email
     smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
     smtp.quit()
+
+def send_declined(user, amount):
+    if _cfg("smtp-host") == "":
+        return
+    smtp = smtplib.SMTP(_cfg("smtp-host"), _cfgi("smtp-port"))
+    smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
+    with open("emails/declined") as f:
+        message = MIMEText(html.parser.HTMLParser().unescape(\
+            pystache.render(f.read(), {
+                "user": user,
+                "root": _cfg("protocol") + "://" + _cfg("domain"),
+                "your_name": _cfg("your-name"),
+                "amount": "{:.2f}".format(amount / 100)
+            })))
+    message['X-MC-PreserveRecipients'] = "false"
+    message['Subject'] = "Your monthly donation was declined."
+    message['From'] = _cfg("smtp-from")
+    message['To'] = user.email
+    smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
+    smtp.quit()
