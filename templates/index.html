@@ -111,7 +111,7 @@ window.email = "{{user.email}}";
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
-                <select id="project" class="form-control">
+                <select id="project" name="project" class="form-control">
                     <option value="null"
                         {{ "selected" if selected_project == None else "" }}>None in particular</option>
                     {% for project in projects %}
