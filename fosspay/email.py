@@ -14,6 +14,8 @@ def send_thank_you(user, amount, monthly):
     if _cfg("smtp-host") == "":
         return
     smtp = smtplib.SMTP(_cfg("smtp-host"), _cfgi("smtp-port"))
+    smtp.ehlo()
+    smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
     with open("emails/thank-you") as f:
         message = MIMEText(html.parser.HTMLParser().unescape(\
@@ -25,7 +27,6 @@ def send_thank_you(user, amount, monthly):
                 "monthly": monthly,
                 "your_email": _cfg("your-email")
             })))
-    message['X-MC-PreserveRecipients'] = "false"
     message['Subject'] = "Thank you for your donation!"
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
@@ -36,6 +37,8 @@ def send_password_reset(user):
     if _cfg("smtp-host") == "":
         return
     smtp = smtplib.SMTP(_cfg("smtp-host"), _cfgi("smtp-port"))
+    smtp.ehlo()
+    smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
     with open("emails/reset-password") as f:
         message = MIMEText(html.parser.HTMLParser().unescape(\
@@ -45,7 +48,6 @@ def send_password_reset(user):
                 "your_name": _cfg("your-name"),
                 "your_email": _cfg("your-email")
             })))
-    message['X-MC-PreserveRecipients'] = "false"
     message['Subject'] = "Reset your donor password"
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
@@ -56,6 +58,8 @@ def send_declined(user, amount):
     if _cfg("smtp-host") == "":
         return
     smtp = smtplib.SMTP(_cfg("smtp-host"), _cfgi("smtp-port"))
+    smtp.ehlo()
+    smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
     with open("emails/declined") as f:
         message = MIMEText(html.parser.HTMLParser().unescape(\
@@ -65,7 +69,6 @@ def send_declined(user, amount):
                 "your_name": _cfg("your-name"),
                 "amount": "{:.2f}".format(amount / 100)
             })))
-    message['X-MC-PreserveRecipients'] = "false"
     message['Subject'] = "Your monthly donation was declined."
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
