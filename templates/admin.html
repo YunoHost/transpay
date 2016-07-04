@@ -49,14 +49,15 @@
     {% endif %}
     <h2>Projects</h2>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <table class="table">
                 <thead>
                     <tr>
                         <th style="width: 10%"></th>
                         <th>Project Name</th>
                         <th>One-time</th>
-                        <th>Recurring</th>
+                        <th>Recurring (active)</th>
+                        <th>Recurring (total paid)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,7 @@
                         <td>{{ project.name }}</td>
                         <td>${{ "{:.2f}".format(one_times(project) / 100) }}</td>
                         <td>${{ "{:.2f}".format(recurring(project) / 100) }}</td>
+                        <td>${{ "{:.2f}".format(recurring_ever(project) / 100) }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
@@ -73,23 +75,19 @@
                         <td>(not specified)</td>
                         <td>${{ "{:.2f}".format(unspecified_one_times / 100) }}</td>
                         <td>${{ "{:.2f}".format(unspecified_recurring / 100) }}</td>
+                        <td>${{ "{:.2f}".format(unspecified_recurring_ever / 100) }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td><strong>Total</strong></td>
                         <td>${{ "{:.2f}".format(total_one_time / 100) }}</td>
-                        <td>${{ "{:.2f}".format(total_recurring / 100) }} (active)</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><strong>Total</strong></td>
-                        <td></td>
-                        <td>${{ "{:.2f}".format(total_recurring_ever / 100) }} (paid)</td>
+                        <td>${{ "{:.2f}".format(total_recurring / 100) }}</td>
+                        <td>${{ "{:.2f}".format(total_recurring_ever / 100) }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6 well">
+        <div class="col-md-3 well">
             <h4>Add Project</h4>
             <p>Donors will not be given a choice of project unless you have at least 2.</p>
             <form method="POST" action="{{root}}/create-project">
