@@ -62,6 +62,7 @@ class Donation(Base):
     updated = Column(DateTime, nullable=False)
     comment = Column(String(512))
     active = Column(Boolean)
+    payments = Column(Integer)
 
     def __init__(self, user, type, amount, project=None, comment=None):
         self.user = user
@@ -73,6 +74,7 @@ class Donation(Base):
         self.project = project
         self.comment = comment
         self.active = True
+        self.payments = 1
 
     def __repr__(self):
         return "<Donation {} from {}: ${} ({})>".format(

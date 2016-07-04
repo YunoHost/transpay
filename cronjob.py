@@ -40,6 +40,7 @@ for donation in donations:
 
         send_thank_you(user, donation.amount, donation.type == DonationType.monthly)
         donation.updated = datetime.now()
+        donation.payments += 1
         db.commit()
     else:
         print("Skipping {}".format(donation))
