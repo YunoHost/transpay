@@ -62,7 +62,9 @@ def admin():
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
         recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly]),
         unspecified_one_times=sum([d.amount for d in unspecified if d.type == DonationType.one_time]),
-        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly])
+        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly]),
+        total_one_time=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.one_time)]),
+        total_recurring=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.recurring)]),
     )
 
 @html.route("/create-project", methods=["POST"])

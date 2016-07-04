@@ -74,6 +74,12 @@
                         <td>${{ "{:.2f}".format(unspecified_one_times / 100) }}</td>
                         <td>${{ "{:.2f}".format(unspecified_recurring / 100) }}</td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td><strong>Total</strong></td>
+                        <td>${{ "{:.2f}".format(total_one_time / 100) }}</td>
+                        <td>${{ "{:.2f}".format(total_recurring / 100) }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -92,6 +98,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Email</th>
                 <th>Project</th>
                 <th>Comment</th>
@@ -102,6 +109,7 @@
         <tbody>
             {% for donation in donations %}
             <tr>
+                <td>{{ donation.created.isoformat() }}</td>
                 <td><a href="mailto:{{ donation.user.email }}">{{ donation.user.email }}</a></td>
                 <td>{{ donation.project.name if donation.project else "" }}</td>
                 <td title="{{ donation.comment }}">{{ donation.comment if donation.comment else "" }}</td>
