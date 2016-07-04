@@ -104,6 +104,7 @@
                 <th>Comment</th>
                 <th>Amount</th>
                 <th>Type</th>
+                <th>Payments</th>
             </tr>
         </thead>
         <tbody>
@@ -117,6 +118,9 @@
                 <td>
                     {{ "Once" if str(donation.type) == "DonationType.one_time" else "Monthly" }}
                     {{ "(cancelled)" if not donation.active else "" }}
+                </td>
+                <td>
+                    {{donation.payments}}
                 </td>
             </tr>
             {% endfor %}
