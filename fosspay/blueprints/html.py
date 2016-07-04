@@ -60,11 +60,12 @@ def admin():
         projects=projects,
         donations=donations,
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
-        recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly]),
+        recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly and d.active]),
         unspecified_one_times=sum([d.amount for d in unspecified if d.type == DonationType.one_time]),
-        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly]),
+        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly and d.active]),
         total_one_time=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.one_time)]),
-        total_recurring=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.monthly)]),
+        total_recurring=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.monthly, Donation.active == True)]),
+        total_recurring_ever=sum([d.amount * d.payments for d in Donation.query.filter(Donation.type == DonationType.monthly)]),
     )
 
 @html.route("/create-project", methods=["POST"])

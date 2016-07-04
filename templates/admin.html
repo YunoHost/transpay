@@ -78,7 +78,13 @@
                         <td></td>
                         <td><strong>Total</strong></td>
                         <td>${{ "{:.2f}".format(total_one_time / 100) }}</td>
-                        <td>${{ "{:.2f}".format(total_recurring / 100) }}</td>
+                        <td>${{ "{:.2f}".format(total_recurring / 100) }} (active)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><strong>Total</strong></td>
+                        <td></td>
+                        <td>${{ "{:.2f}".format(total_recurring_ever / 100) }} (paid)</td>
                     </tr>
                 </tbody>
             </table>
