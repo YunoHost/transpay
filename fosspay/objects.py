@@ -71,10 +71,11 @@ class Donation(Base):
         self.created = datetime.now()
         self.updated = datetime.now()
         self.emailed_about = False
-        self.project_id = project.id
         self.comment = comment
         self.active = True
         self.payments = 1
+        if project:
+            self.project_id = project.id
 
     def __repr__(self):
         return "<Donation {} from {}: ${} ({})>".format(
