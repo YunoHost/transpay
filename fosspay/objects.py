@@ -71,7 +71,7 @@ class Donation(Base):
         self.created = datetime.now()
         self.updated = datetime.now()
         self.emailed_about = False
-        self.project = project
+        self.project_id = project.id
         self.comment = comment
         self.active = True
         self.payments = 1
