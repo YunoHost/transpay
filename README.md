@@ -2,6 +2,10 @@
 
 Donation collection for FOSS groups and individuals.
 
+For support, visit [#cmpwn on
+irc.freenode.net](http://webchat.freenode.net/?channels=cmpwn&uio=d4)
+or file a GitHub issue.
+
 ## Rationale
 
 Getting paid to write open source is *hard*. There are several problems with
