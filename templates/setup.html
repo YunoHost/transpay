@@ -54,6 +54,20 @@
         Your Stripe API keys look good.
         {% endif %}
     </li>
+
+    <li>
+      {% if not _cfg("patreon-access-token") or not _cfg("patreon-campaign") %}
+        <span class="glyphicon glyphicon-remove text-danger"></span>
+        Your Patreon access token and campaign are not configured (optional).
+      {% else %}
+        <span class="glyphicon glyphicon-ok text-success"></span>
+        Your Patreon integration looks good. We'll integrate with
+        <a
+          href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
+          target="_blank" rel="noopener noreferrer"
+        >{{ _cfg("patreon-campaign") }}</a>'s campaign.
+      {% endif %}
+    </li>
 </ul>
 <p>You can make changes and refresh this page if you like.</p>
 

@@ -1,0 +1,71 @@
+{% if _cfg("public-income") == "yes" %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <hr />
+      {% set total_sum = recurring_sum + patreon_sum %}
+      {% set total_count = recurring_count + patreon_count %}
+      {% if _cfg("goal") %}
+      <h3 class="text-center">Goal</h3>
+      {% set goal = int(_cfg("goal")) %}
+      {% set recurring_progress = recurring_sum / goal %}
+      {% set patreon_progress = patreon_sum / goal %}
+      {% set progress = total_sum / goal %}
+      <div class="progress" style="height: 3rem">
+        <div
+          class="progress-bar progress-bar-primary"
+          style="width: {{ recurring_progress * 100 }}%; line-height: 2.5"
+        >
+          <span>${{ "{:.0f}".format(recurring_sum / 100) }}</span>
+        </div>
+
+        <div
+          class="progress-bar progress-bar-info"
+          style="width: {{ patreon_progress * 100 }}%; line-height: 2.5"
+        >
+          <span>${{ "{:.0f}".format(patreon_sum / 100) }}</span>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      {% if patreon_count %}
+      <p>
+        ${{ "{:.2f}".format(recurring_sum / 100) }}/mo
+        via <strong class="text-primary">{{ domain }}</strong>
+        ({{ recurring_count }} supporter{{ "s" if recurring_count != 1 else "" }})
+      </p>
+      <p>
+        ${{ "{:.2f}".format(patreon_sum / 100) }}/mo
+        via
+        <strong><a
+          href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
+          style="color: #51acc7">
+            Patreon <i class="glyphicon glyphicon-share"></i>
+          </a></strong> ({{ patreon_count }} supporter{{ "s" if patreon_count != 1 else "" }})
+      </p>
+      {% endif %}
+      {% if goal %}
+      <p class="{{ "text-center" if not patreon_sum else "" }}">
+        ${{ "{:.2f}".format(total_sum / 100)}}/mo
+        of
+        ${{ "{:.2f}".format(goal / 100) }}/mo
+        goal
+      </p>
+      {% else %}
+      <p>
+        Supported with ${{ "{:.2f}".format(total_sum / 100) }}
+        from {{ total_count }} supporters!
+      </p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      {% include "goal-summary.html" %}
+    </div>
+  </div>
+</div>
+{% endif %}

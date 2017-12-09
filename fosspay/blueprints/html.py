@@ -30,8 +30,34 @@ def index():
             selected_project = int(selected_project)
         except:
             selected_project = None
+    active_recurring = (Donation.query
+            .filter(Donation.type == DonationType.monthly)
+            .filter(Donation.active == True))
+    recurring_count = active_recurring.count()
+    recurring_sum = sum([d.amount for d in active_recurring])
+
+    access_token = _cfg("patreon-access-token")
+    campaign = _cfg("patreon-campaign")
+    if access_token and campaign:
+        import patreon
+        client = patreon.API(access_token)
+        campaign = client.fetch_campaign()
+        attrs = campaign.json_data["data"][0]["attributes"]
+        patreon_count = attrs["patron_count"]
+        patreon_sum = attrs["pledge_sum"]
+    else:
+        patreon_count = 0
+        patreon_sum = 0
+
+    recurring_count = 1
+    recurring_sum = 5000
+
     return render_template("index.html", projects=projects,
-            avatar=avatar, selected_project=selected_project)
+            avatar=avatar, selected_project=selected_project,
+            recurring_count=recurring_count,
+            recurring_sum=recurring_sum,
+            patreon_count=patreon_count,
+            patreon_sum=patreon_sum)
 
 @html.route("/setup", methods=["POST"])
 def setup():

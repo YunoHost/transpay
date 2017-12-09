@@ -75,5 +75,6 @@ def inject():
         '_cfg': _cfg,
         '_cfgi': _cfgi,
         'debug': app.debug,
-        'str': str
+        'str': str,
+        'int': int
     }

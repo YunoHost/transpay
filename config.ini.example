@@ -39,3 +39,16 @@ default-amount=10
 
 # Pick between "monthly" and "once"
 default-type=monthly
+
+# Display monthly donations publically
+public-income=yes
+
+# How much are you hoping to earn monthly, in cents
+goal=500
+
+# Optional Patreon integration
+# Register a client here: https://www.patreon.com/portal/registration/register-clients
+# And put in the "Creator's Access Token" here:
+patreon-access-token=
+# And the Patreon campaign you want to connect with:
+patreon-campaign=
