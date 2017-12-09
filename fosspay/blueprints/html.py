@@ -49,9 +49,6 @@ def index():
         patreon_count = 0
         patreon_sum = 0
 
-    recurring_count = 1
-    recurring_sum = 5000
-
     return render_template("index.html", projects=projects,
             avatar=avatar, selected_project=selected_project,
             recurring_count=recurring_count,
