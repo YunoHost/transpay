@@ -17,10 +17,15 @@ window.email = "{{user.email}}";
 {% block body %} 
 <div class="well">
     <div class="container">
-        <h1>Donate to {{ _cfg("your-name") }}</h1>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                {% include "summary.html" %}
+              <img
+                class="pull-right"
+                src="{{ avatar }}?s=128"
+                style="border-radius: 5px; margin-left: 1rem"
+                width="128" height="128" />
+              <h1>Donate to {{ _cfg("your-name") }}</h1>
+              {% include "summary.html" %}
             </div>
         </div>
     </div>
