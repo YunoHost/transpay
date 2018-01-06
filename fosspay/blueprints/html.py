@@ -13,6 +13,7 @@ import bcrypt
 import hashlib
 import stripe
 import binascii
+import requests
 
 encoding = locale.getdefaultlocale()[1]
 html = Blueprint('html', __name__, template_folder='../../templates')
@@ -49,12 +50,27 @@ def index():
         patreon_count = 0
         patreon_sum = 0
 
+    liberapay = _cfg("liberapay-campaign")
+    if liberapay:
+        lp = (requests
+                .get("https://liberapay.com/{}/public.json".format(liberapay))
+            ).json()
+        lp_count = lp['npatrons']
+        lp_sum = int(float(lp['receiving']['amount']) * 100)
+        # Convert from weekly to monthly
+        lp_sum = lp_sum * 52 // 12
+    else:
+        lp_count = 0
+        lp_sum = 0
+
     return render_template("index.html", projects=projects,
             avatar=avatar, selected_project=selected_project,
             recurring_count=recurring_count,
             recurring_sum=recurring_sum,
             patreon_count=patreon_count,
-            patreon_sum=patreon_sum)
+            patreon_sum=patreon_sum,
+            lp_count=lp_count,
+            lp_sum=lp_sum)
 
 @html.route("/setup", methods=["POST"])
 def setup():
