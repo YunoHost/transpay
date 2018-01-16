@@ -3,6 +3,7 @@ import pystache
 import os
 import html.parser
 from email.mime.text import MIMEText
+from email.utils import localtime, format_datetime
 from werkzeug.utils import secure_filename
 from flask import url_for
 
@@ -30,6 +31,7 @@ def send_thank_you(user, amount, monthly):
     message['Subject'] = "Thank you for your donation!"
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
+    message['Date'] = format_datetime(localtime())
     smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
     smtp.quit()
 
@@ -51,6 +53,7 @@ def send_password_reset(user):
     message['Subject'] = "Reset your donor password"
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
+    message['Date'] = format_datetime(localtime())
     smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
     smtp.quit()
 
@@ -72,5 +75,6 @@ def send_declined(user, amount):
     message['Subject'] = "Your monthly donation was declined."
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
+    message['Date'] = format_datetime(localtime())
     smtp.sendmail(_cfg("smtp-from"), [ user.email ], message.as_string())
     smtp.quit()
