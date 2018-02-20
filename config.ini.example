@@ -31,9 +31,6 @@ connection-string=postgresql://postgres@localhost/fosspay
 stripe-secret=
 stripe-publish=
 
-# Click here first: https://dashboard.stripe.com/account/bitcoin/enable
-enable-bitcoin=no
-
 # Separate with spaces
 default-amounts=3 5 10 20
 # Which one to pick when they arrive?

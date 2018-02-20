@@ -4,7 +4,6 @@
 window.stripe_key = "{{ _cfg("stripe-publish") }}";
 window.avatar = "{{ avatar }}";
 window.your_name = "{{ _cfg("your-name") }}";
-window.bitcoin = "{{ _cfg("enable-bitcoin") }}" === "yes";
 window.default_amount = {{ _cfg("default-amount") }};
 window.default_type = "{{ _cfg("default-type") }}";
 {% if user %}
@@ -79,9 +78,6 @@ window.email = "{{user.email}}";
   <h3>How often?</h3>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      {% if _cfg("enable-bitcoin") == "yes" %}
-      <p class="text-muted"><small>Bitcoin is only supported for one-time donations.</small></p>
-      {% endif %}
       <div class="form-group">
         <div class="btn-group btn-group-justified frequencies" role="group" aria-label="...">
           <div class="btn-group" role="group">

@@ -78,7 +78,6 @@
             description: donation.type == "monthly" ? "Monthly Donation" : "One-time Donation",
             panelLabel: "Donate {{amount}}",
             amount: donation.amount,
-            bitcoin: donation.type == "once" && window.bitcoin,
             token: function(token) {
                 e.target.setAttribute("disabled", "");
                 e.target.textContent = "Submitting...";
