@@ -10,6 +10,8 @@
       {% if goal < total_sum %}
       {# Make the graph still make sense if we exceeded the goal #}
       {% set adjusted_goal = total_sum %}
+      {% else %}
+      {% set adjusted_goal = goal %}
       {% endif %}
 
       {% set recurring_progress = recurring_sum / adjusted_goal %}
