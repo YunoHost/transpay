@@ -6,9 +6,15 @@
       {% set total_count = recurring_count + patreon_count + lp_count %}
       {% if _cfg("goal") %}
       {% set goal = int(_cfg("goal")) %}
-      {% set recurring_progress = recurring_sum / goal %}
-      {% set patreon_progress = patreon_sum / goal %}
-      {% set lp_progress = lp_sum / goal %}
+
+      {% if goal < total_sum %}
+      {# Make the graph still make sense if we exceeded the goal #}
+      {% set adjusted_goal = total_sum %}
+      {% endif %}
+
+      {% set recurring_progress = recurring_sum / adjusted_goal %}
+      {% set patreon_progress = patreon_sum / adjusted_goal %}
+      {% set lp_progress = lp_sum / adjusted_goal %}
       {% set progress = total_sum / goal %}
       <div class="progress" style="height: 3rem">
         <div
