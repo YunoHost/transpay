@@ -3,7 +3,7 @@
 Donation collection for FOSS groups and individuals.
 
 * Supports one-time and monthly donations
-* Process cards with Stripe - also supports Bitcoin
+* Process cards with Stripe
 * Flexible and customizable
 
 It works for individuals (like me) and it works for organizations. Expect to
