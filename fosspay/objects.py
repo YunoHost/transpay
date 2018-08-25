@@ -27,7 +27,8 @@ class User(Base):
     stripe_customer = Column(String(256))
 
     def set_password(self, password):
-        self.password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+        self.password = bcrypt.hashpw(password.encode("utf-8"),
+                bcrypt.gensalt()).decode("utf-8")
 
     def __init__(self, email, password):
         self.email = email
@@ -63,6 +64,7 @@ class Donation(Base):
     comment = Column(String(512))
     active = Column(Boolean)
     payments = Column(Integer)
+    hidden = Column(Boolean, server_default='f', nullable=False)
 
     def __init__(self, user, type, amount, project=None, comment=None):
         self.user = user

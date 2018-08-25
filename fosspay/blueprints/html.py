@@ -33,7 +33,8 @@ def index():
             selected_project = None
     active_recurring = (Donation.query
             .filter(Donation.type == DonationType.monthly)
-            .filter(Donation.active == True))
+            .filter(Donation.active == True)
+            .filter(Donation.hidden == False))
     recurring_count = active_recurring.count()
     recurring_sum = sum([d.amount for d in active_recurring])
 
