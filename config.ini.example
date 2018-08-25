@@ -49,5 +49,14 @@ goal=500
 # Register a client here: https://www.patreon.com/portal/registration/register-clients
 # And put in the "Creator's Access Token" here:
 patreon-access-token=
+# And the "Creator's Refresh Token" here:
+patreon-refresh-token=
+# Client ID
+patreon-client-id=
+# Client secret
+patreon-client-secret=
 # And the Patreon campaign you want to connect with:
 patreon-campaign=
+
+# Command to reload fosspay (send it a SIGHUP)
+reload-command=kill -HUP $(pgrep -xf '/usr/bin/python3.*app.py' | tail -n 1)

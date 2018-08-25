@@ -1,5 +1,5 @@
 from flask import session, jsonify, redirect, request, Response, abort
-from flask.ext.login import current_user
+from flask_login import current_user
 from werkzeug.utils import secure_filename
 from functools import wraps
 from fosspay.objects import User

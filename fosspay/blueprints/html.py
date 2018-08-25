@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, session, url_for, send_file, Response
-from flask.ext.login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user
 from datetime import datetime, timedelta
 from fosspay.objects import *
 from fosspay.database import db
@@ -40,12 +40,16 @@ def index():
     access_token = _cfg("patreon-access-token")
     campaign = _cfg("patreon-campaign")
     if access_token and campaign:
-        import patreon
-        client = patreon.API(access_token)
-        campaign = client.fetch_campaign()
-        attrs = campaign.json_data["data"][0]["attributes"]
-        patreon_count = attrs["patron_count"]
-        patreon_sum = attrs["pledge_sum"]
+        try:
+            import patreon
+            client = patreon.API(access_token)
+            campaign = client.fetch_campaign()
+            attrs = campaign.json_data["data"][0]["attributes"]
+            patreon_count = attrs["patron_count"]
+            patreon_sum = attrs["pledge_sum"]
+        except:
+            patreon_count = 0
+            patreon_sum = 0
     else:
         patreon_count = 0
         patreon_sum = 0

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, Response, redirect, url_for
-from flask.ext.login import LoginManager, current_user
+from flask_login import LoginManager, current_user
 from jinja2 import FileSystemLoader, ChoiceLoader
 
 import sys
