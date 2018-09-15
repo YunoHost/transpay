@@ -58,5 +58,8 @@ patreon-client-secret=
 # And the Patreon campaign you want to connect with:
 patreon-campaign=
 
+# Optional LiberaPay integration, fill in your username here
+liberapay-campaign=
+
 # Command to reload fosspay (send it a SIGHUP)
 reload-command=kill -HUP $(pgrep -xf '/usr/bin/python3.*app.py' | tail -n 1)
