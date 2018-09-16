@@ -6,6 +6,17 @@ window.avatar = "{{ avatar }}";
 window.your_name = "{{ _cfg("your-name") }}";
 window.default_amount = {{ _cfg("default-amount") }};
 window.default_type = "{{ _cfg("default-type") }}";
+
+// Traduction du /script/index.js
+const i18n = {
+    "Monthly Donation": "Don mensuel",
+    "One-time Donation": "Don Unique",
+    "Donate ": "Donner ";
+    "Submitting...": "Validation...";
+    "Donate": "Donner";
+};
+// Fin de traduction
+
 {% if user %}
 window.email = "{{user.email}}";
 {% endif %}
@@ -20,9 +31,9 @@ window.email = "{{user.email}}";
             <div class="col-md-8 col-md-offset-2">
               <img
                 class="pull-right"
-                src="https://xn--transposes-i7a.eu/_media/wiki:logo.png"
+                src="{{ avatar }}?s=128"
                 style="border-radius: 5px; margin-left: 1rem"
-                width="" height="128" />
+                width="128" height="128" />
               <h1>Soutenir le {{ _cfg("your-name") }}</h1>
               {% include "summary.html" %}
             </div>
