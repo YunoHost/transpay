@@ -75,12 +75,12 @@
             key: window.stripe_key,
             image: window.avatar,
             locale: 'auto',
-            description: donation.type == "monthly" ? "Monthly Donation" : "One-time Donation",
-            panelLabel: "Donate {{amount}}",
+            description: donation.type == "monthly" ? i18n["Monthly Donation"] : i18n["One-time Donation"],
+            panelLabel: i18n["Donate "] + "{{amount}}",
             amount: donation.amount,
             token: function(token) {
                 e.target.setAttribute("disabled", "");
-                e.target.textContent = "Submitting...";
+                e.target.textContent = i18n["Submitting..."];
 
                 var data = new FormData();
                 data.append("stripe_token", token.id);
@@ -109,7 +109,7 @@
                         errors.classList.remove("hidden");
                         errors.querySelector("p").textContent = res.reason;
                         e.target.removeAttribute("disabled");
-                        e.target.textContent = "Donate";
+                        e.target.textContent = i18n["Donate"];
                     }
                 };
                 xhr.send(data);
