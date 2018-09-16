@@ -6,6 +6,16 @@ window.avatar = "{{ avatar }}";
 window.your_name = "{{ _cfg("your-name") }}";
 window.default_amount = {{ _cfg("default-amount") }};
 window.default_type = "{{ _cfg("default-type") }}";
+
+// Array used for translation of index.js sentences. See contrib/fr/overrides/index.html for example use
+const i18n = {
+    "Monthly Donation": "Monthly Donation",
+    "One-time Donation": "One-time Donation",
+    "Donate ": "Donate ",
+    "Submitting...": "Submitting...",
+    "Donate": "Donate"
+};
+
 {% if user %}
 window.email = "{{user.email}}";
 {% endif %}
