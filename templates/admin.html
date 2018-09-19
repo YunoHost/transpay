@@ -65,24 +65,24 @@
                     <tr>
                         <td><button type="button" class="close">&times;</button></td>
                         <td>{{ project.name }}</td>
-                        <td>${{ "{:.2f}".format(one_times(project) / 100) }}</td>
-                        <td>${{ "{:.2f}".format(recurring(project) / 100) }}</td>
-                        <td>${{ "{:.2f}".format(recurring_ever(project) / 100) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(recurring(project) / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(recurring_ever(project) / 100)) }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td></td>
                         <td>(not specified)</td>
-                        <td>${{ "{:.2f}".format(unspecified_one_times / 100) }}</td>
-                        <td>${{ "{:.2f}".format(unspecified_recurring / 100) }}</td>
-                        <td>${{ "{:.2f}".format(unspecified_recurring_ever / 100) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(unspecified_one_times / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(unspecified_recurring / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(unspecified_recurring_ever / 100)) }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td><strong>Total</strong></td>
-                        <td>${{ "{:.2f}".format(total_one_time / 100) }}</td>
-                        <td>${{ "{:.2f}".format(total_recurring / 100) }}</td>
-                        <td>${{ "{:.2f}".format(total_recurring_ever / 100) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(total_one_time / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(total_recurring / 100)) }}</td>
+                        <td>{{ currency.amount("{:.2f}".format(total_recurring_ever / 100)) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -118,7 +118,7 @@
                 <td><a href="mailto:{{ donation.user.email }}">{{ donation.user.email }}</a></td>
                 <td>{{ donation.project.name if donation.project else "" }}</td>
                 <td title="{{ donation.comment }}">{{ donation.comment if donation.comment else "" }}</td>
-                <td>${{ "{:.2f}".format(donation.amount / 100) }}</td>
+                <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
                 <td>
                     {{ "Once" if str(donation.type) == "DonationType.one_time" else "Monthly" }}
                     {{ "(cancelled)" if not donation.active else "" }}

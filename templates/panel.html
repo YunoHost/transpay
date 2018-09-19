@@ -30,7 +30,7 @@
                     </form>
                 </td>
                 <td>{{ donation.created.strftime("%Y-%m-%d") }}</td>
-                <td>${{ "{:.2f}".format(donation.amount / 100) }}</td>
+                <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
                 <td>{{ donation.project.name if donation.project else "Not specified" }}</td>
             </tr>
         {% endfor %}
@@ -51,7 +51,7 @@
         {% for donation in one_times(user) %}
             <tr>
                 <td>{{ donation.created.strftime("%Y-%m-%d") }}</td>
-                <td>${{ "{:.2f}".format(donation.amount / 100) }}</td>
+                <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
                 <td>{{ donation.project.name if donation.project else "Not specified" }}</td>
             </tr>
         {% endfor %}

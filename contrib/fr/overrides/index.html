@@ -17,6 +17,8 @@ const i18n = {
 };
 // Fin de traduction
 
+const currency = "{{ _cfg("currency") }}";
+
 {% if user %}
 window.email = "{{user.email}}";
 {% endif %}
@@ -66,7 +68,7 @@ window.email = "{{user.email}}";
         <div class="btn-group" role="group">
           <button data-amount="{{ amt }}" type="button"
             class="btn btn-default {{"active" if _cfg("default-amount") == amt else ""}}"
-          >{{ amt }}€</button>
+          >{{ currency.amount(amt) }}</button>
         </div>
         {% endfor %}
         <div class="btn-group" role="group">
@@ -79,7 +81,7 @@ window.email = "{{user.email}}";
     <div class="col-md-4 col-md-offset-4">
       <div class="form-group">
         <div class="input-group">
-          <span class="input-group-addon">€</span>
+          <span class="input-group-addon">{{ currency.symbol }}</span>
           <input id="custom-amount-text" type="text" value="13.12"
               class="form-control" placeholder="Montant" />
         </div>

@@ -6,6 +6,7 @@ from fosspay.database import db
 from fosspay.common import *
 from fosspay.config import _cfg, load_config
 from fosspay.email import send_thank_you, send_password_reset
+from fosspay.currency import currency
 
 import os
 import locale
@@ -75,7 +76,7 @@ def index():
             patreon_count=patreon_count,
             patreon_sum=patreon_sum,
             lp_count=lp_count,
-            lp_sum=lp_sum)
+            lp_sum=lp_sum, currency=currency)
 
 @html.route("/setup", methods=["POST"])
 def setup():
@@ -103,6 +104,7 @@ def admin():
         first=first,
         projects=projects,
         donations=donations,
+        currency=currency,
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
         recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly and d.active]),
         recurring_ever=lambda p: sum([d.amount * d.payments for d in p.donations if d.type == DonationType.monthly]),
@@ -202,7 +204,7 @@ def donate():
     try:
         charge = stripe.Charge.create(
             amount=amount,
-            currency="usd",
+            currency=_cfg("currency"),
             customer=user.stripe_customer,
             description="Donation to " + _cfg("your-name")
         )
@@ -276,7 +278,8 @@ def reset_password(token):
 def panel():
     return render_template("panel.html",
         one_times=lambda u: [d for d in u.donations if d.type == DonationType.one_time],
-        recurring=lambda u: [d for d in u.donations if d.type == DonationType.monthly and d.active])
+        recurring=lambda u: [d for d in u.donations if d.type == DonationType.monthly and d.active],
+        currency=currency)
 
 @html.route("/cancel/<id>")
 @loginrequired
