@@ -83,7 +83,7 @@
       </p>
       {% else %}
       <p>
-        Supported with ${{ currency.amount("{:.2f}".format(total_sum / 100)) }}
+        Supported with {{ currency.amount("{:.2f}".format(total_sum / 100)) }}
         from {{ total_count }} supporters!
       </p>
       {% endif %}
