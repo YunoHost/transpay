@@ -31,6 +31,11 @@ connection-string=postgresql://postgres@localhost/fosspay
 stripe-secret=
 stripe-publish=
 
+# Currency to use
+# "usd" for dollar, "eur" for euro
+# refer to stripe documentation for details : https://stripe.com/docs/currencies
+currency=usd
+
 # Separate with spaces
 default-amounts=3 5 10 20
 # Which one to pick when they arrive?
