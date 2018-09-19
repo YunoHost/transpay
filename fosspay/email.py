@@ -10,6 +10,7 @@ from flask import url_for
 from fosspay.database import db
 from fosspay.objects import User
 from fosspay.config import _cfg, _cfgi
+from fosspay.currency import currency
 
 def send_thank_you(user, amount, monthly):
     if _cfg("smtp-host") == "":
@@ -24,7 +25,7 @@ def send_thank_you(user, amount, monthly):
                 "user": user,
                 "root": _cfg("protocol") + "://" + _cfg("domain"),
                 "your_name": _cfg("your-name"),
-                "amount": "{:.2f}".format(amount / 100),
+                "amount": currency.amount("{:.2f}".format(amount / 100)),
                 "monthly": monthly,
                 "your_email": _cfg("your-email")
             })))
@@ -70,7 +71,7 @@ def send_declined(user, amount):
                 "user": user,
                 "root": _cfg("protocol") + "://" + _cfg("domain"),
                 "your_name": _cfg("your-name"),
-                "amount": "{:.2f}".format(amount / 100)
+                "amount": currency.amount("{:.2f}".format(amount / 100))
             })))
     message['Subject'] = "Your monthly donation was declined."
     message['From'] = _cfg("smtp-from")

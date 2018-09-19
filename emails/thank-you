@@ -3,10 +3,10 @@ Thank you for donating!
 Receipt:
 
 {{#monthly}}
-Monthly donation                ${{amount}}
+Monthly donation                {{amount}}
 {{/monthly}}
 {{^monthly}}
-One-time donation               ${{amount}}
+One-time donation               {{amount}}
 {{/monthly}}
 
 You can view and manage your donations online here:
