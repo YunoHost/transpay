@@ -23,21 +23,21 @@
           class="progress-bar progress-bar-primary"
           style="width: {{ recurring_progress * 100 }}%; line-height: 2.5"
         >
-          <span>${{ "{:.0f}".format(recurring_sum / 100) }}</span>
+          <span>{{ currency.amount("{:.0f}".format(recurring_sum / 100)) }}</span>
         </div>
 
         <div
           class="progress-bar progress-bar-info"
           style="width: {{ patreon_progress * 100 }}%; line-height: 2.5"
         >
-          <span>${{ "{:.0f}".format(patreon_sum / 100) }}</span>
+          <span>{{ currency.amount("{:.0f}".format(patreon_sum / 100)) }}</span>
         </div>
 
         <div
           class="progress-bar progress-bar-warning"
           style="width: {{ lp_progress * 100 }}%; line-height: 2.5"
         >
-          <span>${{ "{:.0f}".format(lp_sum / 100) }}</span>
+          <span>{{ currency.amount("{:.0f}".format(lp_sum / 100)) }}</span>
         </div>
       </div>
       {% endif %}
@@ -47,13 +47,13 @@
     <div class="col-md-6 col-md-offset-3">
       {% if patreon_count or lp_count %}
       <p>
-        ${{ "{:.2f}".format(recurring_sum / 100) }}/mo
+        {{ currency.amount("{:.2f}".format(recurring_sum / 100)) }}/mo
         via <strong class="text-primary">{{ domain }}</strong>
         ({{ recurring_count }} supporter{{ "s" if recurring_count != 1 else "" }})
       </p>
       {% if patreon_count %}
       <p>
-        ${{ "{:.2f}".format(patreon_sum / 100) }}/mo
+        {{ currency.amount("{:.2f}".format(patreon_sum / 100)) }}/mo
         via
         <strong><a
           href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
@@ -64,7 +64,7 @@
       {% endif %}
       {% if lp_count %}
       <p>
-        ${{ "{:.2f}".format(lp_sum / 100) }}/mo
+        {{ currency.amount("{:.2f}".format(lp_sum / 100)) }}/mo
         via
         <strong><a
           class="text-warning"
@@ -76,14 +76,14 @@
       {% endif %}
       {% if goal %}
       <p class="{{ "text-center" if not patreon_sum else "" }}">
-        ${{ "{:.2f}".format(total_sum / 100)}}/mo
+        {{ currency.amount("{:.2f}".format(total_sum / 100))}}/mo
         of
-        ${{ "{:.2f}".format(goal / 100) }}/mo
+        {{ currency.amount("{:.2f}".format(goal / 100)) }}/mo
         goal
       </p>
       {% else %}
       <p>
-        Supported with ${{ "{:.2f}".format(total_sum / 100) }}
+        Supported with ${{ currency.amount("{:.2f}".format(total_sum / 100)) }}
         from {{ total_count }} supporters!
       </p>
       {% endif %}
