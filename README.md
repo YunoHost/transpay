@@ -1,4 +1,4 @@
-# fosspay [![Donate with fosspay](https://drewdevault.com/donate/static/donate-with-fosspay.png)](https://drewdevault.com/donate?project=3)
+# Trans Pay [![Donate with Trans Pay](https://dons.xn--transposes-i7a.eu/static/donate-with-fosspay.png)](https://dons.transposées.eu/)
 
 Donation collection for FOSS groups and individuals.
 
@@ -6,12 +6,10 @@ Donation collection for FOSS groups and individuals.
 * Process cards with Stripe
 * Flexible and customizable
 
-It works for individuals (like me) and it works for organizations. Expect to
+It works for individuals and it works for organizations. Expect to
 spend about an hour or two setting up everything and then you're good to go.
 
-For support, visit [#cmpwn on
-irc.freenode.net](http://webchat.freenode.net/?channels=cmpwn&uio=d4)
-or file a GitHub issue.
+For support, file an issue.
 
 ## Before you start
 
@@ -20,7 +18,7 @@ You will need a number of things set up before you start:
 1. An approved [Stripe](https://stripe.com/) account
 1. A mail server
 1. A domain name and an SSL certificate
-1. A web server to host fosspay on
+1. A web server to host Trans Pay on
 
 ## Installation
 
@@ -28,15 +26,12 @@ Install these things:
 
 * Python 3
 * pip (python 3)
-* PostgreSQL
-
-You're responsible for setting up PostgreSQL yourself. Prepare a connection
-string for later.
+* sqlite3
 
 Clone the git repository on the server that you want to host fosspay on:
 
-    git clone git://github.com/ddevault/fosspay.git
-    cd fosspay
+    git clone https://gitlab.kokakiwi.net/transposees/transpay.git
+    cd TransPay
 
 Install the Python packages:
 
