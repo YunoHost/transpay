@@ -1,6 +1,8 @@
-# Trans Pay [![Donate with Trans Pay](https://dons.xn--transposes-i7a.eu/static/donate-with-fosspay.png)](https://dons.transposées.eu/)
+# Trans Pay [![Donate with Trans Pay](https://transpay.xn--transposes-i7a.eu/static/donate-with-fosspay.png)](https://dons.transposées.eu/)
 
-Donation collection for FOSS groups and individuals.
+Test instance if you want to see how donating works : https://transpay.transposées.eu/
+
+Donation collection for associations and individuals.
 
 * Supports one-time and monthly donations
 * Process cards with Stripe
@@ -31,7 +33,7 @@ Install these things:
 Clone the git repository on the server that you want to host fosspay on:
 
     git clone https://gitlab.kokakiwi.net/transposees/transpay.git
-    cd TransPay
+    cd transpay
 
 Install the Python packages:
 
