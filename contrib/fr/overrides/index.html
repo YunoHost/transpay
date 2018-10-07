@@ -145,10 +145,13 @@ window.email = "{{user.email}}";
 <div class="container text-center">
     {% if not user %}
     <p>
-        <small class="text-muted">
             Si vous nous avez déjà fait au moins un don, vous pouvez <a href="login">vous connecter</a> pour voir
             votre historique ou éditer vos dons récurrents. :)
-        </small>
+    </p>
+    {% else %}
+    <p>
+            Accéder à votre <a href="panel">interface de gestion</a> pour voir
+            votre historique ou éditer vos dons récurrents. :)
     </p>
     {% endif %}
     <p>
