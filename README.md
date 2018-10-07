@@ -24,35 +24,7 @@ You will need a number of things set up before you start:
 
 ## Installation
 
-Install these things:
-
-* Python 3
-* pip (python 3)
-* sqlite3
-
-Clone the git repository on the server that you want to host fosspay on:
-
-    git clone https://gitlab.kokakiwi.net/transposees/transpay.git
-    cd transpay
-
-Install the Python packages:
-
-    sudo pip3 install -r requirements.txt
-
-Compile the static assets:
-
-    make
-
-Create a configuration file:
-
-    cp config.ini.example config.ini
-
-Edit `config.ini` to your liking. Then, you can run the following to start up
-the development server:
-
-    python3 app.py
-
-Log into http://your-domain:5000, and you will receive further instructions.
+For installation instructions, see our [wiki](https://gitlab.kokakiwi.net/transposees/transpay/wikis/home).
 
 ## Deployment
 
