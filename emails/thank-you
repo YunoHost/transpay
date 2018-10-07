@@ -1,19 +1,20 @@
-Thank you for donating!
+Merci pour votre don !
 
-Receipt:
+Votre reçu :
 
 {{#monthly}}
-Monthly donation                {{amount}}
+Don mensuel              {{amount}}€
 {{/monthly}}
 {{^monthly}}
-One-time donation               {{amount}}
+Don unique               {{amount}}€
 {{/monthly}}
 
-You can view and manage your donations online here:
-
+Vous pouvez visualiser et gérer vos dons ici :
 {{root}}/panel
 
-Thanks again! If you have questions, contact {{your_email}}.
+Merci encore !
+Si vous avez des questions, vous pouvez nous contacter à l'adresse : {{your_email}}.
 
 --
 {{your_name}}
+
