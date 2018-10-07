@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Unicode, Boolean, DateTime
 from sqlalchemy import ForeignKey, Table, UnicodeText, Text, text
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy_utils import ChoiceType
+from fosspay.currency import currency
 
 from .database import Base
 
@@ -81,10 +82,10 @@ class Donation(Base):
             self.project_id = project.id
 
     def __repr__(self):
-        return "<Donation {} from {}: ${} ({})>".format(
+        return "<Donation {} from {}: {} ({})>".format(
                 self.id,
                 self.user.email,
-                "{:.2f}".format(self.amount / 100),
+                currency.amount("{:.2f}".format(self.amount / 100)),
                 self.type
             )
 
