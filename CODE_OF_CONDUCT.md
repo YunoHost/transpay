@@ -36,7 +36,7 @@ Ce Code de Conduite s’applique à la fois au sein des espaces du projet ainsi 
 
 ### Application
 
-Les cas de comportements abusifs, harcelants ou tout autre comportement inacceptable peuvent être signalés en contactant l’équipe du projet à [INSÉRER UNE ADRESSE EMAIL]. Toutes les plaintes seront examinées et étudiées et se traduiront par une réponse appropriée aux circonstances. L’équipe du projet s’engage à garder confidentielles les informations de la personne qui remonte un incident. Plus de détails sur la politique de mise en application des règles peuvent être publiés séparément.
+Les cas de comportements abusifs, harcelants ou tout autre comportement inacceptable peuvent être signalés en contactant l’équipe du projet à contact@xn--transposes-i7a.eu. Toutes les plaintes seront examinées et étudiées et se traduiront par une réponse appropriée aux circonstances. L’équipe du projet s’engage à garder confidentielles les informations de la personne qui remonte un incident. Plus de détails sur la politique de mise en application des règles peuvent être publiés séparément.
 
 Les membres du projet qui ne suivent ou qui n’appliquent pas le Code de Conduite de bonne foi s’exposent temporairement ou de façon permanente à des répercussions définies par d’autres membres de la direction du projet.
 
@@ -80,7 +80,7 @@ This Code of Conduct applies both within project spaces and in public spaces whe
 
 ### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [INSERT EMAIL ADDRESS]. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at contact@xn--transposes-i7a.eu. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
 Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project’s leadership.
 
