@@ -65,7 +65,7 @@ class Donation(Base):
     comment = Column(String(512))
     active = Column(Boolean)
     payments = Column(Integer)
-    hidden = Column(Boolean, server_default='f', nullable=False)
+    hidden = Column(Boolean, server_default='0', nullable=False)
 
     def __init__(self, user, type, amount, project=None, comment=None):
         self.user = user
