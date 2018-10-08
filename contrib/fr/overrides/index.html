@@ -148,6 +148,10 @@ window.email = "{{user.email}}";
             Si vous nous avez déjà fait au moins un don, vous pouvez <a href="login">vous connecter</a> pour voir
             votre historique ou éditer vos dons récurrents. :)
     </p>
+    {% elif user.admin %}
+    <p>
+            Accéder à votre <a href="admin">interface d'administration</a>.
+    </p>
     {% else %}
     <p>
             Accéder à votre <a href="panel">interface de gestion</a> pour voir
