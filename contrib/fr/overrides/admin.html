@@ -62,7 +62,7 @@
                 <tbody>
                     {% for project in projects %}
                     <tr>
-                        <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm('Êtes-vous sûr·e de vouloir supprimer le projet « {{ project.name }} » ?\nLes dons orphelins seront associés au projet « (non précisé) ».')){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="Supprimer" class="btn btn-default pull-right" /></form></td>
+                        <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm('Êtes-vous sûr·e de vouloir supprimer le projet « {{ project.name }} » ?\nLes dons orphelins seront associés au projet « (non précisé) ».\nAttention : Cette action est irreversible !')){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Supprimer le projet" /></form></td>
                         <td><form method="POST" action="{{root}}/edit-project"><input class="form-control" type="text" placeholder="{{ project.name }}" value="{{ project.name }}" name="edit-name" /> <input type="hidden" name="id" value="{{ project.id }}" /></form></td>
                         <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(recurring(project) / 100)) }}</td>
