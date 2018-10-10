@@ -1,8 +1,8 @@
 # Trans Pay [![Donate with Trans Pay](https://transpay.xn--transposes-i7a.eu/static/donate-with-transpay.png)](https://dons.transposées.eu/)
 
-Test instance if you want to see how donating works : https://transpay.transposées.eu/
+Trans Pay is developed by [Collectif Trans Posé·e·s](https://transposées.eu) for our own use and that of other associations.
 
-Donation collection for associations and individuals.
+This tool is used to receive and manage donations:
 
 * Supports one-time and monthly donations
 * Process cards with Stripe
@@ -10,6 +10,8 @@ Donation collection for associations and individuals.
 
 It works for individuals and it works for organizations. Expect to
 spend about an hour or two setting up everything and then you're good to go.
+
+Test instance if you want to see how donating works : https://transpay.transposées.eu/
 
 For support, file an issue.
 
