@@ -7,10 +7,10 @@ from email.utils import localtime, format_datetime
 from werkzeug.utils import secure_filename
 from flask import url_for
 
-from fosspay.database import db
-from fosspay.objects import User, DonationType
-from fosspay.config import _cfg, _cfgi
-from fosspay.currency import currency
+from core.database import db
+from core.objects import User, DonationType
+from core.config import _cfg, _cfgi
+from core.currency import currency
 
 def send_thank_you(user, amount, monthly):
     if _cfg("smtp-host") == "":

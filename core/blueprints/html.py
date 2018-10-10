@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, abort, request, redirect, session, url_for, send_file, Response
 from flask_login import current_user, login_user, logout_user
 from datetime import datetime, timedelta
-from fosspay.objects import *
-from fosspay.database import db
-from fosspay.common import *
-from fosspay.config import _cfg, load_config
-from fosspay.email import send_thank_you, send_password_reset
-from fosspay.email import send_new_donation, send_cancellation_notice
-from fosspay.currency import currency
+from core.objects import *
+from core.database import db
+from core.common import *
+from core.config import _cfg, load_config
+from core.email import send_thank_you, send_password_reset
+from core.email import send_new_donation, send_cancellation_notice
+from core.currency import currency
 
 import os
 import locale

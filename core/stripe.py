@@ -1,4 +1,4 @@
-from fosspay.config import _cfg
+from core.config import _cfg
 
 import stripe
 

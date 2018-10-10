@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Unicode, Boolean, DateTime
 from sqlalchemy import ForeignKey, Table, UnicodeText, Text, text
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy_utils import ChoiceType
-from fosspay.currency import currency
+from core.currency import currency
 
 from .database import Base
 

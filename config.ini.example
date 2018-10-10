@@ -71,5 +71,5 @@ liberapay-campaign=
 # Must have "user" access.
 github-token=
 
-# Command to reload fosspay (send it a SIGHUP)
+# Command to reload transpay (send it a SIGHUP)
 reload-command=kill -HUP $(pgrep -xf '/usr/bin/python3.*app.py' | tail -n 1)

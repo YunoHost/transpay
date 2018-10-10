@@ -2,9 +2,9 @@ from flask import session, jsonify, redirect, request, Response, abort
 from flask_login import current_user
 from werkzeug.utils import secure_filename
 from functools import wraps
-from fosspay.objects import User
-from fosspay.database import db, Base
-from fosspay.config import _cfg
+from core.objects import User
+from core.database import db, Base
+from core.config import _cfg
 
 import json
 import urllib

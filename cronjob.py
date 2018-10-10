@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from fosspay.objects import *
-from fosspay.database import db
-from fosspay.config import _cfg
-from fosspay.email import send_thank_you, send_declined
-from fosspay.currency import currency
+from core.objects import *
+from core.database import db
+from core.config import _cfg
+from core.email import send_thank_you, send_declined
+from core.currency import currency
 
 from datetime import datetime, timedelta
 

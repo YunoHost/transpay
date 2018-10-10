@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from fosspay.app import app
-from fosspay.config import _cfg, _cfgi
+from core.app import app
+from core.config import _cfg, _cfgi
 
 import os
 

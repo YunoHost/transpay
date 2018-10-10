@@ -1,4 +1,4 @@
-# Trans Pay [![Donate with Trans Pay](https://transpay.xn--transposes-i7a.eu/static/donate-with-fosspay.png)](https://dons.transposées.eu/)
+# Trans Pay [![Donate with Trans Pay](https://transpay.xn--transposes-i7a.eu/static/donate-with-transpay.png)](https://dons.transposées.eu/)
 
 Test instance if you want to see how donating works : https://transpay.transposées.eu/
 

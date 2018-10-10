@@ -7,13 +7,13 @@ import os
 import locale
 import stripe
 
-from fosspay.config import _cfg, _cfgi
-from fosspay.database import db, init_db
-from fosspay.objects import User
-from fosspay.common import *
-from fosspay.network import *
+from core.config import _cfg, _cfgi
+from core.database import db, init_db
+from core.objects import User
+from core.common import *
+from core.network import *
 
-from fosspay.blueprints.html import html
+from core.blueprints.html import html
 
 app = Flask(__name__)
 app.secret_key = _cfg("secret-key")

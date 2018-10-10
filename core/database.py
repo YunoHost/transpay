@@ -13,5 +13,5 @@ Base = declarative_base()
 Base.query = db.query_property()
 
 def init_db():
-    import fosspay.objects
+    import core.objects
     Base.metadata.create_all(bind=engine)

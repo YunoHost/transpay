@@ -1,4 +1,4 @@
-from fosspay.config import _cfg
+from core.config import _cfg
 
 class Currency:
     def __init__(self, symbol, position):
