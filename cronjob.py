@@ -49,7 +49,7 @@ for donation in donations:
     else:
         print("Skipping {}".format(donation))
 
-print("{} records processed.".format(len(donations)))
+print("{} records processed.\n".format(len(donations)))
 
 if _cfg("patreon-refresh-token"):
     print("Updating Patreon API token")
