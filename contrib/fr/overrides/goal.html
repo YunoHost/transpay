@@ -2,8 +2,8 @@
 <div class="container" style="padding-top: 3rem">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      {% set total_sum = recurring_sum + patreon_sum + lp_sum %}
-      {% set total_count = recurring_count + patreon_count + lp_count %}
+      {% set total_sum = onetime_sum + recurring_sum + patreon_sum + lp_sum %}
+      {% set total_count = onetime_count + recurring_count + patreon_count + lp_count %}
       {% if _cfg("goal") %}
       {% set goal = int(_cfg("goal")) %}
 
