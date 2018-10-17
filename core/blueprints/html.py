@@ -41,6 +41,13 @@ def index():
     recurring_count = active_recurring.count()
     recurring_sum = sum([d.amount for d in active_recurring])
 
+    limit = datetime.now() - timedelta(days=30)
+    month_onetime = (Donation.query
+            .filter(Donation.type == DonationType.one_time)
+            .filter(Donation.created > limit))
+    onetime_count = month_onetime.count()
+    onetime_sum = sum([d.amount for d in month_onetime])
+
     access_token = _cfg("patreon-access-token")
     campaign = _cfg("patreon-campaign")
     if access_token and campaign:
@@ -109,12 +116,16 @@ def index():
         gh_user = 0
 
     return render_template("index.html", projects=projects,
-            avatar=avatar, selected_project=selected_project,
-            recurring_count=recurring_count, recurring_sum=recurring_sum,
-            patreon_count=patreon_count, patreon_sum=patreon_sum,
-            lp_count=lp_count, lp_sum=lp_sum,
-            gh_count=gh_count, gh_sum=gh_sum, gh_user=gh_user,
-            currency=currency)
+                           avatar=avatar, selected_project=selected_project,
+                           recurring_count=recurring_count,
+                           recurring_sum=recurring_sum,
+                           onetime_count=onetime_count, onetime_sum=onetime_sum,
+                           patreon_count=patreon_count,
+                           patreon_sum=patreon_sum,
+                           lp_count=lp_count,
+                           lp_sum=lp_sum,
+                           gh_count=gh_count, gh_sum=gh_sum, gh_user=gh_user,
+                           currency=currency)
 
 @html.route("/setup", methods=["POST"])
 def setup():

@@ -15,6 +15,7 @@
       {% endif %}
 
       {% set recurring_progress = recurring_sum / adjusted_goal %}
+      {% set onetime_progress = onetime_sum / adjusted_goal %}
       {% set patreon_progress = patreon_sum / adjusted_goal %}
       {% set lp_progress = lp_sum / adjusted_goal %}
       {% set gh_progress = gh_sum / adjusted_goal %}
@@ -25,6 +26,13 @@
           style="width: {{ recurring_progress * 100 }}%; line-height: 2.5"
         >
           <span>{{ currency.amount("{:.0f}".format(recurring_sum / 100)) }}</span>
+        </div>
+
+        <div
+          class="progress-bar progress-bar-success"
+          style="width: {{ onetime_progress * 100 }}%; line-height: 2.5"
+        >
+          <span>{{ currency.amount("{:.0f}".format(onetime_sum / 100)) }}</span>
         </div>
 
         <div
@@ -59,6 +67,12 @@
         via <strong class="text-primary">{{ domain }}</strong>
         ({{ recurring_count }} supporter{{ "s" if recurring_count != 1 else "" }})
       </p>
+      <p>
+        {{ currency.amount("{:.2f}".format(onetime_sum / 100)) }} from single donations <small>(last 30 days)</small>
+        via <strong class="text-primary">{{ domain }}</strong>
+        ({{ onetime_count }} supporter{{ "s" if onetime_count != 1 else "" }})
+      </p>
+      <p>
       {% if patreon_count %}
       <p>
         {{ currency.amount("{:.2f}".format(patreon_sum / 100)) }}/mo
