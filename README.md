@@ -15,6 +15,8 @@ Test instance if you want to see how donating works : https://transpay.transpos√
 
 For support, file an issue.
 
+Changelog : https://gitlab.kokakiwi.net/transposees/transpay/tags
+
 ## Before you start
 
 You will need a number of things set up before you start:
