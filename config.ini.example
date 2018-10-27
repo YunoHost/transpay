@@ -5,7 +5,8 @@
 # omit the trailing slash
 protocol=http
 domain=localhost:5000
-# Change this value to something random and secret
+# Change this value to something random and secret.
+# You can generate a secure value using `openssl rand -base64 45`
 secret-key=hello world
 
 # On the debug server, this lets you choose what to bind to
