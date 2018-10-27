@@ -3,10 +3,10 @@ Merci pour votre don !
 Votre reçu :
 
 {{#monthly}}
-Don mensuel              {{amount}}€
+Don mensuel              {{amount}}
 {{/monthly}}
 {{^monthly}}
-Don unique               {{amount}}€
+Don unique               {{amount}}
 {{/monthly}}
 
 Vous pouvez visualiser et gérer vos dons ici :
