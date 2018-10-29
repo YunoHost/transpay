@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-29 19:10+0100\n"
+"POT-Creation-Date: 2018-10-29 21:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,11 +24,182 @@ msgid ""
 "%(amount)s vient d'échouer."
 msgstr ""
 
-#: templates/index.html:39
+#: templates/admin.html:3 templates/admin.html:14
+msgid "Donation Admin"
+msgstr ""
+
+#: templates/admin.html:10
+msgid "Get donation button"
+msgstr ""
+
+#: templates/admin.html:15
+msgid ""
+"Combine this with your <a href=\"https://dashboard.stripe.com\">Stripe\n"
+"            dashboard</a> for the full effect."
+msgstr ""
+
+#: templates/admin.html:23
+msgid "You're set up and ready to go! This is your admin panel. Next steps:"
+msgstr ""
+
+#: templates/admin.html:27
+msgid "Set up a cron job to handle monthly donations."
+msgstr ""
+
+#: templates/admin.html:29
+msgid "Relevant documentation"
+msgstr ""
+
+#: templates/admin.html:33
+msgid ""
+"Add some projects. Donors can tell you which project they want to support"
+"\n"
+"                when they donate."
+msgstr ""
+
+#: templates/admin.html:37
+msgid ""
+"Customize the look &amp; feel. Look at the contents of the "
+"<code>templates</code>\n"
+"                directory - you can copy and paste any of these templates"
+" into the\n"
+"                <code>overrides</code> directory and change it to suit "
+"your needs."
+msgstr ""
+
+#: templates/admin.html:42
+msgid "Donate to Trans Pay upstream"
+msgstr ""
+
+#: templates/admin.html:45
+msgid "Contribute code to Trans Pay upstream"
+msgstr ""
+
+#: templates/admin.html:57
+msgid "Project Name"
+msgstr ""
+
+#: templates/admin.html:58
+msgid "One-time"
+msgstr ""
+
+#: templates/admin.html:59
+msgid "Recurring (active)"
+msgstr ""
+
+#: templates/admin.html:60
+msgid "Recurring (total paid)"
+msgstr ""
+
+#: templates/admin.html:66
+#, python-format
+msgid ""
+"'Are you sure you want to delete project &quot;%(project)s&quot; "
+"?\\nOrphaned donations will be associated with &quot;(not "
+"specified)&quot; project.\\nWarning: This action is irreversible!'"
+msgstr ""
+
+#: templates/admin.html:152
+msgid ""
+"If you add <code>?project=1</code> to your URL, it will pre-select that "
+"project\n"
+"                (where 1 is the 1st project you have listed on this page)"
+" when users arrive to donate."
+msgstr ""
+
+#: templates/admin.html:155
+msgid "Donate with Trans Pay"
+msgstr ""
+
+#: templates/goal.html:76
+msgid "supporter"
+msgstr ""
+
+#: templates/index.html:39 templates/layout.html:8
 msgid "Donate to"
+msgstr ""
+
+#: templates/index.html:48
+msgid ""
+"This page requires Javascript. It's necessary to send your credit card "
+"number to\n"
+"\t<a href=\"https://stripe.com/\">Stripe</a> directly, so you don't need "
+"to trust me with it."
+msgstr ""
+
+#: templates/index.html:56
+msgid "Set a password now if you want to manage your donations later:"
+msgstr ""
+
+#: templates/index.html:57
+msgid "Password"
+msgstr ""
+
+#: templates/index.html:59
+msgid "Submit"
 msgstr ""
 
 #: templates/index.html:63
 msgid "How much?"
+msgstr ""
+
+#: templates/index.html:75
+msgid "Custom"
+msgstr ""
+
+#: templates/index.html:86
+msgid "Amount"
+msgstr ""
+
+#: templates/index.html:91
+msgid "How often?"
+msgstr ""
+
+#: templates/index.html:99
+msgid "Once"
+msgstr ""
+
+#: templates/index.html:104
+msgid "Monthly"
+msgstr ""
+
+#: templates/index.html:111
+msgid "What project?"
+msgstr ""
+
+#: templates/index.html:117
+msgid "None in particular"
+msgstr ""
+
+#: templates/index.html:130
+msgid "Any comments"
+msgstr ""
+
+#: templates/index.html:139
+msgid "Donate"
+msgstr ""
+
+#: templates/index.html:153
+msgid ""
+"Been here before? <strong><a href=\"login\">Log in</a></strong> to view "
+"your donation\n"
+"            history, edit recurring donations, and so on."
+msgstr ""
+
+#: templates/index.html:158
+msgid "Access <strong><a href=\"admin\">admin panel</a></strong>."
+msgstr ""
+
+#: templates/index.html:162
+msgid ""
+"Access <strong><a href=\"panel\">your panel</a></strong> to view your "
+"donation\n"
+"            history, edit recurring donations, and so on."
+msgstr ""
+
+#: templates/index.html:168
+msgid ""
+"Powered by <a "
+"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>."
 msgstr ""
 

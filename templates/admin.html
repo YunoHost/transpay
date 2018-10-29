@@ -1,48 +1,48 @@
 {% extends "layout.html" %}
 {% block title %}
-<title>Donation Admin</title>
+<title>{%trans%}Donation Admin{%endtrans%}</title>
 {% endblock %}
 {% block body %} 
 <div class="well">
     <div class="container">
         <p class="pull-right">
             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#donation-button-modal">
-                Get donation button
+                {%trans%}Get donation button{%endtrans%}
             </a>
             <a class="btn btn-default" href="logout">Log out</a>
         </p>
-        <h1>Donation Admin</h1>
-        <p>Combine this with your <a href="https://dashboard.stripe.com">Stripe
-            dashboard</a> for the full effect.</p>
+        <h1>{%trans%}Donation Admin{%endtrans%}</h1>
+        <p>{%trans%}Combine this with your <a href="https://dashboard.stripe.com">Stripe
+            dashboard</a> for the full effect.{%endtrans%}</p>
     </div>
 </div>
 <div class="container">
     {% if first %}
     <div class="well">
         <p>
-            You're set up and ready to go! This is your admin panel. Next steps:
+            {%trans%}You're set up and ready to go! This is your admin panel. Next steps:{%endtrans%}
         </p>
         <ol>
             <li>
-                <strong>Set up a cron job to handle monthly donations.</strong>
+                <strong>{%trans%}Set up a cron job to handle monthly donations.{%endtrans%}</strong>
                 <a href="https://gitlab.kokakiwi.net/transposees/transpay/wikis/home">
-                    Relevant documentation
+                    {%trans%}Relevant documentation{%endtrans%}
                 </a>.
             </li>
             <li>
-                Add some projects. Donors can tell you which project they want to support
-                when they donate.
+                {%trans%}Add some projects. Donors can tell you which project they want to support
+                when they donate.{%endtrans%}
             </li>
             <li>
-                Customize the look &amp; feel. Look at the contents of the <code>templates</code>
+                {%trans%}Customize the look &amp; feel. Look at the contents of the <code>templates</code>
                 directory - you can copy and paste any of these templates into the
-                <code>overrides</code> directory and change it to suit your needs.
+                <code>overrides</code> directory and change it to suit your needs.{%endtrans%}
             </li>
             <li>
-                <a href="https://dons.transposées.eu/">Donate to Trans Pay upstream</a>?
+                <a href="https://dons.transposées.eu/">{%trans%}Donate to Trans Pay upstream{%endtrans%}</a>?
             </li>
             <li>
-                <a href="https://gitlab.kokakiwi.net/transposees/transpay">Contribute code to Trans Pay upstream</a>?
+                <a href="https://gitlab.kokakiwi.net/transposees/transpay">{%trans%}Contribute code to Trans Pay upstream{%endtrans%}</a>?
             </li>
         </ol>
     </div>
@@ -54,16 +54,16 @@
                 <thead>
                     <tr>
                         <th style="width: 10%"></th>
-                        <th>Project Name</th>
-                        <th>One-time</th>
-                        <th>Recurring (active)</th>
-                        <th>Recurring (total paid)</th>
+                        <th>{%trans%}Project Name{%endtrans%}</th>
+                        <th>{%trans%}One-time{%endtrans%}</th>
+                        <th>{%trans%}Recurring (active){%endtrans%}</th>
+                        <th>{%trans%}Recurring (total paid){%endtrans%}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for project in projects %}
                     <tr>
-                       <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm('Are you sure you want to delete project &quot;{{ project.name }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!')){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" /></form></td>
+                       <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" /></form></td>
                         <td><form method="POST" action="{{root}}/edit-project"><input class="form-control" type="text" placeholder="{{ project.name }}" value="{{ project.name }}" name="edit-name" /> <input type="hidden" name="id" value=""{{ project.id }}" /></form></td>
                         <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(recurring(project) / 100)) }}</td>
@@ -149,10 +149,10 @@
                         <img src="{{root}}/static/donate-with-transpay.png" />
                     </a>
                 </p>
-                <p>If you add <code>?project=1</code> to your URL, it will pre-select that project
-                (where 1 is the 1st project you have listed on this page) when users arrive to donate.</p>
+                <p>{%trans%}If you add <code>?project=1</code> to your URL, it will pre-select that project
+                (where 1 is the 1st project you have listed on this page) when users arrive to donate.{%endtrans%}</p>
                 <p><strong>Markdown</strong></p>
-                <pre>[![Donate with Trans Pay]({{root}}/static/donate-with-transpay.png)]({{root}})</pre>
+                <pre>[![{%trans%}Donate with Trans Pay{%endtrans%}]({{root}}/static/donate-with-transpay.png)]({{root}})</pre>
                 <p><strong>HTML</strong></p>
                 <pre>&lt;a href="{{root}}"&gt;&lt;img src="{{root}}/static/donate-with-transpay.png" alt="Donate with Trans Pay" /&gt;&lt;/a&gt;</pre>
             </div>

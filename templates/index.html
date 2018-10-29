@@ -45,18 +45,18 @@ window.email = "{{user.email}}";
 <noscript>
     <div class="container">
         <div class="alert alert-danger">
-            <p>This page requires Javascript. It's necessary to send your credit card number to
-            <a href="https://stripe.com/">Stripe</a> directly, so you don't need to trust me with it.</p>
+	<p>{% trans %}This page requires Javascript. It's necessary to send your credit card number to
+	<a href="https://stripe.com/">Stripe</a> directly, so you don't need to trust me with it.{% endtrans %}</p>
         </div>
     </div>
 </noscript>
 <div class="container text-center hidden" id="thanks">
     {% include "post-donation-message.html" %}
     <form id="new-donor-password" class="hidden" action="{{root}}/password-reset" method="POST">
-        <p>Set a password now if you want to manage your donations later:</p>
-        <input type="password" placeholder="Password" name="password" />
+	<p>{% trans %}Set a password now if you want to manage your donations later:{% endtrans %}</p>
+	<input type="password" placeholder="{%trans%}Password{%endtrans%}" name="password" />
         <input type="hidden" name="token" id="reset-token" />
-        <button class="btn btn-primary btn-sm">Submit</button>
+	<button class="btn btn-primary btn-sm">{%trans%}Submit{%endtrans%}</button>
     </form>
 </div>
 <div class="container text-center" id="donation-stuff">
@@ -72,7 +72,7 @@ window.email = "{{user.email}}";
         </div>
         {% endfor %}
         <div class="btn-group" role="group">
-          <button data-amount="custom" type="button" class="btn btn-default">Custom</button>
+	 <button data-amount="custom" type="button" class="btn btn-default">{%trans%}Custom{%endtrans%}</button>
         </div>
       </div>
     </div>
@@ -83,12 +83,12 @@ window.email = "{{user.email}}";
         <div class="input-group">
           <span class="input-group-addon">{{ currency.symbol }}</span>
           <input id="custom-amount-text" type="text" value="13.37"
-              class="form-control" placeholder="Amount" />
+              class="form-control" placeholder="{%trans%}Amount{%endtrans%}" />
         </div>
       </div>
     </div>
   </div>
-  <h3>How often?</h3>
+  <h3>{%trans%}How often?{%endtrans%}</h3>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <div class="form-group">
@@ -96,25 +96,25 @@ window.email = "{{user.email}}";
           <div class="btn-group" role="group">
             <button data-frequency="once" type="button"
               class="btn btn-default {{"active" if _cfg("default-type")=="once" else ""}}"
-            >Once</button>
+            >{%trans%}Once{%endtrans%}</button>
           </div>
           <div class="btn-group" role="group">
             <button data-frequency="monthly" type="button"
               class="btn btn-default {{"active" if _cfg("default-type")=="monthly" else ""}}"
-            >Monthly</button>
+            >{%trans%}Monthly{%endtrans%}</button>
           </div>
         </div>
      </div>
    </div>
  </div>
     {% if len(projects) > 1 %}
-    <h3>What project?</h3>
+    <h3>{%trans%}What project?{%endtrans%}</h3>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
                 <select id="project" name="project" class="form-control">
                     <option value="null"
-                        {{ "selected" if selected_project == None else "" }}>None in particular</option>
+                        {{ "selected" if selected_project == None else "" }}>{%trans%}None in particular{%endtrans%}</option>
                     {% for project in projects %}
                     <option value="{{ project.id }}"
                         {{ "selected" if selected_project == project.id else "" }}>{{ project.name }}</option>
@@ -127,7 +127,7 @@ window.email = "{{user.email}}";
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
-                <input type="text" id="comments" class="form-control" placeholder="Any comments?" maxlength="512" />
+                <input type="text" id="comments" class="form-control" placeholder="{%trans%}Any comments{%endtrans%}?" maxlength="512" />
             </div>
         </div>
     </div>
@@ -136,7 +136,7 @@ window.email = "{{user.email}}";
             <div class="alert alert-danger hidden" id="errors">
                 <p></p>
             </div>
-            <button class="btn btn-block btn-success" id="donate-button">Donate</button>
+            <button class="btn btn-block btn-success" id="donate-button">{%trans%}Donate{%endtrans%}</button>
         </div>
     </div>
   <div class="row">
@@ -150,22 +150,22 @@ window.email = "{{user.email}}";
 <div class="container text-center">
     {% if not user %}
     <p>
-            Been here before? <strong><a href="login">Log in</a></strong> to view your donation
-            history, edit recurring donations, and so on.
+            {%trans%}Been here before? <strong><a href="login">Log in</a></strong> to view your donation
+            history, edit recurring donations, and so on.{%endtrans%}
     </p>
     {% elif user.admin %}
     <p>
-            Access <a href="admin">admin panel</a>.
+            {%trans%}Access <strong><a href="admin">admin panel</a></strong>.{%endtrans%}
     </p>
     {% else %}
     <p>
-            Access <a href="panel">your panel</a> to view your donation
-            history, edit recurring donations, and so on.
+            {%trans%}Access <strong><a href="panel">your panel</a></strong> to view your donation
+            history, edit recurring donations, and so on.{%endtrans%}
     </p>
     {% endif %}
     <p>
         <small class="text-muted">
-            Powered by <a href="https://gitlab.kokakiwi.net/transposees/transpay">Trans Pay</a>.
+            {%trans%}Powered by <a href="https://gitlab.kokakiwi.net/transposees/transpay">Trans Pay</a>.{%endtrans%}
         </small>
     </p>
 </div>

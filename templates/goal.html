@@ -81,7 +81,7 @@
           href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
           style="color: #51acc7">
             Patreon <i class="glyphicon glyphicon-share"></i>
-          </a></strong> ({{ patreon_count }} supporter{{ "s" if patreon_count != 1 else "" }})
+          </a></strong> ({{ patreon_count }} {%trans%}supporter{%endtrans%}{{ "s" if patreon_count != 1 else "" }})
       </p>
       {% endif %}
       {% if lp_count %}
