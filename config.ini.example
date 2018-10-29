@@ -1,8 +1,9 @@
 [dev]
 # Change this to the actual location of your site
 # You can include a path in the domain if it's a subdirectory
-# i.e. domain=drewdevault.com/donate
+# i.e. domain=example.com/donate
 # omit the trailing slash
+# don't forget to set 'protocol' to 'https' after testing with test server command 
 protocol=http
 domain=localhost:5000
 # Change this value to something random and secret.
