@@ -29,15 +29,3 @@ You will need a number of things set up before you start:
 ## Installation
 
 For installation instructions, see our [wiki](https://gitlab.kokakiwi.net/transposees/transpay/wikis/home).
-
-## Deployment
-
-Once you have everything configured, you will need to switch from the dev server
-into something more permanent. Install gunicorn on your server and use the
-systemd unit provided in `contrib/`. You will also probably want to run this
-through nginx instead of directly exposing gunicorn to the web, see
-`contrib/nginx.conf`. Neither the nginx configuration or the systemd unit are
-immediately ready to use - read them and change them to suit your needs.
-
-Using nginx or something like it is necessary for SSL support, and you must
-serve your site with https for Stripe to work.
