@@ -36,7 +36,7 @@ window.email = "{{user.email}}";
                 src="{{ avatar }}?s=128"
                 style="border-radius: 5px; margin-left: 1rem"
                 width="128" height="128" />
-              <h1>Donate to {{ _cfg("your-name") }}</h1>
+              <h1>{% trans %}Donate to{% endtrans %} {{ _cfg("your-name") }}</h1>
               {% include "summary.html" %}
             </div>
         </div>
@@ -60,7 +60,7 @@ window.email = "{{user.email}}";
     </form>
 </div>
 <div class="container text-center" id="donation-stuff">
-  <h3>How much?</h3>
+  <h3>{% trans %}How much?{% endtrans %}</h3>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="btn-group btn-group-justified amounts" role="group" aria-label="...">

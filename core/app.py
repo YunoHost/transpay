@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, g, Response, redirect, url_for
+from flask_babel import Babel
 from flask_login import LoginManager, current_user
 from jinja2 import FileSystemLoader, ChoiceLoader
 
@@ -16,6 +17,12 @@ from core.network import *
 from core.blueprints.html import html
 
 app = Flask(__name__)
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    return "fr"
+
 app.secret_key = _cfg("secret-key")
 app.jinja_env.cache = None
 init_db()
@@ -36,11 +43,6 @@ def load_user(email):
 login_manager.anonymous_user = lambda: None
 
 app.register_blueprint(html)
-
-try:
-    locale.setlocale(locale.LC_ALL, 'en_US')
-except:
-    pass
 
 if not app.debug:
     @app.errorhandler(500)

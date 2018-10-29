@@ -1,4 +1,7 @@
-Une tentative de prélèvement de votre carte bancaire d'un montant de {{amount}} vient d'échouer.
+{% trans trimmed amount=amount %}
+Une tentative de prélèvement de votre carte bancaire
+d'un montant de {{ amount }} vient d'échouer.
+{% endtrans %}
 
 Le don récurrent a donc été annulé. Si vous voulez encore nous donner, vous pouvez le faire à nouveau sur notre page dédiée :
 {{root}}
