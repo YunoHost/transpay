@@ -1,4 +1,4 @@
-# Trans Pay [![Donate with Trans Pay](https://transpay.xn--transposes-i7a.eu/static/donate-with-transpay.png)](https://dons.transposées.eu/)
+# Trans Pay [![Donate with Trans Pay](https://dons.xn--transposes-i7a.eu/static/donate-with-transpay.png)](https://dons.transposées.eu/)
 
 Trans Pay is developed by [Collectif Trans Posé·e·s](https://transposées.eu) for our own use and that of other associations.
 
