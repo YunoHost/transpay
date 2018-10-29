@@ -1,87 +1,84 @@
 {% extends "layout.html" %}
 {% block container %} 
 <h1>Trans Pay Setup</h1>
-<p>Congrats! You have Trans Pay up and running.</p>
+<p>{%trans%}Congrats! You have Trans Pay up and running.{%endtrans%}</p>
 
 <h2>config.ini</h2>
 <ul class="list-unstyled">
     <li>
         {% if _cfg("secret-key") == "hello world" %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        You need to change the secret key to something other than "hello world".
+        {%trans%}You need to change the secret key to something other than "hello world".{%endtrans%}
         {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Your secret key looks good.
+        {%trans%}Your secret key looks good.{%endtrans%}
         {% endif %}
     </li>
 
     <li>
         {% if _cfg("domain") == "localhost:5000" %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        You should change your domain to something other than localhost.
+        {%trans%}You should change your domain to something other than localhost.{%endtrans%}
         {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Your domain is set to "{{_cfg("domain")}}".
+        {%trans domain=_cfg("domain") %}Your domain is set to "{{domain}}".{%endtrans%}
         {% endif %}
     </li>
 
     <li>
         {% if _cfg("protocol") != "https" %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        Stripe requires your website to use HTTPS.
+        {%trans%}Stripe requires your website to use HTTPS.{%endtrans%}
         {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Stripe requires your website to use HTTPS.
+        {%trans%}Stripe requires your website to use HTTPS.{%endtrans%}
         {% endif %}
     </li>
 
     <li>
         {% if not _cfg("smtp-host") %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        You should configure an SMTP server to send emails with.
+        {%trans%}You should configure an SMTP server to send emails with.{%endtrans%}
         {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Your email configuration looks good.
+        {%trans%}Your email configuration looks good.{%endtrans%}
         {% endif %}
     </li>
 
     <li>
         {% if not _cfg("stripe-secret") or not _cfg("stripe-publish") %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        Your Stripe API keys are not in your config file.
+        {%trans%}Your Stripe API keys are not in your config file.{%endtrans%}
         {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Your Stripe API keys look good.
+        {%trans%}Your Stripe API keys look good.{%endtrans%}
         {% endif %}
     </li>
 
     <li>
       {% if not _cfg("patreon-access-token") or not _cfg("patreon-campaign") %}
         <span class="glyphicon glyphicon-remove text-danger"></span>
-        Your Patreon access token and campaign are not configured (optional).
+        {%trans%}Your Patreon access token and campaign are not configured (optional).{%endtrans%}
       {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        Your Patreon integration looks good. We'll integrate with
-        <a
-          href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
-          target="_blank" rel="noopener noreferrer"
-        >{{ _cfg("patreon-campaign") }}</a>'s campaign.
+        {% trans patreon=_cfg("patreon-campaign") %}Your Patreon integration looks good.
+        We'll integrate with <a href="https://patreon.com/{{patreon}}" target="_blank" rel="noopener noreferrer">{{patreon}}</a>'s campaign.{% endtrans %}
       {% endif %}
     </li>
 </ul>
-<p>You can make changes and refresh this page if you like.</p>
+<p>{%trans%}You can make changes and refresh this page if you like.{%endtrans%}</p>
 
-<h2>Admin Account</h2>
-<p>Enter your details for the admin account:</p>
+<h2>{%trans%}Admin Account{%endtrans%}</h2>
+<p>{%trans%}Enter your details for the admin account:{%endtrans%}</p>
 <form class="form" action="{{root}}/setup" method="POST">
     <div class="form-group">
         <input type="text" class="form-control" name="email"
-            placeholder="Email" value="{{_cfg("your-email")}}" />
+            placeholder="{%trans%}Email{%endtrans%}" value="{{_cfg("your-email")}}" />
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Password" />
+        <input type="password" class="form-control" name="password" placeholder="{%trans%}Password{%endtrans%}" />
     </div>
-    <input type="submit" value="Continue" class="btn btn-primary" />
+    <input type="submit" value="{%trans%}Continue{%endtrans%}" class="btn btn-primary" />
 </form>
 
 {% endblock %}

@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <p class="pull-right"><a class="btn btn-default" href="/">Back to home</a></p>
-                <h1>Donate to {{ _cfg("your-name") }}</h1>
+                <p class="pull-right"><a class="btn btn-default" href="/">{%trans%}Back to home{%endtrans%}</a></p>
+                <h1>{%trans%}Donate to{%endtrans%} {{ _cfg("your-name") }}</h1>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Reset Password</h1>
+            <h1>{%trans%}Reset Password{%endtrans%}</h1>
             {% if errors %}
                 <div class="alert alert-danger">
                     <p>
@@ -23,23 +23,23 @@
             {% endif %}
             {% if done %}
                 <p>
-                    An email should arrive shortly. If you need help, contact
+                    {%trans%}An email should arrive shortly. If you need help, contact{%endtrans%}
                     <a href="mailto:{{_cfg("your-email")}}">{{_cfg("your-email")}}</a>.
                 </p>
             {% elif token %}
                 <form action="{{root}}/password-reset" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type="password" name="password" placeholder="New password" />
+                        <input class="form-control" type="password" name="password" placeholder="{%trans%}New password{%endtrans%}" />
                         <input type="hidden" name="token" value="{{ token }}" />
                     </div>
-                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <input type="submit" value="{%trans%}Submit{%endtrans%}" class="btn btn-primary" />
                 </form>
             {% else %}
                 <form action="{{root}}/password-reset" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="email" placeholder="your@example.org" />
+                        <input class="form-control" type="text" name="email" placeholder="{%trans%}your@email.com{%endtrans%}" />
                     </div>
-                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <input type="submit" value="{%trans%}Submit{%endtrans%}" class="btn btn-primary" />
                 </form>
             {% endif %}
         </div>

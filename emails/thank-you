@@ -1,20 +1,19 @@
-Merci pour votre don !
+{%trans%}Thank you for donating!{%endtrans%}
 
-Votre reçu :
+{%trans%}Receipt:{%endtrans%}
 
 {{#monthly}}
-Don mensuel              {{amount}}
+{%trans%}Monthly donation{%endtrans%}                {{amount}}
 {{/monthly}}
 {{^monthly}}
-Don unique               {{amount}}
+{%trans%}One-time donation{%endtrans%}               {{amount}}
 {{/monthly}}
 
-Vous pouvez visualiser et gérer vos dons ici :
+{%trans%}You can view and manage your donations online here:{%endtrans%}
+
 {{root}}/panel
 
-Merci encore !
-Si vous avez des questions, vous pouvez nous contacter à l'adresse : {{your_email}}.
+{% trans you=your_email %}Thanks again! If you have questions, contact {{you}}.{%endtrans%}
 
 --
 {{your_name}}
-

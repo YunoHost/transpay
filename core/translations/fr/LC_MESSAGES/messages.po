@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-29 21:24+0100\n"
+"POT-Creation-Date: 2018-10-29 23:35+0100\n"
 "PO-Revision-Date: 2018-10-29 17:33+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,11 +18,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
+#: core/email.py:33
+msgid "Thank you for your donation!"
+msgstr ""
+
+#: core/email.py:55
+msgid "Reset your donor password"
+msgstr ""
+
+#: core/email.py:77
+msgid "Your monthly donation was declined."
+msgstr ""
+
 #: emails/declined:1
 #, python-format
 msgid ""
-"Une tentative de prélèvement de votre carte bancaire d'un montant de "
-"%(amount)s vient d'échouer."
+"An attempt was just made to charge your card for your monthly donation to"
+" %(you)s for %(amount)s. Unfortunately, your card was declined."
+msgstr ""
+
+#: emails/declined:3
+msgid ""
+"The donation has been disabled. If you would like to, you may create a "
+"new recurring donation here:"
+msgstr ""
+
+#: emails/declined:7 templates/post-donation-message.html:1
+msgid "Thanks!"
+msgstr ""
+
+#: emails/reset-password:1
+msgid "Someone, probably you, wants to reset your donor password."
+msgstr ""
+
+#: emails/reset-password:3
+msgid "To proceed, click this link:"
+msgstr ""
+
+#: emails/reset-password:7
+msgid ""
+"This link expires in 24 hours. If you don't want to change your password "
+"or you\n"
+"weren't expecting this email, just ignore it."
+msgstr ""
+
+#: emails/reset-password:10
+#, python-format
+msgid "If you have questions, send an email to %(you)s."
 msgstr ""
 
 #: templates/admin.html:3 templates/admin.html:14
@@ -112,11 +154,43 @@ msgstr ""
 msgid "Donate with Trans Pay"
 msgstr ""
 
-#: templates/goal.html:76
+#: templates/goal.html:58 templates/goal.html:70 templates/goal.html:81
+#: templates/goal.html:93 templates/goal.html:95
+msgid "/mo"
+msgstr ""
+
+#: templates/goal.html:59 templates/goal.html:64 templates/goal.html:71
+#: templates/goal.html:82
+msgid "via"
+msgstr ""
+
+#: templates/goal.html:63
+msgid "from single donations <small>(last 30 days)</small>"
+msgstr ""
+
+#: templates/goal.html:65 templates/goal.html:76 templates/goal.html:87
+#: templates/goal.html:101
 msgid "supporter"
 msgstr ""
 
-#: templates/index.html:39 templates/layout.html:8
+#: templates/goal.html:94
+msgid "of"
+msgstr ""
+
+#: templates/goal.html:96
+msgid "goal"
+msgstr ""
+
+#: templates/goal.html:100
+msgid "Supported with"
+msgstr ""
+
+#: templates/goal.html:101
+msgid "from"
+msgstr ""
+
+#: templates/index.html:39 templates/layout.html:8 templates/login.html:8
+#: templates/reset.html:8
 msgid "Donate to"
 msgstr "Donner au"
 
@@ -138,11 +212,11 @@ msgstr ""
 "Si vous voulez <strong>gérez vos dons</strong>, vous pouvez créer un "
 "compte en renseignant un mot de passe dans le champ ci-contre :"
 
-#: templates/index.html:57
+#: templates/index.html:57 templates/login.html:29 templates/setup.html:79
 msgid "Password"
 msgstr "Mot de passe"
 
-#: templates/index.html:59
+#: templates/index.html:59 templates/reset.html:35 templates/reset.html:42
 msgid "Submit"
 msgstr "Valider"
 
@@ -154,7 +228,7 @@ msgstr "Combien ?"
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: templates/index.html:86
+#: templates/index.html:86 templates/panel.html:20 templates/panel.html:46
 msgid "Amount"
 msgstr "Montant"
 
@@ -216,4 +290,166 @@ msgid ""
 msgstr ""
 "Powered by <a "
 "href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>."
+
+#: templates/login.html:7 templates/reset.html:7
+msgid "Back to home"
+msgstr ""
+
+#: templates/login.html:20
+msgid "Username or password incorrect."
+msgstr ""
+
+#: templates/login.html:26 templates/reset.html:40
+msgid "your@email.com"
+msgstr ""
+
+#: templates/login.html:32
+msgid "Reset password"
+msgstr ""
+
+#: templates/not_found.html:3
+msgid "404 Not Found"
+msgstr ""
+
+#: templates/not_found.html:4
+msgid "Trying to donate?"
+msgstr ""
+
+#: templates/panel.html:6
+msgid "Donate again"
+msgstr ""
+
+#: templates/panel.html:7
+msgid "Log out"
+msgstr ""
+
+#: templates/panel.html:9
+msgid "Your Donations"
+msgstr ""
+
+#: templates/panel.html:14
+msgid "Monthly Donations"
+msgstr ""
+
+#: templates/panel.html:19 templates/panel.html:45
+msgid "Date"
+msgstr ""
+
+#: templates/panel.html:21 templates/panel.html:47
+msgid "Project"
+msgstr ""
+
+#: templates/panel.html:29
+msgid "Cancel"
+msgstr ""
+
+#: templates/panel.html:34 templates/panel.html:55
+msgid "Not specified"
+msgstr ""
+
+#: templates/panel.html:41
+msgid "One-time Donations"
+msgstr ""
+
+#: templates/post-donation-message.html:2
+msgid "Have a great day!"
+msgstr ""
+
+#: templates/reset.html:16
+msgid "Reset Password"
+msgstr ""
+
+#: templates/reset.html:26
+msgid "An email should arrive shortly. If you need help, contact"
+msgstr ""
+
+#: templates/reset.html:32
+msgid "New password"
+msgstr ""
+
+#: templates/setup.html:4
+msgid "Congrats! You have Trans Pay up and running."
+msgstr ""
+
+#: templates/setup.html:11
+msgid "You need to change the secret key to something other than \"hello world\"."
+msgstr ""
+
+#: templates/setup.html:14
+msgid "Your secret key looks good."
+msgstr ""
+
+#: templates/setup.html:21
+msgid "You should change your domain to something other than localhost."
+msgstr ""
+
+#: templates/setup.html:24
+#, python-format
+msgid "Your domain is set to \"%(domain)s\"."
+msgstr ""
+
+#: templates/setup.html:31 templates/setup.html:34
+msgid "Stripe requires your website to use HTTPS."
+msgstr ""
+
+#: templates/setup.html:41
+msgid "You should configure an SMTP server to send emails with."
+msgstr ""
+
+#: templates/setup.html:44
+msgid "Your email configuration looks good."
+msgstr ""
+
+#: templates/setup.html:51
+msgid "Your Stripe API keys are not in your config file."
+msgstr ""
+
+#: templates/setup.html:54
+msgid "Your Stripe API keys look good."
+msgstr ""
+
+#: templates/setup.html:61
+msgid "Your Patreon access token and campaign are not configured (optional)."
+msgstr ""
+
+#: templates/setup.html:64
+#, python-format
+msgid ""
+"Your Patreon integration looks good.\n"
+"\tWe'll integrate with <a href=\"https://patreon.com/%(patreon)s\" "
+"target=\"_blank\" rel=\"noopener noreferrer\">%(patreon)s</a>'s campaign."
+msgstr ""
+
+#: templates/setup.html:69
+msgid "You can make changes and refresh this page if you like."
+msgstr ""
+
+#: templates/setup.html:71
+msgid "Admin Account"
+msgstr ""
+
+#: templates/setup.html:72
+msgid "Enter your details for the admin account:"
+msgstr ""
+
+#: templates/setup.html:76
+msgid "Email"
+msgstr ""
+
+#: templates/setup.html:81
+msgid "Continue"
+msgstr ""
+
+#: templates/terms.html:1
+msgid ""
+"Stripe, our payement processor takes 2.9% + 0.30$ as fees on each "
+"donation.\n"
+"Monthly payments are renewed <em>every 30 days</em>."
+msgstr ""
+
+#~ msgid ""
+#~ "Une tentative de prélèvement de votre"
+#~ " carte bancaire d'un montant de "
+#~ "%(amount)s vient d'échouer."
+#~ msgstr ""
 

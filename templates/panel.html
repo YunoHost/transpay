@@ -3,22 +3,22 @@
 <div class="well">
     <div class="container">
         <p class="pull-right">
-            <a class="btn btn-primary" href="..">Donate again</a>
-            <a class="btn btn-default" href="logout">Log out</a>
+            <a class="btn btn-primary" href="..">{%trans%}Donate again{%endtrans%}</a>
+            <a class="btn btn-default" href="logout">{%trans%}Log out{%endtrans%}</a>
         </p>
-        <h1>Your Donations</h1>
+        <h1>{%trans%}Your Donations{%endtrans%}</h1>
     </div>
 </div>
 <div class="container">
     {% if any(recurring(user)) %}
-    <h2>Monthly Donations</h2>
+    <h2>{%trans%}Monthly Donations{%endtrans%}</h2>
     <table class="table">
         <thead>
             <tr>
                 <th style="width: 10%"></th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Project</th>
+                <th>{%trans%}Date{%endtrans%}</th>
+                <th>{%trans%}Amount{%endtrans%}</th>
+                <th>{%trans%}Project{%endtrans%}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,25 +26,25 @@
             <tr>
                 <td>
                     <form method="DELETE" action="{{root}}/cancel/{{ donation.id }}">
-                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                        <button type="submit" class="btn btn-danger btn-sm">{%trans%}Cancel{%endtrans%}</button>
                     </form>
                 </td>
                 <td>{{ donation.created.strftime("%Y-%m-%d") }}</td>
                 <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
-                <td>{{ donation.project.name if donation.project else "Not specified" }}</td>
+                <td>{{ donation.project.name if donation.project else _("Not specified") }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     {% endif %}
     {% if any(one_times(user)) %}
-    <h2>One-time Donations</h2>
+    <h2>{%trans%}One-time Donations{%endtrans%}</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Project</th>
+                <th>{%trans%}Date{%endtrans%}</th>
+                <th>{%trans%}Amount{%endtrans%}</th>
+                <th>{%trans%}Project{%endtrans%}</th>
             </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
             <tr>
                 <td>{{ donation.created.strftime("%Y-%m-%d") }}</td>
                 <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
-                <td>{{ donation.project.name if donation.project else "Not specified" }}</td>
+                <td>{{ donation.project.name if donation.project else _("Not specified") }}</td>
             </tr>
         {% endfor %}
         </tbody>

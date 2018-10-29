@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.utils import localtime, format_datetime
 from werkzeug.utils import secure_filename
 from flask import url_for
+from flask_babel import gettext
 
 from core.database import db
 from core.objects import User, DonationType
@@ -29,7 +30,7 @@ def send_thank_you(user, amount, monthly):
                 "monthly": monthly,
                 "your_email": _cfg("your-email")
             })))
-    message['Subject'] = "Thank you for your donation!"
+    message['Subject'] = gettext("Thank you for your donation!")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
     message['Date'] = format_datetime(localtime())
@@ -51,7 +52,7 @@ def send_password_reset(user):
                 "your_name": _cfg("your-name"),
                 "your_email": _cfg("your-email")
             })))
-    message['Subject'] = "Reset your donor password"
+    message['Subject'] = gettext("Reset your donor password")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
     message['Date'] = format_datetime(localtime())
@@ -73,7 +74,7 @@ def send_declined(user, amount):
                 "your_name": _cfg("your-name"),
                 "amount": currency.amount("{:.2f}".format(amount / 100))
             })))
-    message['Subject'] = "Your monthly donation was declined."
+    message['Subject'] = gettext("Your monthly donation was declined.")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
     message['Date'] = format_datetime(localtime())
