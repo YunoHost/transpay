@@ -85,7 +85,6 @@
           ({{ lp_count }} donateurice{{ "s" if lp_count != 1 else "" }})
       </p>
       {% endif %}
-      {% endif %}
       {% if goal %}
       <p class="{{ "text-center" if not patreon_sum else "" }}">
         {{ currency.amount("{:.2f}".format(total_sum / 100))}} par mois
