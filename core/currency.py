@@ -13,7 +13,7 @@ class Currency:
 
 currencies = {
     'usd' : Currency("$", "left"),
-    'eur' : Currency("€", "right")
+    'eur' : Currency(" €", "right")
     # ... More currencies can be added here
 }
 
