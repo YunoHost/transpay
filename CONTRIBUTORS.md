@@ -1,6 +1,7 @@
-SirCmpwn (fosspay)
-ddeva-vistar (fosspay)
-michcioperz (fosspay)
+SirCmpwn (fosspay),
+ddeva-vistar (fosspay),
+michcioperz (fosspay).
 
-OniriCorpe
-Auxeras
+OniriCorpe,
+Auxeras,
+Eliot Berriot.
