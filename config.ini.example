@@ -44,7 +44,7 @@ default-amount=5
 # Pick between "monthly" and "once"
 default-type=monthly
 
-# Display monthly donations publically
+# Display monthly donations publicly
 public-income=yes
 
 # How much are you hoping to earn monthly, in cents
