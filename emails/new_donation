@@ -1,0 +1,5 @@
+Hi {{your_name}}!
+
+Good news: {{user.email}} just donated {{amount}}{{frequency}}!
+
+{{comment}}

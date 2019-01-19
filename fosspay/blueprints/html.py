@@ -6,6 +6,7 @@ from fosspay.database import db
 from fosspay.common import *
 from fosspay.config import _cfg, load_config
 from fosspay.email import send_thank_you, send_password_reset
+from fosspay.email import send_new_donation, send_cancellation_notice
 from fosspay.currency import currency
 
 import os
@@ -216,6 +217,11 @@ def donate():
     db.commit()
 
     send_thank_you(user, amount, type == DonationType.monthly)
+    try:
+        send_new_donation(user, donation)
+    except:
+        # I dunno if this works and I don't have time to test it right now
+        print("send_new_donation is broken")
 
     if new_account:
         return { "success": True, "new_account": new_account, "password_reset": user.password_reset }
@@ -291,4 +297,9 @@ def cancel(id):
         abort(400)
     donation.active = False
     db.commit()
+    try:
+        send_cancellation_notice(user, donation)
+    except:
+        # I dunno if this works and I don't have time to test it right now
+        print("send_cancellation_notice is broken")
     return redirect("/panel")
