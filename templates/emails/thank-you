@@ -2,12 +2,11 @@
 
 {%trans%}Receipt:{%endtrans%}
 
-{{#monthly}}
+{{if monthly}}
 {%trans%}Monthly donation{%endtrans%}                {{amount}}
-{{/monthly}}
-{{^monthly}}
+{{else}}
 {%trans%}One-time donation{%endtrans%}               {{amount}}
-{{/monthly}}
+{{endif}}
 
 {%trans%}You can view and manage your donations online here:{%endtrans%}
 

@@ -62,36 +62,36 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <p>
-        {{ currency.amount("{:.2f}".format(recurring_sum / 100)) }}{%trans%}/mo{%endtrans%}
-        {%trans%}via{%endtrans%} <strong class="text-primary">{{ domain }}</strong>
-        ({{ recurring_count }} supporter{{ "s" if recurring_count != 1 else "" }})
+        {%trans trimmed count=recurring_count, amount=currency.amount("{:.2f}".format(recurring_sum / 100)), domain=domain %}
+	{{ amount }}/mo via <strong class="text-primary">{{ domain }}</strong> ({{ count }} supporter)
+	{%pluralize%}
+	{{ amount }}/mo via <strong class="text-primary">{{ domain }}</strong> ({{ count }} supporters)
+	{%endtrans%}
       </p>
       <p>
-        {{ currency.amount("{:.2f}".format(onetime_sum / 100)) }} {%trans%}from single donations <small>(last 30 days)</small>{%endtrans%}
-        {%trans%}via{%endtrans%} <strong class="text-primary">{{ domain }}</strong>
-        ({{ onetime_count }} {%trans%}supporter{%endtrans%}{{ "s" if onetime_count != 1 else "" }})
+        {%trans trimmed count=onetime_count, amount=currency.amount("{:.2f}".format(onetime_sum / 100)), domain=domain %}
+	{{ amount }} from single donations <small>(last 30 days)</small> via <strong class="text-primary">{{ domain }}</strong> ({{ count }} supporter)
+	{%pluralize%}
+	{{ amount }} from single donations <small>(last 30 days)</small> via <strong class="text-primary">{{ domain }}</strong> ({{ count }} supporters)
+	{%endtrans%}
       </p>
       <p>
       {% if patreon_count %}
       <p>
-        {{ currency.amount("{:.2f}".format(patreon_sum / 100)) }}{%trans%}/mo{%endtrans%}
-        {%trans%}via{%endtrans%}
-        <strong><a
-          href="https://patreon.com/{{ _cfg("patreon-campaign") }}"
-          style="color: #51acc7">
-            Patreon <i class="glyphicon glyphicon-share"></i>
-          </a></strong> ({{ patreon_count }} {%trans%}supporter{%endtrans%}{{ "s" if patreon_count != 1 else "" }})
+        {%trans trimmed count=patreon_count, amount=currency.amount("{:.2f}".format(patreon_sum / 100)), campaign=_cfg("patreon-campaign") %}
+	{{ amount }}/mo via <strong><a href="https://patreon.com/{{ campaign }}" style="color: #51acc7"> Patreon <i class="glyphicon glyphicon-share"></i> </a></strong> ({{ count }} supporter)
+	{%pluralize%}
+	{{ amount }}/mo via <strong><a href="https://patreon.com/{{ campaign }}" style="color: #51acc7"> Patreon <i class="glyphicon glyphicon-share"></i> </a></strong> ({{ count }} supporters)
+	{%endtrans%}
       </p>
       {% endif %}
       {% if lp_count %}
       <p>
-        {{ currency.amount("{:.2f}".format(lp_sum / 100)) }}{%trans%}/mo{%endtrans%}
-        {%trans%}via{%endtrans%}
-        <strong><a
-          class="text-warning"
-          href="https://liberapay.com/{{ _cfg("liberapay-campaign") }}">
-            Liberapay <i class="glyphicon glyphicon-share"></i>
-          </a></strong> ({{ lp_count }} {%trans%}supporter{%endtrans%}{{ "s" if lp_count != 1 else "" }})
+        {%trans trimmed count=lp_count, amount=currency.amount("{:.2f}".format(lp_sum / 100)), campaign=_cfg("liberapay-campaign") %}
+	{{ amount }}/mo via <strong><a class="text-warning" href="https://liberapay.com/{{ campaign }}"> Liberapay <i class="glyphicon glyphicon-share"></i> </a></strong> ({{ count }} supporter)
+	{%pluralize%}
+	{{ amount }}/mo via <strong><a class="text-warning" href="https://liberapay.com/{{ campaign }}"> Liberapay <i class="glyphicon glyphicon-share"></i> </a></strong> ({{ count }} supporters)
+	{%endtrans%}
       </p>
       {% endif %}
       {% if gh_count %}
@@ -107,15 +107,17 @@
       {% endif %}
       {% if goal %}
       <p class="{{ "text-center" if not patreon_sum else "" }}">
-        {{ currency.amount("{:.2f}".format(total_sum / 100))}}{%trans%}/mo{%endtrans%}
-        {%trans%}of{%endtrans%}
-        {{ currency.amount("{:.2f}".format(goal / 100)) }}{%trans%}/mo{%endtrans%}
-        {%trans%}goal{%endtrans%}
+        {%trans trimmed amount=currency.amount("{:.2f}".format(total_sum / 100)), goal=currency.amount("{:.2f}".format(goal / 100)) %}
+        {{ amount }}/mo of {{ goal }}/mo goal
+	{%endtrans%}
       </p>
       {% else %}
       <p>
-        {%trans%}Supported with{%endtrans%} {{ currency.amount("{:.2f}".format(total_sum / 100)) }}
-        {%trans%}from{%endtrans%} {{ total_count }} {%trans%}supporter{%endtrans%}s!
+        {%trans trimmed count=total_count, amount=currency.amount("{:.2f}".format(total_sum / 100))  %}
+	Supported with {{ amount }} from {{ count }} supporter!
+	{%pluralize%}
+	Supported with {{ amount }} from {{ count }} supporters!
+	{%endtrans%}
       </p>
       {% endif %}
     </div>

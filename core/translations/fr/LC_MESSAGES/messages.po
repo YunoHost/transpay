@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-29 23:35+0100\n"
-"PO-Revision-Date: 2018-10-29 17:33+0100\n"
+"POT-Creation-Date: 2018-10-30 14:33+0100\n"
+"PO-Revision-Date: 2018-10-30 14:33+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -58,11 +58,10 @@ msgstr ""
 #: emails/reset-password:7
 msgid ""
 "This link expires in 24 hours. If you don't want to change your password "
-"or you\n"
-"weren't expecting this email, just ignore it."
+"or you weren't expecting this email, just ignore it."
 msgstr ""
 
-#: emails/reset-password:10
+#: emails/reset-password:9
 #, python-format
 msgid "If you have questions, send an email to %(you)s."
 msgstr ""
@@ -77,8 +76,8 @@ msgstr ""
 
 #: templates/admin.html:15
 msgid ""
-"Combine this with your <a href=\"https://dashboard.stripe.com\">Stripe\n"
-"            dashboard</a> for the full effect."
+"Combine this with your <a href=\"https://dashboard.stripe.com\">Stripe "
+"dashboard</a> for the full effect."
 msgstr ""
 
 #: templates/admin.html:23
@@ -96,18 +95,15 @@ msgstr ""
 #: templates/admin.html:33
 msgid ""
 "Add some projects. Donors can tell you which project they want to support"
-"\n"
-"                when they donate."
+" when they donate."
 msgstr ""
 
 #: templates/admin.html:37
 msgid ""
 "Customize the look &amp; feel. Look at the contents of the "
-"<code>templates</code>\n"
-"                directory - you can copy and paste any of these templates"
-" into the\n"
-"                <code>overrides</code> directory and change it to suit "
-"your needs."
+"<code>templates</code> directory - you can copy and paste any of these "
+"templates into the <code>overrides</code> directory and change it to suit"
+" your needs."
 msgstr ""
 
 #: templates/admin.html:42
@@ -145,151 +141,165 @@ msgstr ""
 #: templates/admin.html:152
 msgid ""
 "If you add <code>?project=1</code> to your URL, it will pre-select that "
-"project\n"
-"                (where 1 is the 1st project you have listed on this page)"
-" when users arrive to donate."
+"project (where 1 is the 1st project you have listed on this page) when "
+"users arrive to donate."
 msgstr ""
 
 #: templates/admin.html:155
 msgid "Donate with Trans Pay"
 msgstr ""
 
-#: templates/goal.html:58 templates/goal.html:70 templates/goal.html:81
-#: templates/goal.html:93 templates/goal.html:95
-msgid "/mo"
+#: templates/goal.html:58
+#, python-format
+msgid ""
+"%(amount)s/mo via <strong class=\"text-primary\">%(domain)s</strong> "
+"(%(count)s supporter)"
+msgid_plural ""
+"%(amount)s/mo via <strong class=\"text-primary\">%(domain)s</strong> "
+"(%(count)s supporters)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/goal.html:65
+#, python-format
+msgid ""
+"%(amount)s from single donations <small>(last 30 days)</small> via "
+"<strong class=\"text-primary\">%(domain)s</strong> (%(count)s supporter)"
+msgid_plural ""
+"%(amount)s from single donations <small>(last 30 days)</small> via "
+"<strong class=\"text-primary\">%(domain)s</strong> (%(count)s supporters)"
+msgstr[0] ""
+"%(amount)s par dons uniques <small>(durant les 30 derniers jours)</small> par "
+"<strong class=\"text-primary\">%(domain)s</strong> (%(count)s donateurice)"
+msgstr[1] ""
+"%(amount)s par dons uniques <small>(durant les 30 derniers jours)</small> par "
+"<strong class=\"text-primary\">%(domain)s</strong> (%(count)s donateurices)"
+
+#: templates/goal.html:74
+#, python-format
+msgid ""
+"%(amount)s/mo via <strong><a href=\"https://patreon.com/%(campaign)s\" "
+"style=\"color: #51acc7\"> Patreon <i class=\"glyphicon glyphicon-"
+"share\"></i> </a></strong> (%(count)s supporter)"
+msgid_plural ""
+"%(amount)s/mo via <strong><a href=\"https://patreon.com/%(campaign)s\" "
+"style=\"color: #51acc7\"> Patreon <i class=\"glyphicon glyphicon-"
+"share\"></i> </a></strong> (%(count)s supporters)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/goal.html:83
+#, python-format
+msgid ""
+"%(amount)s/mo via <strong><a class=\"text-warning\" "
+"href=\"https://liberapay.com/%(campaign)s\"> Liberapay <i "
+"class=\"glyphicon glyphicon-share\"></i> </a></strong> (%(count)s "
+"supporter)"
+msgid_plural ""
+"%(amount)s/mo via <strong><a class=\"text-warning\" "
+"href=\"https://liberapay.com/%(campaign)s\"> Liberapay <i "
+"class=\"glyphicon glyphicon-share\"></i> </a></strong> (%(count)s "
+"supporters)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/goal.html:93
+#, python-format
+msgid "%(amount)s/mo of %(goal)s/mo goal"
 msgstr ""
 
-#: templates/goal.html:59 templates/goal.html:64 templates/goal.html:71
-#: templates/goal.html:82
-msgid "via"
-msgstr ""
-
-#: templates/goal.html:63
-msgid "from single donations <small>(last 30 days)</small>"
-msgstr ""
-
-#: templates/goal.html:65 templates/goal.html:76 templates/goal.html:87
-#: templates/goal.html:101
-msgid "supporter"
-msgstr ""
-
-#: templates/goal.html:94
-msgid "of"
-msgstr ""
-
-#: templates/goal.html:96
-msgid "goal"
-msgstr ""
-
-#: templates/goal.html:100
-msgid "Supported with"
-msgstr ""
-
-#: templates/goal.html:101
-msgid "from"
-msgstr ""
+#: templates/goal.html:99
+#, python-format
+msgid "Supported with %(amount)s from %(count)s supporter!"
+msgid_plural "Supported with %(amount)s from %(count)s supporters!"
+msgstr[0] ""
+msgstr[1] ""
 
 #: templates/index.html:39 templates/layout.html:8 templates/login.html:8
 #: templates/reset.html:8
 msgid "Donate to"
-msgstr "Donner au"
+msgstr ""
 
 #: templates/index.html:48
 msgid ""
 "This page requires Javascript. It's necessary to send your credit card "
-"number to\n"
-"\t<a href=\"https://stripe.com/\">Stripe</a> directly, so you don't need "
-"to trust me with it."
+"number to <a href=\"https://stripe.com/\">Stripe</a> directly, so you "
+"don't need to trust me with it."
 msgstr ""
-"Cette page requiert Javascript, nécessaire afin d'envoyer vos "
-"informations de payement directement à <a "
-"href=\"https://stripe.com/\">Stripe</a> plutôt que de faire confiance à "
-"cette plateforme pour le stocker."
 
 #: templates/index.html:56
 msgid "Set a password now if you want to manage your donations later:"
 msgstr ""
-"Si vous voulez <strong>gérez vos dons</strong>, vous pouvez créer un "
-"compte en renseignant un mot de passe dans le champ ci-contre :"
 
 #: templates/index.html:57 templates/login.html:29 templates/setup.html:79
 msgid "Password"
-msgstr "Mot de passe"
+msgstr ""
 
 #: templates/index.html:59 templates/reset.html:35 templates/reset.html:42
 msgid "Submit"
-msgstr "Valider"
+msgstr ""
 
 #: templates/index.html:63
 msgid "How much?"
-msgstr "Combien ?"
+msgstr ""
 
 #: templates/index.html:75
 msgid "Custom"
-msgstr "Personnalisé"
+msgstr ""
 
 #: templates/index.html:86 templates/panel.html:20 templates/panel.html:46
 msgid "Amount"
-msgstr "Montant"
+msgstr ""
 
 #: templates/index.html:91
 msgid "How often?"
-msgstr "Donner"
+msgstr ""
 
 #: templates/index.html:99
 msgid "Once"
-msgstr "Une fois"
+msgstr ""
 
 #: templates/index.html:104
 msgid "Monthly"
-msgstr "Tous les mois"
+msgstr ""
 
 #: templates/index.html:111
 msgid "What project?"
-msgstr "Pour quel projet ?"
+msgstr ""
 
 #: templates/index.html:117
 msgid "None in particular"
-msgstr "Aucun en particulier"
+msgstr ""
 
 #: templates/index.html:130
 msgid "Any comments"
-msgstr "Ajouter un commentaire "
+msgstr ""
 
 #: templates/index.html:139
 msgid "Donate"
-msgstr "Donner"
+msgstr ""
 
 #: templates/index.html:153
 msgid ""
 "Been here before? <strong><a href=\"login\">Log in</a></strong> to view "
-"your donation\n"
-"            history, edit recurring donations, and so on."
+"your donation history, edit recurring donations, and so on."
 msgstr ""
-"Si vous nous avez déjà fait au moins un don, vous pouvez <strong><a "
-"href=\"login\">vous connecter</a></strong> pour voir votre historique ou "
-"éditer vos dons récurrents."
 
 #: templates/index.html:158
 msgid "Access <strong><a href=\"admin\">admin panel</a></strong>."
-msgstr "Accéder à votre <a href=\"admin\">interface d'administration</a>."
+msgstr ""
 
 #: templates/index.html:162
 msgid ""
 "Access <strong><a href=\"panel\">your panel</a></strong> to view your "
-"donation\n"
-"            history, edit recurring donations, and so on."
+"donation history, edit recurring donations, and so on."
 msgstr ""
-"Accéder à votre <a href=\"panel\">interface de gestion</a> pour voir\n"
-"votre historique ou éditer vos dons récurrents."
 
 #: templates/index.html:168
 msgid ""
 "Powered by <a "
 "href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>."
 msgstr ""
-"Powered by <a "
-"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>."
 
 #: templates/login.html:7 templates/reset.html:7
 msgid "Back to home"
@@ -415,9 +425,9 @@ msgstr ""
 #: templates/setup.html:64
 #, python-format
 msgid ""
-"Your Patreon integration looks good.\n"
-"\tWe'll integrate with <a href=\"https://patreon.com/%(patreon)s\" "
-"target=\"_blank\" rel=\"noopener noreferrer\">%(patreon)s</a>'s campaign."
+"Your Patreon integration looks good. We'll integrate with <a "
+"href=\"https://patreon.com/%(patreon)s\" target=\"_blank\" rel=\"noopener"
+" noreferrer\">%(patreon)s</a>'s campaign."
 msgstr ""
 
 #: templates/setup.html:69
@@ -443,13 +453,6 @@ msgstr ""
 #: templates/terms.html:1
 msgid ""
 "Stripe, our payement processor takes 2.9% + 0.30$ as fees on each "
-"donation.\n"
-"Monthly payments are renewed <em>every 30 days</em>."
+"donation. Monthly payments are renewed <em>every 30 days</em>."
 msgstr ""
-
-#~ msgid ""
-#~ "Une tentative de prélèvement de votre"
-#~ " carte bancaire d'un montant de "
-#~ "%(amount)s vient d'échouer."
-#~ msgstr ""
 

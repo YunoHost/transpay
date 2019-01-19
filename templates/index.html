@@ -45,7 +45,7 @@ window.email = "{{user.email}}";
 <noscript>
     <div class="container">
         <div class="alert alert-danger">
-	<p>{% trans %}This page requires Javascript. It's necessary to send your credit card number to
+	<p>{% trans trimmed %}This page requires Javascript. It's necessary to send your credit card number to
 	<a href="https://stripe.com/">Stripe</a> directly, so you don't need to trust me with it.{% endtrans %}</p>
         </div>
     </div>
@@ -150,7 +150,7 @@ window.email = "{{user.email}}";
 <div class="container text-center">
     {% if not user %}
     <p>
-            {%trans%}Been here before? <strong><a href="login">Log in</a></strong> to view your donation
+            {%trans trimmed%}Been here before? <strong><a href="login">Log in</a></strong> to view your donation
             history, edit recurring donations, and so on.{%endtrans%}
     </p>
     {% elif user.admin %}
@@ -159,7 +159,7 @@ window.email = "{{user.email}}";
     </p>
     {% else %}
     <p>
-            {%trans%}Access <strong><a href="panel">your panel</a></strong> to view your donation
+            {%trans trimmed%}Access <strong><a href="panel">your panel</a></strong> to view your donation
             history, edit recurring donations, and so on.{%endtrans%}
     </p>
     {% endif %}

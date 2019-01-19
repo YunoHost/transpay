@@ -12,7 +12,7 @@
             <a class="btn btn-default" href="logout">Log out</a>
         </p>
         <h1>{%trans%}Donation Admin{%endtrans%}</h1>
-        <p>{%trans%}Combine this with your <a href="https://dashboard.stripe.com">Stripe
+        <p>{%trans trimmed%}Combine this with your <a href="https://dashboard.stripe.com">Stripe
             dashboard</a> for the full effect.{%endtrans%}</p>
     </div>
 </div>
@@ -30,11 +30,11 @@
                 </a>.
             </li>
             <li>
-                {%trans%}Add some projects. Donors can tell you which project they want to support
+                {%trans trimmed%}Add some projects. Donors can tell you which project they want to support
                 when they donate.{%endtrans%}
             </li>
             <li>
-                {%trans%}Customize the look &amp; feel. Look at the contents of the <code>templates</code>
+                {%trans trimmed%}Customize the look &amp; feel. Look at the contents of the <code>templates</code>
                 directory - you can copy and paste any of these templates into the
                 <code>overrides</code> directory and change it to suit your needs.{%endtrans%}
             </li>
@@ -63,7 +63,7 @@
                 <tbody>
                     {% for project in projects %}
                     <tr>
-                       <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" /></form></td>
+                       <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans trimmed project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" /></form></td>
                         <td><form method="POST" action="{{root}}/edit-project"><input class="form-control" type="text" placeholder="{{ project.name }}" value="{{ project.name }}" name="edit-name" /> <input type="hidden" name="id" value=""{{ project.id }}" /></form></td>
                         <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(recurring(project) / 100)) }}</td>
@@ -149,7 +149,7 @@
                         <img src="{{root}}/static/donate-with-transpay.png" />
                     </a>
                 </p>
-                <p>{%trans%}If you add <code>?project=1</code> to your URL, it will pre-select that project
+                <p>{%trans trimmed%}If you add <code>?project=1</code> to your URL, it will pre-select that project
                 (where 1 is the 1st project you have listed on this page) when users arrive to donate.{%endtrans%}</p>
                 <p><strong>Markdown</strong></p>
                 <pre>[![{%trans%}Donate with Trans Pay{%endtrans%}]({{root}}/static/donate-with-transpay.png)]({{root}})</pre>

@@ -61,7 +61,7 @@
         {%trans%}Your Patreon access token and campaign are not configured (optional).{%endtrans%}
       {% else %}
         <span class="glyphicon glyphicon-ok text-success"></span>
-        {% trans patreon=_cfg("patreon-campaign") %}Your Patreon integration looks good.
+        {% trans trimmed patreon=_cfg("patreon-campaign") %}Your Patreon integration looks good.
         We'll integrate with <a href="https://patreon.com/{{patreon}}" target="_blank" rel="noopener noreferrer">{{patreon}}</a>'s campaign.{% endtrans %}
       {% endif %}
     </li>
