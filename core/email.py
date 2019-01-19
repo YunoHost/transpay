@@ -1,11 +1,10 @@
 import smtplib
-import pystache
 import os
 import html.parser
 from email.mime.text import MIMEText
 from email.utils import localtime, format_datetime
 from werkzeug.utils import secure_filename
-from flask import url_for
+from flask import url_for, render_template
 from flask_babel import gettext
 
 from core.database import db
@@ -20,16 +19,14 @@ def send_thank_you(user, amount, monthly):
     smtp.ehlo()
     smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
-    with open("emails/thank-you") as f:
-        message = MIMEText(html.parser.HTMLParser().unescape(\
-            pystache.render(f.read(), {
-                "user": user,
-                "root": _cfg("protocol") + "://" + _cfg("domain"),
-                "your_name": _cfg("your-name"),
-                "amount": currency.amount("{:.2f}".format(amount / 100)),
-                "monthly": monthly,
-                "your_email": _cfg("your-email")
-            })))
+    message = MIMEText(render_template("emails/thank-you", 
+                user = user,
+                root = _cfg("protocol") + "://" + _cfg("domain"),
+                your_name = _cfg("your-name"),
+                amount = currency.amount("{:.2f}".format(amount / 100)),
+                monthly = monthly,
+                your_email = _cfg("your-email")
+    ))
     message['Subject'] = gettext("Thank you for your donation!")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
@@ -44,14 +41,12 @@ def send_password_reset(user):
     smtp.ehlo()
     smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
-    with open("emails/reset-password") as f:
-        message = MIMEText(html.parser.HTMLParser().unescape(\
-            pystache.render(f.read(), {
-                "user": user,
-                "root": _cfg("protocol") + "://" + _cfg("domain"),
-                "your_name": _cfg("your-name"),
-                "your_email": _cfg("your-email")
-            })))
+    message = MIMEText(render_template("emails/reset-password",
+                user = user,
+                root = _cfg("protocol") + "://" + _cfg("domain"),
+                your_name = _cfg("your-name"),
+                your_email = _cfg("your-email")
+    ))
     message['Subject'] = gettext("Reset your donor password")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
@@ -66,14 +61,12 @@ def send_declined(user, amount):
     smtp.ehlo()
     smtp.starttls()
     smtp.login(_cfg("smtp-user"), _cfg("smtp-password"))
-    with open("emails/declined") as f:
-        message = MIMEText(html.parser.HTMLParser().unescape(\
-            pystache.render(f.read(), {
-                "user": user,
-                "root": _cfg("protocol") + "://" + _cfg("domain"),
-                "your_name": _cfg("your-name"),
-                "amount": currency.amount("{:.2f}".format(amount / 100))
-            })))
+    message = MIMEText(render_template("emails/declined",
+                user = user,
+                root = _cfg("protocol") + "://" + _cfg("domain"),
+                your_name = _cfg("your-name"),
+                amount = currency.amount("{:.2f}".format(amount / 100))
+    ))
     message['Subject'] = gettext("Your monthly donation was declined.")
     message['From'] = _cfg("smtp-from")
     message['To'] = user.email
