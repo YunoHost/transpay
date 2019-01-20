@@ -10,7 +10,7 @@ domain=localhost:5000
 # You can generate a secure value using `openssl rand -base64 45`
 secret-key=hello world
 
-# On the debug server, this lets you choose what to bind to
+# On debug server, this lets you choose what to bind to
 debug-host=0.0.0.0
 debug-port=5000
 
