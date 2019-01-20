@@ -6,3 +6,4 @@ Flask-Login
 bcrypt
 gunicorn
 sqlalchemy-utils
+Flask-Babel
