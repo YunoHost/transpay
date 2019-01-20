@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  2.0.1\n"
+"Project-Id-Version:  2.0.2\n"
 "Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-20 14:59+0100\n"
+"POT-Creation-Date: 2019-01-20 16:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Auxeras & OniriCorpe\n"
 "Language: fr\n"
@@ -172,8 +172,8 @@ msgid "Type"
 msgstr "Type"
 
 #: templates/admin.html:111
-msgid "Payments"
-msgstr "Paiement"
+msgid "Occurrence"
+msgstr "Occurence"
 
 #: templates/admin.html:123
 msgid "Once "
@@ -654,4 +654,7 @@ msgstr ""
 "Merci encore !\n"
 "Si vous avez des questions, vous pouvez nous contacter à l'adresse : "
 "%(you)s."
+
+#~ msgid "Payments"
+#~ msgstr "Paiement"
 
