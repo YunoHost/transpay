@@ -1,16 +1,17 @@
-# Translations template for Trans Pay.
-# Copyright (C) 2019 Collectif Trans Posé⋅e⋅s
-# This file is distributed under the same license as the Trans Pay project.
-# Collectif Trans Posé⋅e⋅s <contact@transposées.eu>, 2019.
+# Translations template for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0.0\n"
-"Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-20 01:14+0100\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-01-20 14:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Auxeras & OniriCorpe\n"
-"Language-Team: Collectif Trans Posé⋅e⋅s <contact@transposées.eu>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -252,6 +253,26 @@ msgid_plural "Supported with %(amount)s from %(count)s supporters!"
 msgstr[0] ""
 msgstr[1] ""
 
+#: templates/index.html:12
+msgid "Monthly Donation"
+msgstr ""
+
+#: templates/index.html:13
+msgid "One-time Donation"
+msgstr ""
+
+#: templates/index.html:14
+msgid "Donate "
+msgstr ""
+
+#: templates/index.html:15
+msgid "Submitting..."
+msgstr ""
+
+#: templates/index.html:16 templates/index.html:139
+msgid "Donate"
+msgstr ""
+
 #: templates/index.html:39 templates/layout.html:8 templates/login.html:8
 #: templates/reset.html:8
 msgid "Donate to"
@@ -306,10 +327,6 @@ msgstr ""
 
 #: templates/index.html:130
 msgid "Any comments?"
-msgstr ""
-
-#: templates/index.html:139
-msgid "Donate"
 msgstr ""
 
 #: templates/index.html:153
@@ -394,7 +411,7 @@ msgstr ""
 msgid "One-time Donations"
 msgstr ""
 
-#: templates/emails/declined:7 templates/post-donation-message.html:1
+#: templates/emails/declined:9 templates/post-donation-message.html:1
 msgid "Thanks!"
 msgstr ""
 
@@ -412,6 +429,10 @@ msgstr ""
 
 #: templates/reset.html:32
 msgid "New password"
+msgstr ""
+
+#: templates/setup.html:3
+msgid "Trans Pay Setup"
 msgstr ""
 
 #: templates/setup.html:4
@@ -489,34 +510,38 @@ msgid ""
 "donation.<br> Monthly payments are renewed <em>every 30 days</em>."
 msgstr ""
 
-#: templates/emails/declined:1
+#: templates/emails/declined:1 templates/emails/reset-password:1
+msgid "Hello,"
+msgstr ""
+
+#: templates/emails/declined:3
 #, python-format
 msgid ""
 "An attempt was just made to charge your card for your monthly donation to"
 " %(you)s for %(amount)s. Unfortunately, your card was declined."
 msgstr ""
 
-#: templates/emails/declined:3
+#: templates/emails/declined:5
 msgid ""
 "The donation has been disabled. If you would like to, you may create a "
 "new recurring donation here:"
 msgstr ""
 
-#: templates/emails/reset-password:1
+#: templates/emails/reset-password:3
 msgid "Someone, probably you, wants to reset your donor password."
 msgstr ""
 
-#: templates/emails/reset-password:3
+#: templates/emails/reset-password:5
 msgid "To proceed, click this link:"
 msgstr ""
 
-#: templates/emails/reset-password:7
+#: templates/emails/reset-password:9
 msgid ""
 "This link expires in 24 hours. If you don't want to change your password "
 "or you weren't expecting this email, just ignore it."
 msgstr ""
 
-#: templates/emails/reset-password:9
+#: templates/emails/reset-password:11
 #, python-format
 msgid "If you have questions, send an email to %(you)s."
 msgstr ""

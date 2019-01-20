@@ -9,11 +9,11 @@ window.default_type = "{{ _cfg("default-type") }}";
 
 // Array used for translation of index.js sentences. See contrib/fr/overrides/index.html for example use
 const i18n = {
-    "Monthly Donation": "Monthly Donation",
-    "One-time Donation": "One-time Donation",
-    "Donate ": "Donate ",
-    "Submitting...": "Submitting...",
-    "Donate": "Donate"
+    "Monthly Donation": "{% trans %}Monthly Donation{% endtrans %}",
+    "One-time Donation": "{% trans %}One-time Donation{% endtrans %}",
+    "Donate ": "{% trans %}Donate {% endtrans %}",
+    "Submitting...": "{% trans %}Submitting...{% endtrans %}",
+    "Donate": "{% trans %}Donate{% endtrans %}"
 };
 // End of translation of index.js
 

@@ -1,16 +1,18 @@
-# Translations template for Trans Pay.
+# French translations for Trans Pay.
 # Copyright (C) 2019 Collectif Trans Posé⋅e⋅s
 # This file is distributed under the same license as the Trans Pay project.
 # Collectif Trans Posé⋅e⋅s <contact@transposées.eu>, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0.0\n"
+"Project-Id-Version:  2.0.1\n"
 "Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-20 01:14+0100\n"
+"POT-Creation-Date: 2019-01-20 14:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Auxeras & OniriCorpe\n"
+"Language: fr\n"
 "Language-Team: Collectif Trans Posé⋅e⋅s <contact@transposées.eu>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -298,6 +300,26 @@ msgid_plural "Supported with %(amount)s from %(count)s supporters!"
 msgstr[0] "Soutenu par %(count)s personne pour un montant total de %(amount)s"
 msgstr[1] "Soutenu par %(count)s personnes pour un montant total de %(amount)s"
 
+#: templates/index.html:12
+msgid "Monthly Donation"
+msgstr "Don mensuel"
+
+#: templates/index.html:13
+msgid "One-time Donation"
+msgstr "Don unique"
+
+#: templates/index.html:14
+msgid "Donate "
+msgstr "Donner "
+
+#: templates/index.html:15
+msgid "Submitting..."
+msgstr "Validation..."
+
+#: templates/index.html:16 templates/index.html:139
+msgid "Donate"
+msgstr "Valider"
+
 #: templates/index.html:39 templates/layout.html:8 templates/login.html:8
 #: templates/reset.html:8
 msgid "Donate to"
@@ -359,10 +381,6 @@ msgstr "Aucun en particulier"
 #: templates/index.html:130
 msgid "Any comments?"
 msgstr "Ajouter un commentaire ?"
-
-#: templates/index.html:139
-msgid "Donate"
-msgstr "Valider"
 
 #: templates/index.html:153
 msgid ""
@@ -456,7 +474,7 @@ msgstr "Non précisé"
 msgid "One-time Donations"
 msgstr "Dons uniques"
 
-#: templates/emails/declined:7 templates/post-donation-message.html:1
+#: templates/emails/declined:9 templates/post-donation-message.html:1
 msgid "Thanks!"
 msgstr "Merci !"
 
@@ -475,6 +493,10 @@ msgstr "Un e-mail devrait arriver. En cas de souci vous pouvez nous contacter :"
 #: templates/reset.html:32
 msgid "New password"
 msgstr "Nouveau mot de passe"
+
+#: templates/setup.html:3
+msgid "Trans Pay Setup"
+msgstr "Installation de Trans Pay"
 
 #: templates/setup.html:4
 msgid "Congrats! You have Trans Pay up and running."
@@ -561,7 +583,11 @@ msgstr ""
 "don.<br>Les paiements mensuels sont renouvelés <em>tous les 30 "
 "jours</em>."
 
-#: templates/emails/declined:1
+#: templates/emails/declined:1 templates/emails/reset-password:1
+msgid "Hello,"
+msgstr "Bonjour,"
+
+#: templates/emails/declined:3
 #, python-format
 msgid ""
 "An attempt was just made to charge your card for your monthly donation to"
@@ -570,7 +596,7 @@ msgstr ""
 "Une tentative de prélèvement de votre carte bancaire d'un montant de "
 "%(amount)s pour %(you)s vient d'échouer."
 
-#: templates/emails/declined:3
+#: templates/emails/declined:5
 msgid ""
 "The donation has been disabled. If you would like to, you may create a "
 "new recurring donation here:"
@@ -578,17 +604,17 @@ msgstr ""
 "Le don récurrent a donc été annulé. Si vous voulez encore nous donner, "
 "vous pouvez le faire à nouveau sur notre page dédiée : "
 
-#: templates/emails/reset-password:1
+#: templates/emails/reset-password:3
 msgid "Someone, probably you, wants to reset your donor password."
 msgstr ""
 "Quelqu'un (probablement vous), a tenté de réinitialiser votre mot de "
 "passe."
 
-#: templates/emails/reset-password:3
+#: templates/emails/reset-password:5
 msgid "To proceed, click this link:"
 msgstr "Pour valider cette demande, cliquez sur ce lien :"
 
-#: templates/emails/reset-password:7
+#: templates/emails/reset-password:9
 msgid ""
 "This link expires in 24 hours. If you don't want to change your password "
 "or you weren't expecting this email, just ignore it."
@@ -596,7 +622,7 @@ msgstr ""
 "Il expirera après 24 heures.Si vous n'avez pas demandé à changer votre "
 "mot de passe, ignorez cet e-mail. "
 
-#: templates/emails/reset-password:9
+#: templates/emails/reset-password:11
 #, python-format
 msgid "If you have questions, send an email to %(you)s."
 msgstr "Si vous avez des questions, envoyez-nous un e-mail : %(you)s"
