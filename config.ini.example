@@ -33,6 +33,10 @@ connection-string=sqlite+pysqlite:///transpay.db
 stripe-secret=
 stripe-publish=
 
+# Language to use
+# "en" for english, "fr" for french
+locale=en
+
 # Currency to use
 # "usd" for dollar, "eur" for euro
 # refer to stripe documentation for details : https://stripe.com/docs/currencies

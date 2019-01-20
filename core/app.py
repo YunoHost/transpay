@@ -21,7 +21,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    return "fr"
+    return _cfg("locale")
 
 app.secret_key = _cfg("secret-key")
 app.jinja_env.cache = None

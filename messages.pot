@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2018 ORGANIZATION
+# Copyright (C) 2019 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-30 14:33+0100\n"
+"POT-Creation-Date: 2019-01-20 01:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: core/email.py:33
+#: core/email.py:30
 msgid "Thank you for your donation!"
 msgstr ""
 
-#: core/email.py:55
+#: core/email.py:50
 msgid "Reset your donor password"
 msgstr ""
 
-#: core/email.py:77
+#: core/email.py:70
 msgid "Your monthly donation was declined."
-msgstr ""
-
-#: emails/declined:1
-#, python-format
-msgid ""
-"An attempt was just made to charge your card for your monthly donation to"
-" %(you)s for %(amount)s. Unfortunately, your card was declined."
-msgstr ""
-
-#: emails/declined:3
-msgid ""
-"The donation has been disabled. If you would like to, you may create a "
-"new recurring donation here:"
-msgstr ""
-
-#: emails/declined:7 templates/post-donation-message.html:1
-msgid "Thanks!"
-msgstr ""
-
-#: emails/reset-password:1
-msgid "Someone, probably you, wants to reset your donor password."
-msgstr ""
-
-#: emails/reset-password:3
-msgid "To proceed, click this link:"
-msgstr ""
-
-#: emails/reset-password:7
-msgid ""
-"This link expires in 24 hours. If you don't want to change your password "
-"or you weren't expecting this email, just ignore it."
-msgstr ""
-
-#: emails/reset-password:9
-#, python-format
-msgid "If you have questions, send an email to %(you)s."
 msgstr ""
 
 #: templates/admin.html:3 templates/admin.html:14
@@ -71,6 +35,10 @@ msgstr ""
 
 #: templates/admin.html:10
 msgid "Get donation button"
+msgstr ""
+
+#: templates/admin.html:12 templates/panel.html:7
+msgid "Log out"
 msgstr ""
 
 #: templates/admin.html:15
@@ -137,6 +105,81 @@ msgid ""
 "specified)&quot; project.\\nWarning: This action is irreversible!'"
 msgstr ""
 
+#: templates/admin.html:75
+msgid "(not specified)"
+msgstr ""
+
+#: templates/admin.html:91
+msgid "Add Project"
+msgstr ""
+
+#: templates/admin.html:92
+msgid "Donors will not be given a choice of project unless you have at least 2."
+msgstr ""
+
+#: templates/admin.html:95
+msgid "Project name"
+msgstr ""
+
+#: templates/admin.html:97
+msgid "Add"
+msgstr ""
+
+#: templates/admin.html:101
+msgid "Recent Donations"
+msgstr ""
+
+#: templates/admin.html:101
+msgid "50 most recent"
+msgstr ""
+
+#: templates/admin.html:106 templates/setup.html:76
+msgid "Email"
+msgstr ""
+
+#: templates/admin.html:107 templates/panel.html:21 templates/panel.html:47
+msgid "Project"
+msgstr ""
+
+#: templates/admin.html:108
+msgid "Comment"
+msgstr ""
+
+#: templates/admin.html:109 templates/index.html:86 templates/panel.html:20
+#: templates/panel.html:46
+msgid "Amount"
+msgstr ""
+
+#: templates/admin.html:110
+msgid "Type"
+msgstr ""
+
+#: templates/admin.html:111
+msgid "Payments"
+msgstr ""
+
+#: templates/admin.html:123
+msgid "Once "
+msgstr ""
+
+#: templates/admin.html:123
+msgid "Monthly "
+msgstr ""
+
+#: templates/admin.html:124
+msgid "(cancelled)"
+msgstr ""
+
+#: templates/admin.html:142
+msgid "Donation buttons"
+msgstr ""
+
+#: templates/admin.html:146
+msgid ""
+"You can include a donation button in various places to drive people to "
+"your donation page. Here's how it looks:"
+msgstr ""
+
 #: templates/admin.html:152
 msgid ""
 "If you add <code>?project=1</code> to your URL, it will pre-select that "
@@ -148,7 +191,7 @@ msgstr ""
 msgid "Donate with Trans Pay"
 msgstr ""
 
-#: templates/goal.html:58
+#: templates/goal.html:57
 #, python-format
 msgid ""
 "%(amount)s/mo via <strong class=\"text-primary\">%(domain)s</strong> "
@@ -159,7 +202,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/goal.html:65
+#: templates/goal.html:64
 #, python-format
 msgid ""
 "%(amount)s from single donations <small>(last 30 days)</small> via "
@@ -170,7 +213,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/goal.html:74
+#: templates/goal.html:73
 #, python-format
 msgid ""
 "%(amount)s/mo via <strong><a href=\"https://patreon.com/%(campaign)s\" "
@@ -183,7 +226,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/goal.html:83
+#: templates/goal.html:82
 #, python-format
 msgid ""
 "%(amount)s/mo via <strong><a class=\"text-warning\" "
@@ -198,12 +241,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/goal.html:93
+#: templates/goal.html:91
 #, python-format
 msgid "%(amount)s/mo of %(goal)s/mo goal"
 msgstr ""
 
-#: templates/goal.html:99
+#: templates/goal.html:97
 #, python-format
 msgid "Supported with %(amount)s from %(count)s supporter!"
 msgid_plural "Supported with %(amount)s from %(count)s supporters!"
@@ -242,10 +285,6 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: templates/index.html:86 templates/panel.html:20 templates/panel.html:46
-msgid "Amount"
-msgstr ""
-
 #: templates/index.html:91
 msgid "How often?"
 msgstr ""
@@ -267,7 +306,7 @@ msgid "None in particular"
 msgstr ""
 
 #: templates/index.html:130
-msgid "Any comments"
+msgid "Any comments?"
 msgstr ""
 
 #: templates/index.html:139
@@ -300,12 +339,20 @@ msgstr ""
 msgid "Back to home"
 msgstr ""
 
+#: templates/login.html:16
+msgid "Log In"
+msgstr ""
+
 #: templates/login.html:20
 msgid "Username or password incorrect."
 msgstr ""
 
 #: templates/login.html:26 templates/reset.html:40
 msgid "your@email.com"
+msgstr ""
+
+#: templates/login.html:31
+msgid "Log in"
 msgstr ""
 
 #: templates/login.html:32
@@ -324,10 +371,6 @@ msgstr ""
 msgid "Donate again"
 msgstr ""
 
-#: templates/panel.html:7
-msgid "Log out"
-msgstr ""
-
 #: templates/panel.html:9
 msgid "Your Donations"
 msgstr ""
@@ -340,10 +383,6 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: templates/panel.html:21 templates/panel.html:47
-msgid "Project"
-msgstr ""
-
 #: templates/panel.html:29
 msgid "Cancel"
 msgstr ""
@@ -354,6 +393,10 @@ msgstr ""
 
 #: templates/panel.html:41
 msgid "One-time Donations"
+msgstr ""
+
+#: templates/emails/declined:7 templates/post-donation-message.html:1
+msgid "Thanks!"
 msgstr ""
 
 #: templates/post-donation-message.html:2
@@ -437,17 +480,70 @@ msgstr ""
 msgid "Enter your details for the admin account:"
 msgstr ""
 
-#: templates/setup.html:76
-msgid "Email"
-msgstr ""
-
 #: templates/setup.html:81
 msgid "Continue"
 msgstr ""
 
 #: templates/terms.html:1
 msgid ""
-"Stripe, our payement processor takes 2.9% + 0.30$ as fees on each "
-"donation. Monthly payments are renewed <em>every 30 days</em>."
+"Stripe, our payement processor takes 2.9&#37; + 0.30$ as fees on each "
+"donation.<br> Monthly payments are renewed <em>every 30 days</em>."
+msgstr ""
+
+#: templates/emails/declined:1
+#, python-format
+msgid ""
+"An attempt was just made to charge your card for your monthly donation to"
+" %(you)s for %(amount)s. Unfortunately, your card was declined."
+msgstr ""
+
+#: templates/emails/declined:3
+msgid ""
+"The donation has been disabled. If you would like to, you may create a "
+"new recurring donation here:"
+msgstr ""
+
+#: templates/emails/reset-password:1
+msgid "Someone, probably you, wants to reset your donor password."
+msgstr ""
+
+#: templates/emails/reset-password:3
+msgid "To proceed, click this link:"
+msgstr ""
+
+#: templates/emails/reset-password:7
+msgid ""
+"This link expires in 24 hours. If you don't want to change your password "
+"or you weren't expecting this email, just ignore it."
+msgstr ""
+
+#: templates/emails/reset-password:9
+#, python-format
+msgid "If you have questions, send an email to %(you)s."
+msgstr ""
+
+#: templates/emails/thank-you:1
+msgid "Thank you for donating!"
+msgstr ""
+
+#: templates/emails/thank-you:3
+msgid "Receipt:"
+msgstr ""
+
+#: templates/emails/thank-you:6
+msgid "Monthly donation"
+msgstr ""
+
+#: templates/emails/thank-you:8
+msgid "One-time donation"
+msgstr ""
+
+#: templates/emails/thank-you:11
+msgid "You can view and manage your donations online here:"
+msgstr ""
+
+#: templates/emails/thank-you:15
+#, python-format
+msgid "Thanks again! If you have questions, contact %(you)s."
 msgstr ""
 

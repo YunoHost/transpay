@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Log In</h1>
+            <h1>{%trans%}Log In{%endtrans%}</h1>
             {% if errors %}
             <div class="alert alert-danger">
                 <p>
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <input class="form-control" type="password" name="password" placeholder="{%trans%}Password{%endtrans%}" />
                 </div>
-                <input type="submit" value="Log in" class="btn btn-primary" />
+                <input type="submit" value="{%trans%}Log in{%endtrans%}" class="btn btn-primary" />
                 <a style="margin-left: 20px" href="password-reset">{%trans%}Reset password{%endtrans%}</a>
             </form>
         </div>

@@ -9,7 +9,7 @@
             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#donation-button-modal">
                 {%trans%}Get donation button{%endtrans%}
             </a>
-            <a class="btn btn-default" href="logout">Log out</a>
+            <a class="btn btn-default" href="logout">{%trans%}Log out{%endtrans%}</a>
         </p>
         <h1>{%trans%}Donation Admin{%endtrans%}</h1>
         <p>{%trans trimmed%}Combine this with your <a href="https://dashboard.stripe.com">Stripe
@@ -72,7 +72,7 @@
                     {% endfor %}
                     <tr>
                         <td></td>
-                        <td>(not specified)</td>
+                        <td>{%trans%}(not specified){%endtrans%}</td>
                         <td>{{ currency.amount("{:.2f}".format(unspecified_one_times / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(unspecified_recurring / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(unspecified_recurring_ever / 100)) }}</td>
@@ -88,27 +88,27 @@
             </table>
         </div>
         <div class="col-md-3 well">
-            <h4>Add Project</h4>
-            <p>Donors will not be given a choice of project unless you have at least 2.</p>
+            <h4>{%trans%}Add Project{%endtrans%}</h4>
+            <p>{%trans%}Donors will not be given a choice of project unless you have at least 2.{%endtrans%}</p>
             <form method="POST" action="{{root}}/create-project">
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Project name" name="name" />
+                    <input class="form-control" type="text" placeholder="{%trans%}Project name{%endtrans%}" name="name" />
                 </div>
-                <input type="submit" value="Add" class="btn btn-default pull-right" />
+                <input type="submit" value="{%trans%}Add{%endtrans%}" class="btn btn-default pull-right" />
             </form>
         </div>
     </div>
-    <h2>Recent Donations <small>50 most recent</small></h2>
+    <h2>{%trans%}Recent Donations{%endtrans%} <small>{%trans%}50 most recent{%endtrans%}</small></h2>
     <table class="table">
         <thead>
             <tr>
                 <th style="min-width: 10rem">Date</th>
-                <th>Email</th>
-                <th>Project</th>
-                <th>Comment</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Payments</th>
+                <th>{%trans%}Email{%endtrans%}</th>
+                <th>{%trans%}Project{%endtrans%}</th>
+                <th>{%trans%}Comment{%endtrans%}</th>
+                <th>{%trans%}Amount{%endtrans%}</th>
+                <th>{%trans%}Type{%endtrans%}</th>
+                <th>{%trans%}Payments{%endtrans%}</th>
             </tr>
         </thead>
         <tbody>
@@ -120,8 +120,8 @@
                 <td title="{{ donation.comment }}">{{ donation.comment if donation.comment else "" }}</td>
                 <td>{{ currency.amount("{:.2f}".format(donation.amount / 100)) }}</td>
                 <td>
-                    {{ "Once" if str(donation.type) == "DonationType.one_time" else "Monthly" }}
-                    {{ "(cancelled)" if not donation.active else "" }}
+                    {{ _("Once ") if str(donation.type) == "DonationType.one_time" else _("Monthly ") }}
+                    {{ _("(cancelled)") if not donation.active else "" }}
                 </td>
                 <td>
                     {{donation.payments}}
@@ -139,12 +139,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="donation-modal-label">Donation buttons</h4>
+                <h4 class="modal-title" id="donation-modal-label">{%trans%}Donation buttons{%endtrans%}</h4>
             </div>
             <div class="modal-body">
                 <p>
-                    You can include a donation button in various places to
-                    drive people to your donation page. Here's how it looks: 
+                   {%trans trimmed%}You can include a donation button in various places to
+                    drive people to your donation page. Here's how it looks: {%endtrans%}
                     <a href="{{root}}">
                         <img src="{{root}}/static/donate-with-transpay.png" />
                     </a>
