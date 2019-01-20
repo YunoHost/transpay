@@ -1,7 +1,6 @@
 stripe
 Flask
 Jinja2
-Flask-Misaka
 Flask-Login
 bcrypt
 gunicorn
