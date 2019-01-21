@@ -13,3 +13,5 @@ pip-selfcheck.json
 .sass-cache/
 overrides/
 *.db
+messages.po
+*.log
