@@ -8,6 +8,7 @@ from core.config import _cfg, load_config
 from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
+from core.versioning import version, check_update
 
 import os
 import locale
@@ -123,9 +124,9 @@ def index():
                            patreon_count=patreon_count,
                            patreon_sum=patreon_sum,
                            lp_count=lp_count,
-                           lp_sum=lp_sum,
+                           lp_sum=lp_sum, currency=currency,
                            gh_count=gh_count, gh_sum=gh_sum, gh_user=gh_user,
-                           currency=currency)
+                           version=version())
 
 @html.route("/setup", methods=["POST"])
 def setup():
@@ -149,6 +150,7 @@ def admin():
     projects = Project.query.all()
     unspecified = Donation.query.filter(Donation.project == None).all()
     donations = Donation.query.order_by(Donation.created.desc()).limit(50).all()
+
     return render_template("admin.html",
         first=first,
         projects=projects,
@@ -163,6 +165,7 @@ def admin():
         total_one_time=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.one_time)]),
         total_recurring=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.monthly, Donation.active == True)]),
         total_recurring_ever=sum([d.amount * d.payments for d in Donation.query.filter(Donation.type == DonationType.monthly)]),
+        uptodate = check_update(),
     )
 
 @html.route("/create-project", methods=["POST"])

@@ -14,6 +14,10 @@ secret-key=hello world
 debug-host=0.0.0.0
 debug-port=5000
 
+# Would you like to use unstable versions ?
+# "stable" for stable, "unstable" for unstable
+branch=stable
+
 # Fill out these details with your mail server
 smtp-host=mail.example.org
 smtp-port=587

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-20 16:52+0100\n"
+"POT-Creation-Date: 2019-01-21 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,43 +29,51 @@ msgstr ""
 msgid "Your monthly donation was declined."
 msgstr ""
 
-#: templates/admin.html:3 templates/admin.html:14
+#: templates/admin.html:3 templates/admin.html:20
 msgid "Donation Admin"
 msgstr ""
 
 #: templates/admin.html:10
+msgid "Installation up-to-date! :)"
+msgstr ""
+
+#: templates/admin.html:12
+msgid "An update is available!"
+msgstr ""
+
+#: templates/admin.html:16
 msgid "Get donation button"
 msgstr ""
 
-#: templates/admin.html:12 templates/panel.html:7
+#: templates/admin.html:18 templates/panel.html:7
 msgid "Log out"
 msgstr ""
 
-#: templates/admin.html:15
+#: templates/admin.html:21
 msgid ""
 "Combine this with your <a href=\"https://dashboard.stripe.com\">Stripe "
 "dashboard</a> for the full effect."
 msgstr ""
 
-#: templates/admin.html:23
+#: templates/admin.html:29
 msgid "You're set up and ready to go! This is your admin panel. Next steps:"
 msgstr ""
 
-#: templates/admin.html:27
+#: templates/admin.html:33
 msgid "Set up a cron job to handle monthly donations."
 msgstr ""
 
-#: templates/admin.html:29
+#: templates/admin.html:35
 msgid "Relevant documentation"
 msgstr ""
 
-#: templates/admin.html:33
+#: templates/admin.html:39
 msgid ""
 "Add some projects. Donors can tell you which project they want to support"
 " when they donate."
 msgstr ""
 
-#: templates/admin.html:37
+#: templates/admin.html:43
 msgid ""
 "Customize the look &amp; feel. Look at the contents of the "
 "<code>templates</code> directory - you can copy and paste any of these "
@@ -73,31 +81,31 @@ msgid ""
 " your needs."
 msgstr ""
 
-#: templates/admin.html:42
-msgid "Donate to Trans Pay upstream"
+#: templates/admin.html:48
+msgid "Donate to Trans Pay upstream?"
 msgstr ""
 
-#: templates/admin.html:45
-msgid "Contribute code to Trans Pay upstream"
+#: templates/admin.html:51
+msgid "Contribute code to Trans Pay upstream?"
 msgstr ""
 
-#: templates/admin.html:57
+#: templates/admin.html:63
 msgid "Project Name"
 msgstr ""
 
-#: templates/admin.html:58
+#: templates/admin.html:64
 msgid "One-time"
 msgstr ""
 
-#: templates/admin.html:59
+#: templates/admin.html:65
 msgid "Recurring (active)"
 msgstr ""
 
-#: templates/admin.html:60
+#: templates/admin.html:66
 msgid "Recurring (total paid)"
 msgstr ""
 
-#: templates/admin.html:66
+#: templates/admin.html:72
 #, python-format
 msgid ""
 "'Are you sure you want to delete project &quot;%(project)s&quot; "
@@ -105,90 +113,102 @@ msgid ""
 "specified)&quot; project.\\nWarning: This action is irreversible!'"
 msgstr ""
 
-#: templates/admin.html:75
+#: templates/admin.html:81
 msgid "(not specified)"
 msgstr ""
 
-#: templates/admin.html:91
-msgid "Add Project"
-msgstr ""
-
-#: templates/admin.html:92
-msgid "Donors will not be given a choice of project unless you have at least 2."
-msgstr ""
-
-#: templates/admin.html:95
-msgid "Project name"
+#: templates/admin.html:88
+msgid "Total"
 msgstr ""
 
 #: templates/admin.html:97
+msgid "Add Project"
+msgstr ""
+
+#: templates/admin.html:98
+msgid "Donors will not be given a choice of project unless you have at least 2."
+msgstr ""
+
+#: templates/admin.html:101
+msgid "Project name"
+msgstr ""
+
+#: templates/admin.html:103
 msgid "Add"
 msgstr ""
 
-#: templates/admin.html:101
+#: templates/admin.html:107
 msgid "Recent Donations"
 msgstr ""
 
-#: templates/admin.html:101
-msgid "50 most recent"
+#: templates/admin.html:107
+msgid "(50 most recent)"
 msgstr ""
 
-#: templates/admin.html:106 templates/setup.html:76
+#: templates/admin.html:111 templates/panel.html:19 templates/panel.html:45
+msgid "Date"
+msgstr ""
+
+#: templates/admin.html:112 templates/setup.html:76
 msgid "Email"
 msgstr ""
 
-#: templates/admin.html:107 templates/panel.html:21 templates/panel.html:47
+#: templates/admin.html:113 templates/panel.html:21 templates/panel.html:47
 msgid "Project"
 msgstr ""
 
-#: templates/admin.html:108
+#: templates/admin.html:114
 msgid "Comment"
 msgstr ""
 
-#: templates/admin.html:109 templates/index.html:86 templates/panel.html:20
+#: templates/admin.html:115 templates/index.html:86 templates/panel.html:20
 #: templates/panel.html:46
 msgid "Amount"
 msgstr ""
 
-#: templates/admin.html:110
+#: templates/admin.html:116
 msgid "Type"
 msgstr ""
 
-#: templates/admin.html:111
+#: templates/admin.html:117
 msgid "Occurrence"
 msgstr ""
 
-#: templates/admin.html:123
+#: templates/admin.html:129
 msgid "Once "
 msgstr ""
 
-#: templates/admin.html:123
+#: templates/admin.html:129
 msgid "Monthly "
 msgstr ""
 
-#: templates/admin.html:124
+#: templates/admin.html:130
 msgid "(cancelled)"
 msgstr ""
 
-#: templates/admin.html:142
+#: templates/admin.html:148
 msgid "Donation buttons"
 msgstr ""
 
-#: templates/admin.html:146
+#: templates/admin.html:152
 msgid ""
 "You can include a donation button in various places to drive people to "
 "your donation page. Here's how it looks:"
 msgstr ""
 
-#: templates/admin.html:152
+#: templates/admin.html:158
 msgid ""
 "If you add <code>?project=1</code> to your URL, it will pre-select that "
 "project (where 1 is the 1st project you have listed on this page) when "
 "users arrive to donate."
 msgstr ""
 
-#: templates/admin.html:155
+#: templates/admin.html:161
 msgid "Donate with Trans Pay"
+msgstr ""
+
+#: templates/admin.html:167
+msgid "Dismiss"
 msgstr ""
 
 #: templates/goal.html:57
@@ -348,7 +368,7 @@ msgstr ""
 #: templates/index.html:168
 msgid ""
 "Powered by <a "
-"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>."
+"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
 msgstr ""
 
 #: templates/login.html:7 templates/reset.html:7
@@ -395,10 +415,6 @@ msgstr ""
 msgid "Monthly Donations"
 msgstr ""
 
-#: templates/panel.html:19 templates/panel.html:45
-msgid "Date"
-msgstr ""
-
 #: templates/panel.html:29
 msgid "Cancel"
 msgstr ""
@@ -411,7 +427,7 @@ msgstr ""
 msgid "One-time Donations"
 msgstr ""
 
-#: templates/emails/declined:9 templates/post-donation-message.html:1
+#: templates/emails/declined:8 templates/post-donation-message.html:1
 msgid "Thanks!"
 msgstr ""
 
@@ -535,13 +551,13 @@ msgstr ""
 msgid "To proceed, click this link:"
 msgstr ""
 
-#: templates/emails/reset-password:9
+#: templates/emails/reset-password:8
 msgid ""
 "This link expires in 24 hours. If you don't want to change your password "
 "or you weren't expecting this email, just ignore it."
 msgstr ""
 
-#: templates/emails/reset-password:11
+#: templates/emails/reset-password:10
 #, python-format
 msgid "If you have questions, send an email to %(you)s."
 msgstr ""
@@ -554,19 +570,19 @@ msgstr ""
 msgid "Receipt:"
 msgstr ""
 
-#: templates/emails/thank-you:6
+#: templates/emails/thank-you:5
 msgid "Monthly donation"
 msgstr ""
 
-#: templates/emails/thank-you:8
+#: templates/emails/thank-you:7
 msgid "One-time donation"
 msgstr ""
 
-#: templates/emails/thank-you:11
+#: templates/emails/thank-you:10
 msgid "You can view and manage your donations online here:"
 msgstr ""
 
-#: templates/emails/thank-you:15
+#: templates/emails/thank-you:13
 #, python-format
 msgid "Thanks again! If you have questions, contact %(you)s."
 msgstr ""
