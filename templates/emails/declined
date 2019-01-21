@@ -3,7 +3,6 @@
 {%trans you=your_name, amount=amount %}An attempt was just made to charge your card for your monthly donation to {{you}} for {{amount}}. Unfortunately, your card was declined.{%endtrans%}
 
 {%trans%}The donation has been disabled. If you would like to, you may create a new recurring donation here:{%endtrans%}
-
 {{root}}
 
 {%trans%}Thanks!{%endtrans%}

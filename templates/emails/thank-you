@@ -1,7 +1,6 @@
 {%trans%}Thank you for donating!{%endtrans%}
 
 {%trans%}Receipt:{%endtrans%}
-
 {%if monthly%}
 {%trans%}Monthly donation{%endtrans%}                {{amount}}
 {%else%}
@@ -9,7 +8,6 @@
 {%endif%}
 
 {%trans%}You can view and manage your donations online here:{%endtrans%}
-
 {{root}}/panel
 
 {% trans you=your_email %}Thanks again! If you have questions, contact {{you}}.{%endtrans%}
