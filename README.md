@@ -26,6 +26,6 @@ You will need a number of things set up before you start:
 1. A domain name and an SSL certificate
 1. A web server to host Trans Pay on
 
-## Installation
+## Documentation
 
-For installation instructions, see our [wiki](https://gitlab.kokakiwi.net/transposees/transpay/wikis/home).
+For documentation, see our [wiki](https://gitlab.kokakiwi.net/transposees/transpay/wikis/home).
