@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-21 21:56+0100\n"
+"POT-Creation-Date: 2019-01-23 19:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,51 +29,59 @@ msgstr ""
 msgid "Your monthly donation was declined."
 msgstr ""
 
-#: templates/admin.html:3 templates/admin.html:20
+#: templates/admin.html:3 templates/admin.html:25
 msgid "Donation Admin"
 msgstr ""
 
-#: templates/admin.html:10
+#: templates/admin.html:12
 msgid "Installation up-to-date! :)"
 msgstr ""
 
-#: templates/admin.html:12
-msgid "An update is available!"
+#: templates/admin.html:14
+msgid "Woaw, you're in the future! :o"
 msgstr ""
 
 #: templates/admin.html:16
-msgid "Get donation button"
+msgid "Error when checking update availability :("
 msgstr ""
 
-#: templates/admin.html:18 templates/panel.html:7
-msgid "Log out"
+#: templates/admin.html:18
+msgid "An update is available!"
 msgstr ""
 
 #: templates/admin.html:21
+msgid "Get donation button"
+msgstr ""
+
+#: templates/admin.html:23 templates/panel.html:7
+msgid "Log out"
+msgstr ""
+
+#: templates/admin.html:26
 msgid ""
 "Combine this with your <a href=\"https://dashboard.stripe.com\">Stripe "
 "dashboard</a> for the full effect."
 msgstr ""
 
-#: templates/admin.html:29
+#: templates/admin.html:34
 msgid "You're set up and ready to go! This is your admin panel. Next steps:"
 msgstr ""
 
-#: templates/admin.html:33
+#: templates/admin.html:38
 msgid "Set up a cron job to handle monthly donations."
 msgstr ""
 
-#: templates/admin.html:35
+#: templates/admin.html:40
 msgid "Relevant documentation"
 msgstr ""
 
-#: templates/admin.html:39
+#: templates/admin.html:44
 msgid ""
 "Add some projects. Donors can tell you which project they want to support"
 " when they donate."
 msgstr ""
 
-#: templates/admin.html:43
+#: templates/admin.html:48
 msgid ""
 "Customize the look &amp; feel. Look at the contents of the "
 "<code>templates</code> directory - you can copy and paste any of these "
@@ -81,31 +89,31 @@ msgid ""
 " your needs."
 msgstr ""
 
-#: templates/admin.html:48
+#: templates/admin.html:53
 msgid "Donate to Trans Pay upstream?"
 msgstr ""
 
-#: templates/admin.html:51
+#: templates/admin.html:56
 msgid "Contribute code to Trans Pay upstream?"
 msgstr ""
 
-#: templates/admin.html:63
+#: templates/admin.html:68
 msgid "Project Name"
 msgstr ""
 
-#: templates/admin.html:64
+#: templates/admin.html:69
 msgid "One-time"
 msgstr ""
 
-#: templates/admin.html:65
+#: templates/admin.html:70
 msgid "Recurring (active)"
 msgstr ""
 
-#: templates/admin.html:66
+#: templates/admin.html:71
 msgid "Recurring (total paid)"
 msgstr ""
 
-#: templates/admin.html:72
+#: templates/admin.html:77
 #, python-format
 msgid ""
 "'Are you sure you want to delete project &quot;%(project)s&quot; "
@@ -113,101 +121,101 @@ msgid ""
 "specified)&quot; project.\\nWarning: This action is irreversible!'"
 msgstr ""
 
-#: templates/admin.html:81
+#: templates/admin.html:86
 msgid "(not specified)"
 msgstr ""
 
-#: templates/admin.html:88
+#: templates/admin.html:93
 msgid "Total"
 msgstr ""
 
-#: templates/admin.html:97
+#: templates/admin.html:102
 msgid "Add Project"
 msgstr ""
 
-#: templates/admin.html:98
+#: templates/admin.html:103
 msgid "Donors will not be given a choice of project unless you have at least 2."
 msgstr ""
 
-#: templates/admin.html:101
+#: templates/admin.html:106
 msgid "Project name"
 msgstr ""
 
-#: templates/admin.html:103
+#: templates/admin.html:108
 msgid "Add"
 msgstr ""
 
-#: templates/admin.html:107
+#: templates/admin.html:112
 msgid "Recent Donations"
 msgstr ""
 
-#: templates/admin.html:107
+#: templates/admin.html:112
 msgid "(50 most recent)"
 msgstr ""
 
-#: templates/admin.html:111 templates/panel.html:19 templates/panel.html:45
+#: templates/admin.html:116 templates/panel.html:19 templates/panel.html:45
 msgid "Date"
 msgstr ""
 
-#: templates/admin.html:112 templates/setup.html:76
+#: templates/admin.html:117 templates/setup.html:76
 msgid "Email"
 msgstr ""
 
-#: templates/admin.html:113 templates/panel.html:21 templates/panel.html:47
+#: templates/admin.html:118 templates/panel.html:21 templates/panel.html:47
 msgid "Project"
 msgstr ""
 
-#: templates/admin.html:114
+#: templates/admin.html:119
 msgid "Comment"
 msgstr ""
 
-#: templates/admin.html:115 templates/index.html:86 templates/panel.html:20
+#: templates/admin.html:120 templates/index.html:86 templates/panel.html:20
 #: templates/panel.html:46
 msgid "Amount"
 msgstr ""
 
-#: templates/admin.html:116
+#: templates/admin.html:121
 msgid "Type"
 msgstr ""
 
-#: templates/admin.html:117
+#: templates/admin.html:122
 msgid "Occurrence"
 msgstr ""
 
-#: templates/admin.html:129
+#: templates/admin.html:134
 msgid "Once "
 msgstr ""
 
-#: templates/admin.html:129
+#: templates/admin.html:134
 msgid "Monthly "
 msgstr ""
 
-#: templates/admin.html:130
+#: templates/admin.html:135
 msgid "(cancelled)"
 msgstr ""
 
-#: templates/admin.html:148
+#: templates/admin.html:153
 msgid "Donation buttons"
 msgstr ""
 
-#: templates/admin.html:152
+#: templates/admin.html:157
 msgid ""
 "You can include a donation button in various places to drive people to "
 "your donation page. Here's how it looks:"
 msgstr ""
 
-#: templates/admin.html:158
+#: templates/admin.html:163
 msgid ""
 "If you add <code>?project=1</code> to your URL, it will pre-select that "
 "project (where 1 is the 1st project you have listed on this page) when "
 "users arrive to donate."
 msgstr ""
 
-#: templates/admin.html:161
+#: templates/admin.html:166
 msgid "Donate with Trans Pay"
 msgstr ""
 
-#: templates/admin.html:167
+#: templates/admin.html:172
 msgid "Dismiss"
 msgstr ""
 
