@@ -6,10 +6,16 @@
 <div class="well">
     <div class="container">
         <p class="pull-right">
-			{% if uptodate %}
-        		<a class="btn btn-default" href="#">{%trans%}Installation up-to-date! :){%endtrans%}</a>
+
+            <!-- Checking update availability : -->
+			{% if uptodate == "up_to_date" %}
+        		<a class="btn btn-default" href="https://gitlab.kokakiwi.net/transposees/transpay/tags">{%trans%}Installation up-to-date! :){%endtrans%}</a>
+        	{% elif uptodate == "woaw" %}
+        		<a class="btn btn-default" href="https://gitlab.kokakiwi.net/transposees/transpay/tags">{%trans%}Woaw, you're in the future! :o{%endtrans%}</a>
+            {% elif uptodate == "server_error" %}
+        		<a class="btn btn-warning" href="https://gitlab.kokakiwi.net/transposees/transpay/tags">{%trans%}Error when checking update availability :({%endtrans%}</a>
         	{% else %}
-        		<a class="btn btn-danger" href="https://gitlab.kokakiwi.net/transposees/transpay/tags">{%trans%}An update is available!{%endtrans%}</a>
+          		<a class="btn btn-danger" href="https://gitlab.kokakiwi.net/transposees/transpay/tags">{%trans%}An update is available!{%endtrans%}</a>
         	{% endif %}
             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#donation-button-modal">
                 {%trans%}Get donation button{%endtrans%}

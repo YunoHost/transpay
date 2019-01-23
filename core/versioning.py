@@ -26,12 +26,14 @@ def check_update():
                 if tag['message'] == 'stable':
                     checked_version = cversion(tag["name"])
                     if checked_version > cversion(version()):
-                        return False
+                        return "update_available"
+                    elif checked_version < cversion(version()):
+                        return "woaw"
         elif _cfg("branch") == "unstable":
             checked_version = cversion(tags[0]["name"])
             if checked_version > cversion(version()):
-                return False
+                return "update_available"
     except requests.exceptions.RequestException:
-        print("Could not check the gitlab repo :c")
+        return "server_error"
 
-    return True
+    return "up_to_date"
