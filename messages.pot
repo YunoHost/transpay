@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-23 19:49+0100\n"
+"POT-Creation-Date: 2019-01-23 20:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,7 @@ msgstr ""
 msgid "(50 most recent)"
 msgstr ""
 
-#: templates/admin.html:116 templates/panel.html:19 templates/panel.html:45
+#: templates/admin.html:116 templates/panel.html:19 templates/panel.html:56
 msgid "Date"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: templates/admin.html:118 templates/panel.html:21 templates/panel.html:47
+#: templates/admin.html:118 templates/panel.html:21 templates/panel.html:58
 msgid "Project"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgid "Comment"
 msgstr ""
 
 #: templates/admin.html:120 templates/index.html:86 templates/panel.html:20
-#: templates/panel.html:46
+#: templates/panel.html:57
 msgid "Amount"
 msgstr ""
 
@@ -178,7 +178,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: templates/admin.html:122
+#: templates/admin.html:122 templates/panel.html:22
 msgid "Occurrence"
 msgstr ""
 
@@ -190,8 +190,8 @@ msgstr ""
 msgid "Monthly "
 msgstr ""
 
-#: templates/admin.html:135
-msgid "(cancelled)"
+#: templates/admin.html:135 templates/panel.html:41
+msgid "(canceled)"
 msgstr ""
 
 #: templates/admin.html:153
@@ -423,15 +423,15 @@ msgstr ""
 msgid "Monthly Donations"
 msgstr ""
 
-#: templates/panel.html:29
+#: templates/panel.html:30
 msgid "Cancel"
 msgstr ""
 
-#: templates/panel.html:34 templates/panel.html:55
+#: templates/panel.html:35 templates/panel.html:44 templates/panel.html:66
 msgid "Not specified"
 msgstr ""
 
-#: templates/panel.html:41
+#: templates/panel.html:52
 msgid "One-time Donations"
 msgstr ""
 

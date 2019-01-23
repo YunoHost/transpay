@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  2.0.2\n"
 "Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-23 19:49+0100\n"
+"POT-Creation-Date: 2019-01-23 20:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Auxeras & OniriCorpe\n"
 "Language: fr\n"
@@ -170,7 +170,7 @@ msgstr "Dons récents"
 msgid "(50 most recent)"
 msgstr "(50 derniers)"
 
-#: templates/admin.html:116 templates/panel.html:19 templates/panel.html:45
+#: templates/admin.html:116 templates/panel.html:19 templates/panel.html:56
 msgid "Date"
 msgstr "Date"
 
@@ -178,7 +178,7 @@ msgstr "Date"
 msgid "Email"
 msgstr "Email"
 
-#: templates/admin.html:118 templates/panel.html:21 templates/panel.html:47
+#: templates/admin.html:118 templates/panel.html:21 templates/panel.html:58
 msgid "Project"
 msgstr "Projet"
 
@@ -187,7 +187,7 @@ msgid "Comment"
 msgstr "Commentaire"
 
 #: templates/admin.html:120 templates/index.html:86 templates/panel.html:20
-#: templates/panel.html:46
+#: templates/panel.html:57
 msgid "Amount"
 msgstr "Montant"
 
@@ -195,9 +195,9 @@ msgstr "Montant"
 msgid "Type"
 msgstr "Type"
 
-#: templates/admin.html:122
+#: templates/admin.html:122 templates/panel.html:22
 msgid "Occurrence"
-msgstr "Occurence"
+msgstr "Occurrence"
 
 #: templates/admin.html:134
 msgid "Once "
@@ -207,8 +207,8 @@ msgstr "Ponctuel"
 msgid "Monthly "
 msgstr "Mensuel"
 
-#: templates/admin.html:135
-msgid "(cancelled)"
+#: templates/admin.html:135 templates/panel.html:41
+msgid "(canceled)"
 msgstr "(annulé)"
 
 #: templates/admin.html:153
@@ -486,15 +486,15 @@ msgstr "Vos dons"
 msgid "Monthly Donations"
 msgstr "Dons mensuels"
 
-#: templates/panel.html:29
+#: templates/panel.html:30
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/panel.html:34 templates/panel.html:55
+#: templates/panel.html:35 templates/panel.html:44 templates/panel.html:66
 msgid "Not specified"
 msgstr "Non précisé"
 
-#: templates/panel.html:41
+#: templates/panel.html:52
 msgid "One-time Donations"
 msgstr "Dons uniques"
 
