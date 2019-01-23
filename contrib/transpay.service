@@ -1,3 +1,8 @@
+# you can launch the service with the followings commands: (replace 'start' by 'stop' for kill the process)
+# sudo systemctl start transpay
+# or
+# sudo service transpay start
+
 [Unit]
 Description=transpay website
 
