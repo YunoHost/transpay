@@ -217,11 +217,7 @@ def donate():
     db.commit()
 
     send_thank_you(user, amount, type == DonationType.monthly)
-    try:
-        send_new_donation(user, donation)
-    except:
-        # I dunno if this works and I don't have time to test it right now
-        print("send_new_donation is broken")
+    send_new_donation(user, donation)
 
     if new_account:
         return { "success": True, "new_account": new_account, "password_reset": user.password_reset }
@@ -297,9 +293,5 @@ def cancel(id):
         abort(400)
     donation.active = False
     db.commit()
-    try:
-        send_cancellation_notice(user, donation)
-    except:
-        # I dunno if this works and I don't have time to test it right now
-        print("send_cancellation_notice is broken")
+    send_cancellation_notice(user, donation)
     return redirect("/panel")
