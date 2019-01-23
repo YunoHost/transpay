@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-23 20:24+0100\n"
+"POT-Creation-Date: 2019-01-23 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,6 +180,12 @@ msgstr ""
 
 #: templates/admin.html:122 templates/panel.html:22
 msgid "Occurrence"
+msgstr ""
+
+#: templates/admin.html:128 templates/panel.html:33 templates/panel.html:42
+#: templates/panel.html:64
+#, python-format
+msgid "%%Y-%%m-%%d"
 msgstr ""
 
 #: templates/admin.html:134
