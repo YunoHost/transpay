@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  2.0.2\n"
 "Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-23 21:56+0100\n"
+"POT-Creation-Date: 2019-01-24 18:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Auxeras & OniriCorpe\n"
 "Language: fr\n"
@@ -108,6 +108,10 @@ msgstr "Faire un don aux développeureuses de Trans Pay ?"
 #: templates/admin.html:56
 msgid "Contribute code to Trans Pay upstream?"
 msgstr "Contribuer au code ou à la documentation de Trans Pay ?"
+
+#: templates/admin.html:61
+msgid "Projects"
+msgstr "Projets"
 
 #: templates/admin.html:68
 msgid "Project Name"
@@ -248,6 +252,27 @@ msgstr "Donner avec Trans Pay"
 msgid "Dismiss"
 msgstr "Okay !"
 
+#: templates/login.html:7 templates/reset.html:7
+msgid "Back to home"
+msgstr "Retour à l'accueil"
+
+#: templates/index.html:39 templates/layout.html:8
+#: templates/login.html:8 templates/reset.html:8
+msgid "Donate to"
+msgstr "Donner au"
+
+#: templates/index.html:16 templates/index.html:139
+msgid "Donate"
+msgstr "Valider"
+
+#: templates/index.html:168
+msgid ""
+"Powered by <a "
+"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
+msgstr ""
+"Powered by <a "
+"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
+
 #: templates/goal.html:57
 #, python-format
 msgid ""
@@ -350,15 +375,6 @@ msgstr "Donner "
 msgid "Submitting..."
 msgstr "Validation..."
 
-#: templates/index.html:16 templates/index.html:139
-msgid "Donate"
-msgstr "Valider"
-
-#: templates/index.html:39 templates/layout.html:8 templates/login.html:8
-#: templates/reset.html:8
-msgid "Donate to"
-msgstr "Donner au"
-
 #: templates/index.html:48
 msgid ""
 "This page requires Javascript. It's necessary to send your credit card "
@@ -439,18 +455,6 @@ msgstr ""
 "Accéder à votre <strong><a href=\"panel\">interface de "
 "gestion</a></strong> pour voir votre historique ou éditer vos dons "
 "récurrents. :)"
-
-#: templates/index.html:168
-msgid ""
-"Powered by <a "
-"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
-msgstr ""
-"Powered by <a "
-"href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
-
-#: templates/login.html:7 templates/reset.html:7
-msgid "Back to home"
-msgstr "Retour à l'accueil"
 
 #: templates/login.html:16
 msgid "Log In"
@@ -684,7 +688,3 @@ msgstr ""
 "Merci encore !\n"
 "Si vous avez des questions, vous pouvez nous contacter à l'adresse : "
 "%(you)s."
-
-#~ msgid "%Y-%m-%d"
-#~ msgstr "%d-%m-%Y"
-
