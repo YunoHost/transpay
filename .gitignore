@@ -15,3 +15,4 @@ overrides/
 *.db
 messages.po
 *.log
+venv/
