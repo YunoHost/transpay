@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-23 21:56+0100\n"
+"POT-Creation-Date: 2019-01-27 16:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,49 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: cronjob.py:23
+msgid "Processing monthly donations on"
+msgstr ""
+
+#: cronjob.py:34
+msgid "Charging {}"
+msgstr ""
+
+#: cronjob.py:42
+msgid "Donation to "
+msgstr ""
+
+#: cronjob.py:48
+msgid "Declined"
+msgstr ""
+
+#: cronjob.py:56
+msgid "Skipping {}"
+msgstr ""
+
+#: cronjob.py:58
+#, python-format
+msgid "%(num)d record processed.\n"
+msgid_plural "%(num)d records processed.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cronjob.py:61
+msgid "Updating Patreon API token"
+msgstr ""
+
+#: cronjob.py:70
+msgid "Failed to update Patreon API token"
+msgstr ""
+
+#: cronjob.py:79
+msgid "Refreshed Patreon API token"
+msgstr ""
+
+#: cronjob.py:82
+msgid "Cannot reload application, add reload-command to config.ini"
+msgstr ""
 
 #: core/email.py:30
 msgid "Thank you for your donation!"
@@ -95,6 +138,10 @@ msgstr ""
 
 #: templates/admin.html:56
 msgid "Contribute code to Trans Pay upstream?"
+msgstr ""
+
+#: templates/admin.html:61
+msgid "Projects"
 msgstr ""
 
 #: templates/admin.html:68
