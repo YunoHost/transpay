@@ -74,8 +74,16 @@
                 <tbody>
                     {% for project in projects %}
                     <tr>
-                       <td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans trimmed project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}"><input type="hidden" name="id" value="{{ project.id }}" /><input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" /></form></td>
-                        <td><form method="POST" action="{{root}}/edit-project"><input class="form-control" type="text" placeholder="{{ project.name }}" value="{{ project.name }}" name="edit-name" /> <input type="hidden" name="id" value=""{{ project.id }}" /></form></td>
+		<td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans trimmed project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}">
+				{{ project.form.csrf_token }}
+				{{ project.form.id }}
+			       <input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" />
+			</form></td>
+                        <td><form method="POST" action="{{root}}/edit-project">
+				{{ project.form.csrf_token }}
+				{{ project.form.name(_class="form-control") }}
+				{{ project.form.id }}
+			</form></td>
                         <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(recurring(project) / 100)) }}</td>
                         <td>{{ currency.amount("{:.2f}".format(recurring_ever(project) / 100)) }}</td>
@@ -103,7 +111,9 @@
             <p>{%trans%}Donors will not be given a choice of project unless you have at least 2.{%endtrans%}</p>
             <form method="POST" action="{{root}}/create-project">
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="{%trans%}Project name{%endtrans%}" name="name" />
+			<!-- <input class="form-control" type="text" placeholder="{%trans%}Project name{%endtrans%}" name="name" /> -->
+			{{ newproject.csrf_token }}
+			{{ newproject.name(_class='form-control', placeholder=_('Project name')) }}
                 </div>
                 <input type="submit" value="{%trans%}Add{%endtrans%}" class="btn btn-default pull-right" />
             </form>

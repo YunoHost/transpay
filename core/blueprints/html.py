@@ -10,6 +10,7 @@ from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
 from core.stats import gen_chart
+from core.forms import NewProjectForm, ProjectForm
 
 import os
 import locale
@@ -144,17 +145,26 @@ def setup():
     login_user(user)
     return redirect("admin?first-run=1")
 
+class ProjectAggregate:
+    def __init__(self, proj):
+        self.name = proj.name
+        self.form = ProjectForm(name=proj.name, id=proj.id)
+        self.donations = proj.donations
+
 @html.route("/admin")
 @adminrequired
 def admin():
     first = request.args.get("first-run") is not None
-    projects = Project.query.all()
+    newproject = NewProjectForm()
+    projects = [ ProjectAggregate(proj) for proj in Project.query.all() ]
+
     unspecified = Donation.query.filter(Donation.project == None).all()
     donations = Donation.query.order_by(Donation.created.desc()).limit(50).all()
 
     return render_template("admin.html",
         first=first,
         projects=projects,
+        newproject=newproject,
         donations=donations,
         currency=currency,
         one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
@@ -172,20 +182,24 @@ def admin():
 @html.route("/create-project", methods=["POST"])
 @adminrequired
 def create_project():
-    name = request.form.get("name")
-    project = Project(name)
-    db.add(project)
-    db.commit()
-    return redirect("admin")
+    form = NewProjectForm(request.form)
+    if form.validate():
+        name = request.form.get("name")
+        project = Project(name)
+        db.add(project)
+        db.commit()
+        return redirect("admin")
 
 @html.route("/edit-project", methods=["POST"])
 @adminrequired
 def edit_project():
-    name = request.form["edit-name"]
-    id = request.form["id"]
-    db.query(Project).filter(Project.id == id).update({"name": name})
-    db.commit()
-    return redirect("admin")
+    form = ProjectForm(request.form)
+    if form.validate():
+        name = request.form['name']
+        id = request.form['id']
+        db.query(Project).filter(Project.id == id).update({"name": name})
+        db.commit()
+        return redirect("admin")
 
 @html.route("/delete-project", methods=["POST"])
 @adminrequired

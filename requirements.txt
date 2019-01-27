@@ -8,3 +8,4 @@ sqlalchemy-utils
 Flask-Babel
 pygal
 python-dateutil
+Flask-WTF
