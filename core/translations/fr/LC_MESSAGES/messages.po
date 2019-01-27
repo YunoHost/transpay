@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  2.0.2\n"
 "Report-Msgid-Bugs-To: contact@transposées.eu\n"
-"POT-Creation-Date: 2019-01-27 16:52+0100\n"
+"POT-Creation-Date: 2019-01-27 18:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Auxeras & OniriCorpe\n"
 "Language: fr\n"
@@ -63,15 +63,15 @@ msgstr ""
 "L'application ne peut pas être rechargée, ajouter le paramètre reload-"
 "command au fchier config.ini"
 
-#: core/email.py:30
+#: core/emails.py:30
 msgid "Thank you for your donation!"
 msgstr "Merci pour votre don !"
 
-#: core/email.py:50
+#: core/emails.py:50
 msgid "Reset your donor password"
 msgstr "Réinitialisation de votre mot de passe"
 
-#: core/email.py:70
+#: core/emails.py:70
 msgid "Your monthly donation was declined."
 msgstr "Votre don mensuel a échoué"
 
@@ -404,7 +404,7 @@ msgid "Donate"
 msgstr "Valider"
 
 #: templates/index.html:39 templates/layout.html:8 templates/login.html:8
-#: templates/reset.html:8
+#: templates/reset.html:8 templates/stats.html:8
 msgid "Donate to"
 msgstr "Donner au"
 
@@ -489,7 +489,7 @@ msgstr ""
 "gestion</a></strong> pour voir votre historique ou éditer vos dons "
 "récurrents. :)"
 
-#: templates/index.html:168
+#: templates/index.html:168 templates/stats.html:28
 msgid ""
 "Powered by <a "
 "href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
@@ -497,7 +497,7 @@ msgstr ""
 "Powered by <a "
 "href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
 
-#: templates/login.html:7 templates/reset.html:7
+#: templates/login.html:7 templates/reset.html:7 templates/stats.html:7
 msgid "Back to home"
 msgstr "Retour à l'accueil"
 
@@ -653,6 +653,10 @@ msgstr "Entrez les informations du compte d'administration :"
 msgid "Continue"
 msgstr "Poursuivre"
 
+#: templates/stats.html:16
+msgid "Statistics"
+msgstr ""
+
 #: templates/terms.html:1
 msgid ""
 "Stripe, our payement processor takes 2.9&#37; + 0.30$ as fees on each "
@@ -733,13 +737,3 @@ msgstr ""
 "Merci encore !\n"
 "Si vous avez des questions, vous pouvez nous contacter à l'adresse : "
 "%(you)s."
-
-#~ msgid "Processing monthly donations on {}"
-#~ msgstr "Actualisation des donations mensuelles le {}"
-
-#~ msgid "%%m-%%d-%%Y %%H:%%M:%%S"
-#~ msgstr "%%d-%%m-%%Y %%H:%%M:%%S"
-
-#~ msgid "{} records processed.\n"
-#~ msgstr "{} dons actualisés \n"
-

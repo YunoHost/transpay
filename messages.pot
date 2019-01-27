@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-27 16:52+0100\n"
+"POT-Creation-Date: 2019-01-27 18:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,15 +60,15 @@ msgstr ""
 msgid "Cannot reload application, add reload-command to config.ini"
 msgstr ""
 
-#: core/email.py:30
+#: core/emails.py:30
 msgid "Thank you for your donation!"
 msgstr ""
 
-#: core/email.py:50
+#: core/emails.py:50
 msgid "Reset your donor password"
 msgstr ""
 
-#: core/email.py:70
+#: core/emails.py:70
 msgid "Your monthly donation was declined."
 msgstr ""
 
@@ -355,7 +355,7 @@ msgid "Donate"
 msgstr ""
 
 #: templates/index.html:39 templates/layout.html:8 templates/login.html:8
-#: templates/reset.html:8
+#: templates/reset.html:8 templates/stats.html:8
 msgid "Donate to"
 msgstr ""
 
@@ -426,13 +426,13 @@ msgid ""
 "donation history, edit recurring donations, and so on."
 msgstr ""
 
-#: templates/index.html:168
+#: templates/index.html:168 templates/stats.html:28
 msgid ""
 "Powered by <a "
 "href=\"https://gitlab.kokakiwi.net/transposees/transpay\">Trans Pay</a>"
 msgstr ""
 
-#: templates/login.html:7 templates/reset.html:7
+#: templates/login.html:7 templates/reset.html:7 templates/stats.html:7
 msgid "Back to home"
 msgstr ""
 
@@ -579,6 +579,10 @@ msgstr ""
 
 #: templates/setup.html:81
 msgid "Continue"
+msgstr ""
+
+#: templates/stats.html:16
+msgid "Statistics"
 msgstr ""
 
 #: templates/terms.html:1

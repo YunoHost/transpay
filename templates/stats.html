@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %} 
+<div class="well">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="pull-right"><a class="btn btn-default" href="/">{%trans%}Back to home{%endtrans%}</a></p>
+                <h1>{%trans%}Donate to{%endtrans%} {{ _cfg("your-name") }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>{%trans%}Statistics{%endtrans%}</h1>
+            <p> work in process les cocos ! :p</p>
+				<figure>
+					<embed type="image/svg+xml" src="/static/chart.svg" />
+				</figure>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <p>
+        <small class="text-muted">
+            {%trans%}Powered by <a href="https://gitlab.kokakiwi.net/transposees/transpay">Trans Pay</a>{%endtrans%} - {{ version }}
+        </small>
+    </p>
+</div>
+
+{% endblock %}

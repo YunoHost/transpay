@@ -2,7 +2,7 @@
 from core.objects import *
 from core.database import db
 from core.config import _cfg
-from core.email import send_thank_you, send_declined
+from core.emails import send_thank_you, send_declined
 from core.currency import currency
 from core.app import app
 from flask_babel import Babel, _, ngettext
