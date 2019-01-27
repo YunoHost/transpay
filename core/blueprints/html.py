@@ -9,6 +9,7 @@ from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
+from core.stats import gen_chart
 
 import os
 import locale
@@ -376,4 +377,5 @@ def invoice(id):
 
 @html.route("/stats")
 def stats():
+    gen_chart()
     return render_template("stats.html", version = version())

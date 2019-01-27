@@ -7,16 +7,6 @@ from sqlalchemy import extract
 from dateutil.rrule import rrule, MONTHLY
 
 
-# def gen_month(inc):
-    # actuel = date.today().month + inc   # on récupère le mois actuel (en chiffre) et on lui additionne le parametre 'inc'
-#   actuel = 5 + inc                   # test à partir d'un autre mois que l'actuel
-    # 
-    # if actuel > 12 :                            # si on dépasse le nombre de mois dans une année (12), on soustrait 12, pour retrouver une valeur cohérente
-        # actuel = actuel - 12
-    # nom_actuel = calendar.month_name[actuel]    # on transforme la valeur du mois en son nom
-    # return nom_actuel                           # on balance le résultat >:3
-
-
 # https://stackoverflow.com/a/6064267
 def gen_months(start_month, start_year, end_month, end_year):
     start = datetime(start_year, start_month, 1)
@@ -67,11 +57,5 @@ def gen_chart():
     line_chart.x_labels = xlabels
     line_chart.add('Ponctuels', onetime)
     line_chart.add('Mensuels', monthly)
- 
-#    line_chart.add('Mensuel', [ monthlysum_monthly(month, 2019) for month in range(0, 12)[::-1] ])
 
-#    line_chart.add('Objectif', [ 13.12, None, None, None, None, None, None, None, None, None, None, None, 13.12 ], fill=False)
     line_chart.render_to_file('static/chart.svg')
-
-
-

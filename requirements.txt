@@ -7,3 +7,4 @@ gunicorn
 sqlalchemy-utils
 Flask-Babel
 pygal
+python-dateutil
