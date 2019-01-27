@@ -6,3 +6,4 @@ bcrypt
 gunicorn
 sqlalchemy-utils
 Flask-Babel
+pygal
