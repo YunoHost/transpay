@@ -373,3 +373,7 @@ def invoice(id):
     if not invoice:
         abort(404)
     return render_template("invoice.html", invoice=invoice)
+
+@html.route("/stats")
+def stats():
+    return render_template("stats.html", version = version())
