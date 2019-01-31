@@ -9,6 +9,7 @@ from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
+from core.forms import NewProjectForm, ProjectForm, DeleteProjectForm
 from core.stats import gen_chart
 from core.forms import NewProjectForm, ProjectForm
 
@@ -154,6 +155,7 @@ class ProjectAggregate:
     def __init__(self, proj):
         self.name = proj.name
         self.form = ProjectForm(name=proj.name, id=proj.id)
+        self.delform = DeleteProjectForm(id=proj.id)
         self.donations = proj.donations
 
 @html.route("/admin")
@@ -209,11 +211,13 @@ def edit_project():
 @html.route("/delete-project", methods=["POST"])
 @adminrequired
 def delete_project():
-    id = request.form["id"]
-    db.query(Donation).filter(Donation.project_id == id).update({"project_id": sqlalchemy.sql.null()})
-    db.query(Project).filter(Project.id == id).delete()
-    db.commit()
-    return redirect("admin")
+    form = DeleteProjectForm(request.form)
+    if form.validate():
+        id = request.form["id"]
+        db.query(Donation).filter(Donation.project_id == id).update({"project_id": sqlalchemy.sql.null()})
+        db.query(Project).filter(Project.id == id).delete()
+        db.commit()
+        return redirect("admin")
 
 @html.route("/login", methods=["GET", "POST"])
 def login():

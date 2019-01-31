@@ -75,8 +75,8 @@
                     {% for project in projects %}
                     <tr>
 		<td><form method="POST" action="{{root}}/delete-project" onSubmit="if(!confirm({% trans trimmed project=project.name %}'Are you sure you want to delete project &quot;{{ project }}&quot; ?\nOrphaned donations will be associated with &quot;(not specified)&quot; project.\nWarning: This action is irreversible!'{%endtrans%})){return false;}">
-				{{ project.form.csrf_token }}
-				{{ project.form.id }}
+				{{ project.delform.csrf_token }}
+				{{ project.delform.id }}
 			       <input type="submit" value="&#xe014;" class="btn btn-default pull-right glyphicon" title="Delete project" />
 			</form></td>
                         <td><form method="POST" action="{{root}}/edit-project">
