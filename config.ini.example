@@ -27,8 +27,9 @@ smtp-from=donate@example.org
 
 # Your information
 your-name=Joe Bloe
-your-email=joe@example.org
-# ^ you should have a gravatar that works with this email
+your-email=joe@bloe.com
+# ^ to show your logo in the index page, you can have a gravatar account associated with this email adress
+# else, you can add your 'logo.png' to the 'static' folder !
 
 # SQL connection string
 connection-string=sqlite+pysqlite:///transpay.db
