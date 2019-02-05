@@ -101,7 +101,7 @@ def send_new_donation(user, donation):
             })))
     message['Subject'] = "New donation on fosspay!"
     message['From'] = _cfg("smtp-from")
-    message['To'] = f"{_cfg('your-name')} <_cfg('your-email')>"
+    message['To'] = f"{_cfg('your-name')} <{_cfg('your-email')}>"
     message['Date'] = format_datetime(localtime())
     smtp.sendmail(_cfg("smtp-from"), [ _cfg('your-email') ], message.as_string())
     smtp.quit()
@@ -124,7 +124,7 @@ def send_cancellation_notice(user, donation):
             })))
     message['Subject'] = "A monthly donation on fosspay has been cancelled"
     message['From'] = _cfg("smtp-from")
-    message['To'] = f"{_cfg('your-name')} <_cfg('your-email')>"
+    message['To'] = f"{_cfg('your-name')} <{_cfg('your-email')}>"
     message['Date'] = format_datetime(localtime())
     smtp.sendmail(_cfg("smtp-from"), [ _cfg('your-email') ], message.as_string())
     smtp.quit()
