@@ -8,6 +8,7 @@ from .database import Base
 from datetime import datetime
 from enum import Enum
 import bcrypt
+import binascii
 import os
 import hashlib
 
@@ -99,3 +100,15 @@ class Project(Base):
 
     def __repr__(self):
         return "<Project {} {}>".format(self.id, self.name)
+
+class Invoice(Base):
+    __tablename__ = 'invoices'
+    id = Column(Integer, primary_key=True)
+    created = Column(DateTime, nullable=False)
+    external_id = Column(String(16), index=True)
+    amount = Column(Integer, nullable=False)
+    comment = Column(String(512), nullable=False)
+
+    def __init__(self):
+        self.external_id = binascii.hexlify(os.urandom(8)).decode()
+        self.created = datetime.now()

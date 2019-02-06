@@ -295,3 +295,10 @@ def cancel(id):
     db.commit()
     send_cancellation_notice(user, donation)
     return redirect("/panel")
+
+@html.route("/invoice/<id>")
+def invoice(id):
+    invoice = Invoice.query.filter(Invoice.external_id == id).first()
+    if not invoice:
+        abort(404)
+    return render_template("invoice.html", invoice=invoice)
