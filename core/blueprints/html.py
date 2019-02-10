@@ -151,19 +151,12 @@ def setup():
     login_user(user)
     return redirect("admin?first-run=1")
 
-class ProjectAggregate:
-    def __init__(self, proj):
-        self.name = proj.name
-        self.form = ProjectForm(name=proj.name, id=proj.id)
-        self.delform = DeleteProjectForm(id=proj.id)
-        self.donations = proj.donations
-
 @html.route("/admin")
 @adminrequired
 def admin():
     first = request.args.get("first-run") is not None
     newproject = NewProjectForm()
-    projects = [ ProjectAggregate(proj) for proj in Project.query.all() ]
+    projects = [ ProjectForm(project=proj) for proj in Project.query.all() ]
 
     unspecified = Donation.query.filter(Donation.project == None).all()
     donations = Donation.query.order_by(Donation.created.desc()).limit(50).all()

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, g, Response, redirect, url_for
 from flask_babel import Babel
 from flask_login import LoginManager, current_user
+from flask_wtf.csrf import CSRFProtect
 from jinja2 import FileSystemLoader, ChoiceLoader
 
 import sys
@@ -18,6 +19,7 @@ from core.blueprints.html import html
 
 app = Flask(__name__)
 babel = Babel(app)
+#csrf = CSRFProtect(app)
 
 @babel.localeselector
 def get_locale():
