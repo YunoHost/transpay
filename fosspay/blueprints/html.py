@@ -273,7 +273,7 @@ def reset_password(token):
         user.password_reset_expires = None
         db.commit()
         login_user(user)
-        return redirect("panel")
+        return redirect("../panel")
 
 @html.route("/panel")
 @loginrequired
@@ -294,7 +294,7 @@ def cancel(id):
     donation.active = False
     db.commit()
     send_cancellation_notice(user, donation)
-    return redirect("/panel")
+    return redirect("../panel")
 
 @html.route("/invoice/<id>")
 def invoice(id):
