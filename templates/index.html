@@ -54,7 +54,7 @@ window.email = "{{user.email}}";
     {% include "post-donation-message.html" %}
     <form id="new-donor-password" class="hidden" action="{{root}}/password-reset" method="POST">
 	<p>{% trans %}Set a password now if you want to manage your donations later:{% endtrans %}</p>
-	<input type="password" placeholder="{%trans%}Password{%endtrans%}" name="password" />
+	<input type="password" class="form-control" placeholder="{%trans%}Password{%endtrans%}" name="password" />
         <input type="hidden" name="token" id="reset-token" />
 	<button class="btn btn-primary btn-sm">{%trans%}Submit{%endtrans%}</button>
     </form>

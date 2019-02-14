@@ -81,7 +81,7 @@
 			</form></td>
                         <td><form method="POST" action="{{root}}/edit-project">
 				{{ project.csrf_token }}
-				{{ project.name(_class="form-control") }}
+				{{ project.name(class="form-control") }}
 				{{ project.id }}
 			</form></td>
                         <td>{{ currency.amount("{:.2f}".format(one_times(project) / 100)) }}</td>
@@ -113,7 +113,7 @@
                 <div class="form-group">
 			<!-- <input class="form-control" type="text" placeholder="{%trans%}Project name{%endtrans%}" name="name" /> -->
 			{{ newproject.csrf_token }}
-			{{ newproject.name(_class='form-control', placeholder=_('Project name')) }}
+			{{ newproject.name(class='form-control', placeholder=_('Project name')) }}
                 </div>
                 <input type="submit" value="{%trans%}Add{%endtrans%}" class="btn btn-default pull-right" />
             </form>

@@ -9,7 +9,7 @@ from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
-from core.forms import NewProjectForm, ProjectForm, DeleteProjectForm
+from core.forms import csrf, NewProjectForm, ProjectForm, DeleteProjectForm, LoginForm
 from core.stats import gen_chart
 from core.forms import NewProjectForm, ProjectForm
 
@@ -214,25 +214,28 @@ def delete_project():
 
 @html.route("/login", methods=["GET", "POST"])
 def login():
+    loginForm = LoginForm()
     if current_user:
         if current_user.admin:
             return redirect("admin")
         return redirect("panel")
     if request.method == "GET":
-        return render_template("login.html")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    if not email or not password:
-        return render_template("login.html", errors=True)
-    user = User.query.filter(User.email == email).first()
-    if not user:
-        return render_template("login.html", errors=True)
-    if not bcrypt.hashpw(password.encode('UTF-8'), user.password.encode('UTF-8')) == user.password.encode('UTF-8'):
-        return render_template("login.html", errors=True)
-    login_user(user)
-    if user.admin:
-        return redirect("admin")
-    return redirect("panel")
+        return render_template("login.html", loginForm=loginForm)
+    form = LoginForm(request.form)
+    if form.validate():
+        email = request.form.get("email")
+        password = request.form.get("password")
+        if not email or not password:
+            return render_template("login.html", loginForm=loginForm, errors=True)
+        user = User.query.filter(User.email == email).first()
+        if not user:
+            return render_template("login.html", loginForm=loginForm, errors=True)
+        if not bcrypt.hashpw(password.encode('UTF-8'), user.password.encode('UTF-8')) == user.password.encode('UTF-8'):
+            return render_template("login.html", loginForm=loginForm, errors=True)
+        login_user(user)
+        if user.admin:
+            return redirect("admin")
+        return redirect("panel")
 
 @html.route("/logout")
 @loginrequired
@@ -242,6 +245,7 @@ def logout():
 
 @html.route("/donate", methods=["POST"])
 @json_output
+@csrf.exempt
 def donate():
     email = request.form.get("email")
     stripe_token = request.form.get("stripe_token")
@@ -313,7 +317,7 @@ def donate():
 def issue_password_reset(email):
     user = User.query.filter(User.email == email).first()
     if not user:
-        return render_template("reset.html", errors="No one with that email found.")
+        return render_template("reset.html", errors=_("No one with that email found."))
     user.password_reset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
     user.password_reset_expires = datetime.now() + timedelta(days=1)
     send_password_reset(user)
@@ -338,11 +342,11 @@ def reset_password(token):
 
     user = User.query.filter(User.password_reset == token).first()
     if not user:
-        return render_template("reset.html", errors="This link has expired.")
+        return render_template("reset.html", errors=_("This link has expired."))
 
     if request.method == 'GET':
         if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-            return render_template("reset.html", errors="This link has expired.")
+            return render_template("reset.html", errors=_("This link has expired."))
         if user.password_reset != token:
             redirect("..")
         return render_template("reset.html", token=token)
@@ -353,7 +357,7 @@ def reset_password(token):
             abort(401)
         password = request.form.get('password')
         if not password:
-            return render_template("reset.html", token=token, errors="You need to type a new password.")
+            return render_template("reset.html", token=token, errors=_("You need to type a new password."))
         user.set_password(password)
         user.password_reset = None
         user.password_reset_expires = None

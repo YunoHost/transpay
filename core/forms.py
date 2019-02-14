@@ -1,6 +1,8 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, HiddenField, PasswordField
 from wtforms.validators import DataRequired
+
+csrf = CSRFProtect()
 
 projectNameValidators = [DataRequired()]
 projectIdValidators = [DataRequired()]

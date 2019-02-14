@@ -27,6 +27,7 @@
             <tr>
                 <td>
                     <form method="DELETE" action="{{root}}/cancel/{{ donation.id }}">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <button type="submit" class="btn btn-danger btn-sm">{%trans%}Cancel{%endtrans%}</button>
                     </form>
                 </td>

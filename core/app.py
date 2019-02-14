@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, g, Response, redirect, url_for
 from flask_babel import Babel
 from flask_login import LoginManager, current_user
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFError
 from jinja2 import FileSystemLoader, ChoiceLoader
 
 import sys
@@ -12,6 +12,7 @@ import stripe
 from core.config import _cfg, _cfgi
 from core.database import db, init_db
 from core.objects import User
+from core.forms import csrf
 from core.common import *
 from core.network import *
 
@@ -19,7 +20,7 @@ from core.blueprints.html import html
 
 app = Flask(__name__)
 babel = Babel(app)
-#csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 @babel.localeselector
 def get_locale():
@@ -62,6 +63,10 @@ if not app.debug:
 @app.errorhandler(404)
 def handle_404(e):
     return render_template("not_found.html"), 404
+
+@app.errorhandler(CSRFError)
+def handle_CSRFError(e):
+    return 'CSRF token missing', 403
 
 @app.context_processor
 def inject():
