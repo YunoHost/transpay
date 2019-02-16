@@ -30,3 +30,11 @@ class ProjectForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField(validators=[DataRequired()])
     password = PasswordField(validators=[DataRequired()])
+
+class ResetPasswordForm(FlaskForm):
+    email = StringField(validators=[DataRequired()])
+
+class ChangePasswordForm(FlaskForm):
+    password = PasswordField(validators=[DataRequired()])
+    confirm = PasswordField(validators=[DataRequired()])
+    token = HiddenField(validators=[DataRequired()])

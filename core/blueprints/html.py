@@ -9,7 +9,7 @@ from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
-from core.forms import csrf, NewProjectForm, ProjectForm, DeleteProjectForm, LoginForm
+from core.forms import csrf, NewProjectForm, ProjectForm, DeleteProjectForm, LoginForm, ChangePasswordForm, ResetPasswordForm
 from core.stats import gen_chart
 from core.forms import NewProjectForm, ProjectForm
 
@@ -137,6 +137,7 @@ def index():
                            version=version())
 
 @html.route("/setup", methods=["POST"])
+@csrf.exempt
 def setup():
     if not User.query.count() == 0:
         abort(400)
@@ -324,46 +325,73 @@ def issue_password_reset(email):
     db.commit()
     return render_template("reset.html", done=True)
 
-@html.route("/password-reset", methods=['GET', 'POST'], defaults={'token': None})
-@html.route("/password-reset/<token>", methods=['GET', 'POST'])
-def reset_password(token):
-    if request.method == "GET" and not token:
-        return render_template("reset.html")
+@html.route("/password-change", methods=['GET', 'POST'])
+def change_password():
+    if request.method == "GET":
+        token = request.args.get("token")
 
-    if request.method == "POST":
-        token = request.form.get("token")
-        email = request.form.get("email")
-
-        if email:
-            return issue_password_reset(email)
-
-        if not token:
+        if not current_user and not token:
             return redirect("..")
 
-    user = User.query.filter(User.password_reset == token).first()
-    if not user:
-        return render_template("reset.html", errors=_("This link has expired."))
+        if not token:
+            current_user.password_reset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
+            current_user.password_reset_expires = datetime.now() + timedelta(days=1)
+            db.commit()
+            token = current_user.password_reset
 
-    if request.method == 'GET':
-        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-            return render_template("reset.html", errors=_("This link has expired."))
-        if user.password_reset != token:
-            redirect("..")
-        return render_template("reset.html", token=token)
-    else:
-        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-            abort(401)
-        if user.password_reset != token:
-            abort(401)
-        password = request.form.get('password')
-        if not password:
-            return render_template("reset.html", token=token, errors=_("You need to type a new password."))
-        user.set_password(password)
-        user.password_reset = None
-        user.password_reset_expires = None
-        db.commit()
-        login_user(user)
-        return redirect("../panel")
+        changePwdForm = ChangePasswordForm(token=token)
+        return render_template("change.html", changePwdForm=changePwdForm)
+
+    elif request.method == "POST":
+       form = ChangePasswordForm(request.form)
+       if form.validate():
+           token = request.form.get("token")
+           password = request.form.get("password")
+           user = User.query.filter(User.password_reset == token).first()
+           user.set_password(password)
+           user.password_reset = None
+           user.password_reset_expires = None
+           db.commit()
+           login_user(user)
+           return redirect("panel")
+
+@html.route("/password-reset", methods=['GET', 'POST'])
+def reset_password():
+    if request.method == "GET":
+        resetPasswordForm = ResetPasswordForm()
+        return render_template("reset.html", resetPasswordForm=resetPasswordForm)
+
+    elif request.method == "POST":
+        form = ResetPasswordForm(request.form)
+        if form.validate():
+            email = request.form.get("email")
+            return issue_password_reset(email)
+
+
+    # user = User.query.filter(User.password_reset == token).first()
+#    if not user:
+#        return render_template("reset.html", errors=_("This link has expired."))
+#
+#    if request.method == 'GET':
+#        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
+#            return render_template("reset.html", errors=_("This link has expired."))
+#        if user.password_reset != token:
+#            redirect("..")
+#        return render_template("reset.html", token=token)
+#    else:
+#        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
+#            abort(401)
+#        if user.password_reset != token:
+#            abort(401)
+#        password = request.form.get('password')
+#        if not password:
+#            return render_template("reset.html", token=token, errors=_("You need to type a new password."))
+#        user.set_password(password)
+#        user.password_reset = None
+#        user.password_reset_expires = None
+#        db.commit()
+#        login_user(user)
+#        return redirect("panel")
 
 @html.route("/panel")
 @loginrequired
