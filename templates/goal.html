@@ -2,8 +2,8 @@
 <div class="container" style="padding-top: 5rem">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      {% set total_sum = recurring_sum + patreon_sum + lp_sum %}
-      {% set total_count = recurring_count + patreon_count + lp_count %}
+      {% set total_sum = recurring_sum + patreon_sum + lp_sum + gh_sum %}
+      {% set total_count = recurring_count + patreon_count + lp_count + gh_count %}
       {% if _cfg("goal") %}
       {% set goal = int(_cfg("goal")) %}
 
@@ -17,6 +17,7 @@
       {% set recurring_progress = recurring_sum / adjusted_goal %}
       {% set patreon_progress = patreon_sum / adjusted_goal %}
       {% set lp_progress = lp_sum / adjusted_goal %}
+      {% set gh_progress = gh_sum / adjusted_goal %}
       {% set progress = total_sum / goal %}
       <div class="progress" style="height: 3rem">
         <div
@@ -38,6 +39,13 @@
           style="width: {{ lp_progress * 100 }}%; line-height: 2.5"
         >
           <span>{{ currency.amount("{:.0f}".format(lp_sum / 100)) }}</span>
+        </div>
+
+        <div
+          class="progress-bar progress-bar-primary"
+          style="width: {{ gh_progress * 100 }}%; line-height: 2.5"
+        >
+          <span>{{ currency.amount("{:.0f}".format(gh_sum / 100)) }}</span>
         </div>
       </div>
       {% endif %}
@@ -71,6 +79,17 @@
           href="https://liberapay.com/{{ _cfg("liberapay-campaign") }}">
             Liberapay <i class="glyphicon glyphicon-share"></i>
           </a></strong> ({{ lp_count }} supporter{{ "s" if lp_count != 1 else "" }})
+      </p>
+      {% endif %}
+      {% if gh_count %}
+      <p>
+        {{ currency.amount("{:.2f}".format(gh_sum / 100)) }}/mo
+        via
+        <strong><a
+          class="text-primary"
+          href="https://github.com/{{gh_user}}">
+            GitHub <i class="glyphicon glyphicon-share"></i>
+          </a></strong> ({{ gh_count }} supporter{{ "s" if lp_count != 1 else "" }})
       </p>
       {% endif %}
       {% endif %}

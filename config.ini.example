@@ -66,5 +66,10 @@ patreon-campaign=
 # Optional LiberaPay integration, fill in your username here
 liberapay-campaign=
 
+# Optional GitHub sponsors integration
+# Generate personal access key at https://github.com/settings/tokens
+# Must have "user" access.
+github-token=
+
 # Command to reload fosspay (send it a SIGHUP)
 reload-command=kill -HUP $(pgrep -xf '/usr/bin/python3.*app.py' | tail -n 1)

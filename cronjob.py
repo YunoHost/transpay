@@ -12,7 +12,7 @@ import subprocess
 
 stripe.api_key = _cfg("stripe-secret")
 
-print("Processing monthly donations")
+print("Processing monthly donations at " + str(datetime.utcnow()))
 
 donations = Donation.query \
     .filter(Donation.type == DonationType.monthly) \

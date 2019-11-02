@@ -70,14 +70,49 @@ def index():
         lp_count = 0
         lp_sum = 0
 
+    github_token = _cfg("github-token")
+    if github_token:
+        query = """
+        {
+            viewer {
+                login
+                sponsorsListing {
+                    tiers(first:100) {
+                        nodes {
+                            monthlyPriceInCents
+                            adminInfo {
+                                sponsorships(includePrivate:true) {
+                                    totalCount
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """
+        r = requests.post("https://api.github.com/graphql", json={
+            "query": query
+        }, headers={
+            "Authorization": f"bearer {github_token}"
+        })
+        result = r.json()
+        nodes = result["data"]["viewer"]["sponsorsListing"]["tiers"]["nodes"]
+        cnt = lambda n: n["adminInfo"]["sponsorships"]["totalCount"]
+        gh_count = sum(cnt(n) for n in nodes)
+        gh_sum = sum(n["monthlyPriceInCents"] * cnt(n) for n in nodes)
+        gh_user = result["data"]["viewer"]["login"]
+    else:
+        gh_count = 0
+        gh_sum = 0
+
     return render_template("index.html", projects=projects,
             avatar=avatar, selected_project=selected_project,
-            recurring_count=recurring_count,
-            recurring_sum=recurring_sum,
-            patreon_count=patreon_count,
-            patreon_sum=patreon_sum,
-            lp_count=lp_count,
-            lp_sum=lp_sum, currency=currency)
+            recurring_count=recurring_count, recurring_sum=recurring_sum,
+            patreon_count=patreon_count, patreon_sum=patreon_sum,
+            lp_count=lp_count, lp_sum=lp_sum,
+            gh_count=gh_count, gh_sum=gh_sum, gh_user=gh_user,
+            currency=currency)
 
 @html.route("/setup", methods=["POST"])
 def setup():
