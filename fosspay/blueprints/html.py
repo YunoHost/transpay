@@ -105,6 +105,7 @@ def index():
     else:
         gh_count = 0
         gh_sum = 0
+        gh_user = 0
 
     return render_template("index.html", projects=projects,
             avatar=avatar, selected_project=selected_project,
