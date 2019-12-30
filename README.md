@@ -35,7 +35,7 @@ string for later.
 
 Clone the git repository on the server that you want to host fosspay on:
 
-    git clone git://github.com/SirCmpwn/fosspay.git
+    git clone git://github.com/ddevault/fosspay.git
     cd fosspay
 
 Install the Python packages:
