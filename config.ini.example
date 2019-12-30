@@ -13,15 +13,15 @@ debug-host=0.0.0.0
 debug-port=5000
 
 # Fill out these details with your mail server
-smtp-host=mail.you.com
+smtp-host=mail.example.org
 smtp-port=587
 smtp-user=you
 smtp-password=password
-smtp-from=donate@you.com
+smtp-from=donate@example.org
 
 # Your information
 your-name=Joe Bloe
-your-email=joe@bloe.com
+your-email=joe@example.org
 # ^ you should have a gravatar that works with this email
 
 # SQL connection string
