@@ -4,7 +4,7 @@ from core.config import _cfg, _cfgi
 
 import os
 
-app.static_folder = os.path.join(os.getcwd(), "static")
+app.static_folder = os.path.join(os.getcwd(), "_static")
 
 import os
 
