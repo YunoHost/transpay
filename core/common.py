@@ -12,11 +12,11 @@ def firstparagraph(text):
     try:
         para = text.index("\n\n")
         return text[: para + 2]
-    except:
+    except Exception:
         try:
             para = text.index("\r\n\r\n")
             return text[: para + 4]
-        except:
+        except Exception:
             return text
 
 
@@ -27,7 +27,7 @@ def with_session(f):
             ret = f(*args, **kw)
             db.commit()
             return ret
-        except:
+        except Exception:
             db.rollback()
             db.close()
             raise
