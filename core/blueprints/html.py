@@ -7,6 +7,7 @@ from flask import (
     session,
     url_for,
     send_file,
+    current_app,
     Response,
 )
 from flask_login import current_user, login_user, logout_user
@@ -63,7 +64,11 @@ def index():
     if selected_project:
         try:
             selected_project = int(selected_project)
-        except:
+        except Exception:
+            current_app.logger.exception(
+                "Error while trying to select project: %s" % selected_project,
+                exc_info=True,
+            )
             selected_project = None
     active_recurring = (
         Donation.query.filter(Donation.type == DonationType.monthly)
@@ -91,7 +96,10 @@ def index():
             attrs = campaign.json_data["data"][0]["attributes"]
             patreon_count = attrs["patron_count"]
             patreon_sum = attrs["pledge_sum"]
-        except:
+        except Exception as e:
+            current_app.logger.warning(
+                "Error to get patreon information: %s" % e, exc_info=True
+            )
             patreon_count = 0
             patreon_sum = 0
     else:
@@ -361,7 +369,12 @@ def donate():
             type = DonationType.monthly
 
         amount = int(amount)
-    except:
+    except Exception as e:
+        current_app.logger.exception(
+            "Error, failed to generate a donation because '%s' for the values: '%s'"
+            % (e, request.form.items()),
+            exc_info=True,
+        )
         return {"success": False, "reason": "Invalid request"}, 400
 
     new_account = False
