@@ -6,6 +6,7 @@ from flask import (
     redirect,
     current_app,
 )
+from flask_babel import _
 from flask_login import current_user, login_user, logout_user
 from datetime import datetime, timedelta
 from core.objects import User, Donation, Project, DonationType, Invoice
@@ -392,13 +393,13 @@ def donate():
     db.add(donation)
 
     try:
-        charge = stripe.Charge.create(
+        stripe.Charge.create(
             amount=amount,
             currency=_cfg("currency"),
             customer=user.stripe_customer,
             description="Donation to " + _cfg("your-name"),
         )
-    except stripe.error.CardError as e:
+    except stripe.error.CardError:
         db.rollback()
         db.close()
         return {"success": False, "reason": "Your card was declined."}
@@ -473,33 +474,6 @@ def reset_password():
         if form.validate():
             email = request.form.get("email")
             return issue_password_reset(email)
-
-    # user = User.query.filter(User.password_reset == token).first()
-
-
-#    if not user:
-#        return render_template("reset.html", errors=_("This link has expired."))
-#
-#    if request.method == 'GET':
-#        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-#            return render_template("reset.html", errors=_("This link has expired."))
-#        if user.password_reset != token:
-#            redirect("..")
-#        return render_template("reset.html", token=token)
-#    else:
-#        if user.password_reset_expires == None or user.password_reset_expires < datetime.now():
-#            abort(401)
-#        if user.password_reset != token:
-#            abort(401)
-#        password = request.form.get('password')
-#        if not password:
-#            return render_template("reset.html", token=token, errors=_("You need to type a new password."))
-#        user.set_password(password)
-#        user.password_reset = None
-#        user.password_reset_expires = None
-#        db.commit()
-#        login_user(user)
-#        return redirect("panel")
 
 
 @html.route("/panel")

@@ -1,7 +1,5 @@
-import socket
 import requests
-import json
-from core.config import _cfg, load_config
+from core.config import _cfg
 
 
 # Récupération du numéro de version

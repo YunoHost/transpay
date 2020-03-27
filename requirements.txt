@@ -9,3 +9,4 @@ Flask-Babel
 pygal
 python-dateutil
 Flask-WTF
+pystache

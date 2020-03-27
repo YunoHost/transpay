@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Unicode, Boolean, DateTime
-from sqlalchemy import ForeignKey, Table, UnicodeText, Text, text
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy_utils import ChoiceType
 from core.currency import currency
@@ -11,7 +11,6 @@ from enum import Enum
 import bcrypt
 import binascii
 import os
-import hashlib
 
 
 class DonationType(Enum):

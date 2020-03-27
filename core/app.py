@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request, g, Response, redirect, url_for
+from flask import Flask, render_template, request, url_for
 from flask_babel import Babel
 from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CSRFError
 from jinja2 import FileSystemLoader, ChoiceLoader
 
 import sys
-import os
 import locale
 import stripe
 
@@ -13,8 +12,7 @@ from core.config import _cfg, _cfgi
 from core.database import db, init_db
 from core.objects import User
 from core.forms import csrf
-from core.common import *
-from core.network import *
+from core.common import file_link
 
 from core.blueprints.html import html
 
@@ -58,7 +56,7 @@ if not app.debug:
         try:
             db.rollback()
             db.close()
-        except:
+        except Exception:
             # shit shit
             print("We're very borked, letting init system kick us back up")
             sys.exit(1)

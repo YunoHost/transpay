@@ -1,14 +1,12 @@
 import smtplib
-import os
+import pystache
 import html.parser
 from email.mime.text import MIMEText
 from email.utils import localtime, format_datetime
-from werkzeug.utils import secure_filename
-from flask import url_for, render_template
+from flask import render_template
 from flask_babel import gettext
 
-from core.database import db
-from core.objects import User, DonationType
+from core.objects import DonationType
 from core.config import _cfg, _cfgi
 from core.currency import currency
 

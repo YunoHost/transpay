@@ -1,5 +1,4 @@
 import logging
-import signal
 
 try:
     from configparser import ConfigParser

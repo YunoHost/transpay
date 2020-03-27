@@ -1,5 +1,5 @@
 import pygal
-from pygal.style import LightColorizedStyle, Style
+from pygal.style import Style
 from datetime import date, datetime
 import calendar
 from core.objects import Donation, DonationType
@@ -23,7 +23,7 @@ def monthlysum_monthly(month, year):
         .filter(extract("month", Donation.created) >= month)
         .filter(extract("year", Donation.created) >= year)
     )
-    recurring_count = crawl_recurring.count()
+    crawl_recurring.count()
     recurring_sum = sum([d.amount for d in crawl_recurring]) / 100
     return recurring_sum
 
@@ -34,7 +34,7 @@ def monthlysum_onetime(month, year):
         .filter(extract("month", Donation.created) == month)
         .filter(extract("year", Donation.created) == year)
     )
-    onetime_count = month_onetime.count()
+    month_onetime.count()
     onetime_sum = sum([d.amount for d in month_onetime]) / 100
     return onetime_sum
 

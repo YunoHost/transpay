@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-from core.objects import *
+
+import sys
+
+from core.objects import Donation, DonationType
 from core.database import db
 from core.config import _cfg
 from core.emails import send_thank_you, send_declined
-from core.currency import currency
 from core.app import app
-from flask_babel import Babel, _, ngettext
+from flask_babel import _, ngettext
 
 from datetime import datetime, timedelta
-from babel.dates import format_date, format_datetime, format_time
+from babel.dates import format_date, format_time
 
 import requests
 import stripe
@@ -42,7 +44,7 @@ with app.app_context():
                     customer=user.stripe_customer,
                     description=_("Donation to ") + _cfg("your-name"),
                 )
-            except stripe.error.CardError as e:
+            except stripe.error.CardError:
                 donation.active = False
                 db.commit()
                 send_declined(user, donation.amount)
