@@ -1,29 +1,33 @@
 import socket
-import requests 
+import requests
 import json
 from core.config import _cfg, load_config
 
 
 # Récupération du numéro de version
 def version():
-    with open('VERSION') as f:
+    with open("VERSION") as f:
         data = f.read()
         return data
 
+
 # Concaténation du numéro de version (suppression des lettres et des points)
 def cversion(num):
-    data = int("".join(num[1:].split('.')))
+    data = int("".join(num[1:].split(".")))
     return data
+
 
 # Vérification de mise à jour disponible en fonction des releases sur le dépôt git
 def check_update():
     try:
-        response = requests.get('https://gitlab.kokakiwi.net/api/v4/projects/82/repository/tags', timeout=1)
+        response = requests.get(
+            "https://gitlab.kokakiwi.net/api/v4/projects/82/repository/tags", timeout=1
+        )
         tags = response.json()
 
         if _cfg("branch") == "stable":
             for tag in tags:
-                if tag['message'] == 'stable':
+                if tag["message"] == "stable":
                     checked_version = cversion(tag["name"])
                     if checked_version > cversion(version()):
                         return "update_available"

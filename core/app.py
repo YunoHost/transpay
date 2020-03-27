@@ -22,9 +22,11 @@ app = Flask(__name__)
 babel = Babel(app)
 csrf.init_app(app)
 
+
 @babel.localeselector
 def get_locale():
     return _cfg("locale")
+
 
 app.secret_key = _cfg("secret-key")
 app.jinja_env.cache = None
@@ -32,22 +34,24 @@ init_db()
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.jinja_loader = ChoiceLoader([
-    FileSystemLoader("overrides"),
-    FileSystemLoader("templates"),
-])
+app.jinja_loader = ChoiceLoader(
+    [FileSystemLoader("overrides"), FileSystemLoader("templates"),]
+)
 
 stripe.api_key = _cfg("stripe-secret")
+
 
 @login_manager.user_loader
 def load_user(email):
     return User.query.filter(User.email == email).first()
+
 
 login_manager.anonymous_user = lambda: None
 
 app.register_blueprint(html)
 
 if not app.debug:
+
     @app.errorhandler(500)
     def handle_500(e):
         # shit
@@ -60,30 +64,33 @@ if not app.debug:
             sys.exit(1)
         return render_template("internal_error.html"), 500
 
+
 @app.errorhandler(404)
 def handle_404(e):
     return render_template("not_found.html"), 404
 
+
 @app.errorhandler(CSRFError)
 def handle_CSRFError(e):
-    return 'CSRF token missing', 403
+    return "CSRF token missing", 403
+
 
 @app.context_processor
 def inject():
     return {
-        'root': _cfg("protocol") + "://" + _cfg("domain"),
-        'domain': _cfg("domain"),
-        'protocol': _cfg("protocol"),
-        'len': len,
-        'any': any,
-        'request': request,
-        'locale': locale,
-        'url_for': url_for,
-        'file_link': file_link,
-        'user': current_user,
-        '_cfg': _cfg,
-        '_cfgi': _cfgi,
-        'debug': app.debug,
-        'str': str,
-        'int': int
+        "root": _cfg("protocol") + "://" + _cfg("domain"),
+        "domain": _cfg("domain"),
+        "protocol": _cfg("protocol"),
+        "len": len,
+        "any": any,
+        "request": request,
+        "locale": locale,
+        "url_for": url_for,
+        "file_link": file_link,
+        "user": current_user,
+        "_cfg": _cfg,
+        "_cfgi": _cfgi,
+        "debug": app.debug,
+        "str": str,
+        "int": int,
     }

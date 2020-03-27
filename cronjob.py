@@ -15,20 +15,21 @@ import stripe
 import subprocess
 
 with app.app_context():
-    
+
     stripe.api_key = _cfg("stripe-secret")
 
     date = format_date(datetime.now(), locale=_cfg("locale"))
     time = format_time(datetime.now(), locale=_cfg("locale"))
     print(_("Processing monthly donations on"), date, time)
-    
-    donations = Donation.query \
-        .filter(Donation.type == DonationType.monthly) \
-        .filter(Donation.active) \
+
+    donations = (
+        Donation.query.filter(Donation.type == DonationType.monthly)
+        .filter(Donation.active)
         .all()
-    
+    )
+
     limit = datetime.now() - timedelta(days=30)
-    
+
     for donation in donations:
         if donation.updated < limit:
             print(_("Charging {}").format(donation))
@@ -39,7 +40,7 @@ with app.app_context():
                     amount=donation.amount,
                     currency=_cfg("currency"),
                     customer=user.stripe_customer,
-                    description=_("Donation to ") + _cfg("your-name")
+                    description=_("Donation to ") + _cfg("your-name"),
                 )
             except stripe.error.CardError as e:
                 donation.active = False
@@ -47,25 +48,34 @@ with app.app_context():
                 send_declined(user, donation.amount)
                 print(_("Declined"))
                 continue
-    
+
             send_thank_you(user, donation.amount, donation.type == DonationType.monthly)
             donation.updated = datetime.now()
             donation.payments += 1
             db.commit()
         else:
             print(_("Skipping {}").format(donation))
-    
-    print(ngettext(u'%(num)d record processed.\n', u'%(num)d records processed.\n', num=len(donations)))
-    
+
+    print(
+        ngettext(
+            u"%(num)d record processed.\n",
+            u"%(num)d records processed.\n",
+            num=len(donations),
+        )
+    )
+
     if _cfg("patreon-refresh-token"):
         print(_("Updating Patreon API token"))
-    
-        r = requests.post('https://www.patreon.com/api/oauth2/token', params={
-            'grant_type': 'refresh_token',
-            'refresh_token': _cfg("patreon-refresh-token"),
-            'client_id': _cfg("patreon-client-id"),
-            'client_secret': _cfg("patreon-client-secret")
-        })
+
+        r = requests.post(
+            "https://www.patreon.com/api/oauth2/token",
+            params={
+                "grant_type": "refresh_token",
+                "refresh_token": _cfg("patreon-refresh-token"),
+                "client_id": _cfg("patreon-client-id"),
+                "client_secret": _cfg("patreon-client-secret"),
+            },
+        )
         if r.status_code != 200:
             print(_("Failed to update Patreon API token"))
             sys.exit(1)

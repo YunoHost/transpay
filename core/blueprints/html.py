@@ -1,4 +1,14 @@
-from flask import Blueprint, render_template, abort, request, redirect, session, url_for, send_file, Response
+from flask import (
+    Blueprint,
+    render_template,
+    abort,
+    request,
+    redirect,
+    session,
+    url_for,
+    send_file,
+    Response,
+)
 from flask_login import current_user, login_user, logout_user
 from datetime import datetime, timedelta
 from core.objects import *
@@ -9,7 +19,15 @@ from core.email import send_thank_you, send_password_reset
 from core.email import send_new_donation, send_cancellation_notice
 from core.currency import currency
 from core.versioning import version, check_update
-from core.forms import csrf, NewProjectForm, ProjectForm, DeleteProjectForm, LoginForm, ChangePasswordForm, ResetPasswordForm
+from core.forms import (
+    csrf,
+    NewProjectForm,
+    ProjectForm,
+    DeleteProjectForm,
+    LoginForm,
+    ChangePasswordForm,
+    ResetPasswordForm,
+)
 from core.stats import gen_chart
 from core.forms import NewProjectForm, ProjectForm
 
@@ -23,7 +41,8 @@ import requests
 import sqlalchemy
 
 encoding = locale.getdefaultlocale()[1]
-html = Blueprint('html', __name__, template_folder='../../templates')
+html = Blueprint("html", __name__, template_folder="../../templates")
+
 
 @html.route("/")
 def index():
@@ -32,10 +51,13 @@ def index():
         return render_template("setup.html")
     projects = sorted(Project.query.all(), key=lambda p: p.name)
 
-    if os.path.exists('static/logo.png'):
-        avatar = os.path.join('static/logo.png')
+    if os.path.exists("static/logo.png"):
+        avatar = os.path.join("static/logo.png")
     else:
-        avatar = "//www.gravatar.com/avatar/" + hashlib.md5(_cfg("your-email").encode("utf-8")).hexdigest()
+        avatar = (
+            "//www.gravatar.com/avatar/"
+            + hashlib.md5(_cfg("your-email").encode("utf-8")).hexdigest()
+        )
 
     selected_project = request.args.get("project")
     if selected_project:
@@ -43,17 +65,18 @@ def index():
             selected_project = int(selected_project)
         except:
             selected_project = None
-    active_recurring = (Donation.query
-            .filter(Donation.type == DonationType.monthly)
-            .filter(Donation.active == True)
-            .filter(Donation.hidden == False))
+    active_recurring = (
+        Donation.query.filter(Donation.type == DonationType.monthly)
+        .filter(Donation.active == True)
+        .filter(Donation.hidden == False)
+    )
     recurring_count = active_recurring.count()
     recurring_sum = sum([d.amount for d in active_recurring])
 
     limit = datetime.now() - timedelta(days=30)
-    month_onetime = (Donation.query
-            .filter(Donation.type == DonationType.one_time)
-            .filter(Donation.created > limit))
+    month_onetime = Donation.query.filter(
+        Donation.type == DonationType.one_time
+    ).filter(Donation.created > limit)
     onetime_count = month_onetime.count()
     onetime_sum = sum([d.amount for d in month_onetime])
 
@@ -62,6 +85,7 @@ def index():
     if access_token and campaign:
         try:
             import patreon
+
             client = patreon.API(access_token)
             campaign = client.fetch_campaign()
             attrs = campaign.json_data["data"][0]["attributes"]
@@ -76,11 +100,11 @@ def index():
 
     liberapay = _cfg("liberapay-campaign")
     if liberapay:
-        lp = (requests
-                .get("https://liberapay.com/{}/public.json".format(liberapay))
-            ).json()
-        lp_count = lp['npatrons']
-        lp_sum = int(float(lp['receiving']['amount']) * 100)
+        lp = (
+            requests.get("https://liberapay.com/{}/public.json".format(liberapay))
+        ).json()
+        lp_count = lp["npatrons"]
+        lp_sum = int(float(lp["receiving"]["amount"]) * 100)
         # Convert from weekly to monthly
         lp_sum = lp_sum * 52 // 12
     else:
@@ -108,11 +132,11 @@ def index():
             }
         }
         """
-        r = requests.post("https://api.github.com/graphql", json={
-            "query": query
-        }, headers={
-            "Authorization": f"bearer {github_token}"
-        })
+        r = requests.post(
+            "https://api.github.com/graphql",
+            json={"query": query},
+            headers={"Authorization": f"bearer {github_token}"},
+        )
         result = r.json()
         nodes = result["data"]["viewer"]["sponsorsListing"]["tiers"]["nodes"]
         cnt = lambda n: n["adminInfo"]["sponsorships"]["totalCount"]
@@ -124,17 +148,26 @@ def index():
         gh_sum = 0
         gh_user = 0
 
-    return render_template("index.html", projects=projects,
-                           avatar=avatar, selected_project=selected_project,
-                           recurring_count=recurring_count,
-                           recurring_sum=recurring_sum,
-                           onetime_count=onetime_count, onetime_sum=onetime_sum,
-                           patreon_count=patreon_count,
-                           patreon_sum=patreon_sum,
-                           lp_count=lp_count,
-                           lp_sum=lp_sum, currency=currency,
-                           gh_count=gh_count, gh_sum=gh_sum, gh_user=gh_user,
-                           version=version())
+    return render_template(
+        "index.html",
+        projects=projects,
+        avatar=avatar,
+        selected_project=selected_project,
+        recurring_count=recurring_count,
+        recurring_sum=recurring_sum,
+        onetime_count=onetime_count,
+        onetime_sum=onetime_sum,
+        patreon_count=patreon_count,
+        patreon_sum=patreon_sum,
+        lp_count=lp_count,
+        lp_sum=lp_sum,
+        currency=currency,
+        gh_count=gh_count,
+        gh_sum=gh_sum,
+        gh_user=gh_user,
+        version=version(),
+    )
+
 
 @html.route("/setup", methods=["POST"])
 @csrf.exempt
@@ -144,7 +177,7 @@ def setup():
     email = request.form.get("email")
     password = request.form.get("password")
     if not email or not password:
-        return redirect("..") # TODO: Tell them what they did wrong (i.e. being stupid)
+        return redirect("..")  # TODO: Tell them what they did wrong (i.e. being stupid)
     user = User(email, password)
     user.admin = True
     db.add(user)
@@ -152,33 +185,81 @@ def setup():
     login_user(user)
     return redirect("admin?first-run=1")
 
+
 @html.route("/admin")
 @adminrequired
 def admin():
     first = request.args.get("first-run") is not None
     newproject = NewProjectForm()
-    projects = [ ProjectForm(project=proj) for proj in Project.query.all() ]
+    projects = [ProjectForm(project=proj) for proj in Project.query.all()]
 
     unspecified = Donation.query.filter(Donation.project == None).all()
     donations = Donation.query.order_by(Donation.created.desc()).limit(50).all()
 
-    return render_template("admin.html",
+    return render_template(
+        "admin.html",
         first=first,
         projects=projects,
         newproject=newproject,
         donations=donations,
         currency=currency,
-        one_times=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.one_time]),
-        recurring=lambda p: sum([d.amount for d in p.donations if d.type == DonationType.monthly and d.active]),
-        recurring_ever=lambda p: sum([d.amount * d.payments for d in p.donations if d.type == DonationType.monthly]),
-        unspecified_one_times=sum([d.amount for d in unspecified if d.type == DonationType.one_time]),
-        unspecified_recurring=sum([d.amount for d in unspecified if d.type == DonationType.monthly and d.active]),
-        unspecified_recurring_ever=sum([d.amount * d.payments for d in unspecified if d.type == DonationType.monthly]),
-        total_one_time=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.one_time)]),
-        total_recurring=sum([d.amount for d in Donation.query.filter(Donation.type == DonationType.monthly, Donation.active == True)]),
-        total_recurring_ever=sum([d.amount * d.payments for d in Donation.query.filter(Donation.type == DonationType.monthly)]),
-        uptodate = check_update(),
+        one_times=lambda p: sum(
+            [d.amount for d in p.donations if d.type == DonationType.one_time]
+        ),
+        recurring=lambda p: sum(
+            [
+                d.amount
+                for d in p.donations
+                if d.type == DonationType.monthly and d.active
+            ]
+        ),
+        recurring_ever=lambda p: sum(
+            [
+                d.amount * d.payments
+                for d in p.donations
+                if d.type == DonationType.monthly
+            ]
+        ),
+        unspecified_one_times=sum(
+            [d.amount for d in unspecified if d.type == DonationType.one_time]
+        ),
+        unspecified_recurring=sum(
+            [
+                d.amount
+                for d in unspecified
+                if d.type == DonationType.monthly and d.active
+            ]
+        ),
+        unspecified_recurring_ever=sum(
+            [
+                d.amount * d.payments
+                for d in unspecified
+                if d.type == DonationType.monthly
+            ]
+        ),
+        total_one_time=sum(
+            [
+                d.amount
+                for d in Donation.query.filter(Donation.type == DonationType.one_time)
+            ]
+        ),
+        total_recurring=sum(
+            [
+                d.amount
+                for d in Donation.query.filter(
+                    Donation.type == DonationType.monthly, Donation.active == True
+                )
+            ]
+        ),
+        total_recurring_ever=sum(
+            [
+                d.amount * d.payments
+                for d in Donation.query.filter(Donation.type == DonationType.monthly)
+            ]
+        ),
+        uptodate=check_update(),
     )
+
 
 @html.route("/create-project", methods=["POST"])
 @adminrequired
@@ -191,16 +272,18 @@ def create_project():
         db.commit()
         return redirect("admin")
 
+
 @html.route("/edit-project", methods=["POST"])
 @adminrequired
 def edit_project():
     form = ProjectForm(request.form)
     if form.validate():
-        name = request.form['name']
-        id = request.form['id']
+        name = request.form["name"]
+        id = request.form["id"]
         db.query(Project).filter(Project.id == id).update({"name": name})
         db.commit()
         return redirect("admin")
+
 
 @html.route("/delete-project", methods=["POST"])
 @adminrequired
@@ -208,10 +291,13 @@ def delete_project():
     form = DeleteProjectForm(request.form)
     if form.validate():
         id = request.form["id"]
-        db.query(Donation).filter(Donation.project_id == id).update({"project_id": sqlalchemy.sql.null()})
+        db.query(Donation).filter(Donation.project_id == id).update(
+            {"project_id": sqlalchemy.sql.null()}
+        )
         db.query(Project).filter(Project.id == id).delete()
         db.commit()
         return redirect("admin")
+
 
 @html.route("/login", methods=["GET", "POST"])
 def login():
@@ -231,18 +317,22 @@ def login():
         user = User.query.filter(User.email == email).first()
         if not user:
             return render_template("login.html", loginForm=loginForm, errors=True)
-        if not bcrypt.hashpw(password.encode('UTF-8'), user.password.encode('UTF-8')) == user.password.encode('UTF-8'):
+        if not bcrypt.hashpw(
+            password.encode("UTF-8"), user.password.encode("UTF-8")
+        ) == user.password.encode("UTF-8"):
             return render_template("login.html", loginForm=loginForm, errors=True)
         login_user(user)
         if user.admin:
             return redirect("admin")
         return redirect("panel")
 
+
 @html.route("/logout")
 @loginrequired
 def logout():
     logout_user()
     return redirect(_cfg("protocol") + "://" + _cfg("domain"))
+
 
 @html.route("/donate", methods=["POST"])
 @json_output
@@ -257,7 +347,7 @@ def donate():
 
     # validate and rejigger the form inputs
     if not email or not stripe_token or not amount or not type:
-        return { "success": False, "reason": "Invalid request" }, 400
+        return {"success": False, "reason": "Invalid request"}, 400
     try:
         if project_id is None or project_id == "null":
             project = None
@@ -272,7 +362,7 @@ def donate():
 
         amount = int(amount)
     except:
-        return { "success": False, "reason": "Invalid request" }, 400
+        return {"success": False, "reason": "Invalid request"}, 400
 
     new_account = False
     user = User.query.filter(User.email == email).first()
@@ -298,12 +388,12 @@ def donate():
             amount=amount,
             currency=_cfg("currency"),
             customer=user.stripe_customer,
-            description="Donation to " + _cfg("your-name")
+            description="Donation to " + _cfg("your-name"),
         )
     except stripe.error.CardError as e:
         db.rollback()
         db.close()
-        return { "success": False, "reason": "Your card was declined." }
+        return {"success": False, "reason": "Your card was declined."}
 
     db.commit()
 
@@ -311,9 +401,14 @@ def donate():
     send_new_donation(user, donation)
 
     if new_account:
-        return { "success": True, "new_account": new_account, "password_reset": user.password_reset }
+        return {
+            "success": True,
+            "new_account": new_account,
+            "password_reset": user.password_reset,
+        }
     else:
-        return { "success": True, "new_account": new_account }
+        return {"success": True, "new_account": new_account}
+
 
 def issue_password_reset(email):
     user = User.query.filter(User.email == email).first()
@@ -325,7 +420,8 @@ def issue_password_reset(email):
     db.commit()
     return render_template("reset.html", done=True)
 
-@html.route("/password-change", methods=['GET', 'POST'])
+
+@html.route("/password-change", methods=["GET", "POST"])
 def change_password():
     if request.method == "GET":
         token = request.args.get("token")
@@ -334,7 +430,9 @@ def change_password():
             return redirect("..")
 
         if not token:
-            current_user.password_reset = binascii.b2a_hex(os.urandom(20)).decode("utf-8")
+            current_user.password_reset = binascii.b2a_hex(os.urandom(20)).decode(
+                "utf-8"
+            )
             current_user.password_reset_expires = datetime.now() + timedelta(days=1)
             db.commit()
             token = current_user.password_reset
@@ -343,19 +441,20 @@ def change_password():
         return render_template("change.html", changePwdForm=changePwdForm)
 
     elif request.method == "POST":
-       form = ChangePasswordForm(request.form)
-       if form.validate():
-           token = request.form.get("token")
-           password = request.form.get("password")
-           user = User.query.filter(User.password_reset == token).first()
-           user.set_password(password)
-           user.password_reset = None
-           user.password_reset_expires = None
-           db.commit()
-           login_user(user)
-           return redirect("panel")
+        form = ChangePasswordForm(request.form)
+        if form.validate():
+            token = request.form.get("token")
+            password = request.form.get("password")
+            user = User.query.filter(User.password_reset == token).first()
+            user.set_password(password)
+            user.password_reset = None
+            user.password_reset_expires = None
+            db.commit()
+            login_user(user)
+            return redirect("panel")
 
-@html.route("/password-reset", methods=['GET', 'POST'])
+
+@html.route("/password-reset", methods=["GET", "POST"])
 def reset_password():
     if request.method == "GET":
         resetPasswordForm = ResetPasswordForm()
@@ -367,8 +466,9 @@ def reset_password():
             email = request.form.get("email")
             return issue_password_reset(email)
 
-
     # user = User.query.filter(User.password_reset == token).first()
+
+
 #    if not user:
 #        return render_template("reset.html", errors=_("This link has expired."))
 #
@@ -393,15 +493,23 @@ def reset_password():
 #        login_user(user)
 #        return redirect("panel")
 
+
 @html.route("/panel")
 @loginrequired
 def panel():
-    return render_template("panel.html",
+    return render_template(
+        "panel.html",
         one_times=lambda u: [d for d in u.donations if d.type == DonationType.one_time],
         recurring=lambda u: [d for d in u.donations if d.type == DonationType.monthly],
-        recurring_active=lambda u: [d for d in u.donations if d.type == DonationType.monthly and d.active],
-        recurring_inactive=lambda u: [d for d in u.donations if d.type == DonationType.monthly and not d.active],
-        currency=currency)
+        recurring_active=lambda u: [
+            d for d in u.donations if d.type == DonationType.monthly and d.active
+        ],
+        recurring_inactive=lambda u: [
+            d for d in u.donations if d.type == DonationType.monthly and not d.active
+        ],
+        currency=currency,
+    )
+
 
 @html.route("/cancel/<id>")
 @loginrequired
@@ -416,6 +524,7 @@ def cancel(id):
     send_cancellation_notice(current_user, donation)
     return redirect("../panel")
 
+
 @html.route("/invoice/<id>")
 def invoice(id):
     invoice = Invoice.query.filter(Invoice.external_id == id).first()
@@ -423,7 +532,8 @@ def invoice(id):
         abort(404)
     return render_template("invoice.html", invoice=invoice)
 
+
 @html.route("/stats")
 def stats():
     gen_chart()
-    return render_template("stats.html", version = version())
+    return render_template("stats.html", version=version())

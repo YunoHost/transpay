@@ -20,13 +20,16 @@ logger.addHandler(sh)
 # scss logger
 logging.getLogger("scss").addHandler(sh)
 
-env = 'dev'
+env = "dev"
 config = None
+
 
 def load_config():
     global config
     config = ConfigParser()
-    config.readfp(open('config.ini'))
+    config.readfp(open("config.ini"))
+
+
 #    signal.signal(signal.SIGHUP, lambda *args: load_config())
 
 load_config()

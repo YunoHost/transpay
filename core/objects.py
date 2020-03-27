@@ -13,12 +13,14 @@ import binascii
 import os
 import hashlib
 
+
 class DonationType(Enum):
     one_time = "one_time"
     monthly = "monthly"
 
+
 class User(Base):
-    __tablename__ = 'users'
+    __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String(256), nullable=False, index=True)
     admin = Column(Boolean())
@@ -29,8 +31,9 @@ class User(Base):
     stripe_customer = Column(String(256))
 
     def set_password(self, password):
-        self.password = bcrypt.hashpw(password.encode("utf-8"),
-                bcrypt.gensalt()).decode("utf-8")
+        self.password = bcrypt.hashpw(
+            password.encode("utf-8"), bcrypt.gensalt()
+        ).decode("utf-8")
 
     def __init__(self, email, password):
         self.email = email
@@ -45,15 +48,19 @@ class User(Base):
     # We don't use most of these features
     def is_authenticated(self):
         return True
+
     def is_active(self):
         return True
+
     def is_anonymous(self):
         return False
+
     def get_id(self):
         return self.email
 
+
 class Donation(Base):
-    __tablename__ = 'donations'
+    __tablename__ = "donations"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     user = relationship("User", backref=backref("donations"))
@@ -66,7 +73,7 @@ class Donation(Base):
     comment = Column(String(512))
     active = Column(Boolean)
     payments = Column(Integer)
-    hidden = Column(Boolean, server_default='0', nullable=False)
+    hidden = Column(Boolean, server_default="0", nullable=False)
 
     def __init__(self, user, type, amount, project=None, comment=None):
         self.user = user
@@ -83,14 +90,15 @@ class Donation(Base):
 
     def __repr__(self):
         return "<Donation {} from {}: {} ({})>".format(
-                self.id,
-                self.user.email,
-                currency.amount("{:.2f}".format(self.amount / 100)),
-                self.type
-            )
+            self.id,
+            self.user.email,
+            currency.amount("{:.2f}".format(self.amount / 100)),
+            self.type,
+        )
+
 
 class Project(Base):
-    __tablename__ = 'projects'
+    __tablename__ = "projects"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     created = Column(DateTime, nullable=False)
@@ -102,8 +110,9 @@ class Project(Base):
     def __repr__(self):
         return "<Project {} {}>".format(self.id, self.name)
 
+
 class Invoice(Base):
-    __tablename__ = 'invoices'
+    __tablename__ = "invoices"
     id = Column(Integer, primary_key=True)
     created = Column(DateTime, nullable=False)
     external_id = Column(String(16), index=True)

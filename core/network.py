@@ -6,7 +6,12 @@ def makeMask(n):
 def dottedQuadToNum(ip):
     "convert decimal dotted quad string to long integer"
     parts = ip.split(".")
-    return int(parts[0]) | (int(parts[1]) << 8) | (int(parts[2]) << 16) | (int(parts[3]) << 24)
+    return (
+        int(parts[0])
+        | (int(parts[1]) << 8)
+        | (int(parts[2]) << 16)
+        | (int(parts[3]) << 24)
+    )
 
 
 def networkMask(ip, bits):
