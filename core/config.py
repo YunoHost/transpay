@@ -34,5 +34,5 @@ def load_config():
 
 load_config()
 
-_cfg = lambda k: config.get(env, k)
+_cfg = lambda k: config.get(env, k) if k in config[env] else ""
 _cfgi = lambda k: int(_cfg(k))
