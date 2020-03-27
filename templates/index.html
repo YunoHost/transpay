@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+
 {% block scripts %}
 <script>
 window.stripe_key = "{{ _cfg("stripe-publish") }}";
@@ -26,7 +27,8 @@ window.email = "{{user.email}}";
 <script src="//checkout.stripe.com/checkout.js"></script>
 <script src="static/index.js"></script>
 {% endblock %}
-{% block body %} 
+
+{% block body %}
 <div class="well">
     <div class="container">
         <div class="row">
@@ -45,18 +47,18 @@ window.email = "{{user.email}}";
 <noscript>
     <div class="container">
         <div class="alert alert-danger">
-	<p>{% trans trimmed %}This page requires Javascript. It's necessary to send your credit card number to
-	<a href="https://stripe.com/">Stripe</a> directly, so you don't need to trust me with it.{% endtrans %}</p>
+        <p>{% trans trimmed %}This page requires Javascript. It's necessary to send your credit card number to
+        <a href="https://stripe.com/">Stripe</a> directly, so you don't need to trust me with it.{% endtrans %}</p>
         </div>
     </div>
 </noscript>
 <div class="container text-center hidden" id="thanks">
     {% include "post-donation-message.html" %}
     <form id="new-donor-password" class="hidden" action="{{root}}/password-reset" method="POST">
-	<p>{% trans %}Set a password now if you want to manage your donations later:{% endtrans %}</p>
-	<input type="password" class="form-control" placeholder="{%trans%}Password{%endtrans%}" name="password" />
+        <p>{% trans %}Set a password now if you want to manage your donations later:{% endtrans %}</p>
+        <input type="password" class="form-control" placeholder="{%trans%}Password{%endtrans%}" name="password" />
         <input type="hidden" name="token" id="reset-token" />
-	<button class="btn btn-primary btn-sm">{%trans%}Submit{%endtrans%}</button>
+        <button class="btn btn-primary btn-sm">{%trans%}Submit{%endtrans%}</button>
     </form>
 </div>
 <div class="container text-center" id="donation-stuff">
@@ -72,7 +74,7 @@ window.email = "{{user.email}}";
         </div>
         {% endfor %}
         <div class="btn-group" role="group">
-	 <button data-amount="custom" type="button" class="btn btn-default">{%trans%}Custom{%endtrans%}</button>
+         <button data-amount="custom" type="button" class="btn btn-default">{%trans%}Custom{%endtrans%}</button>
         </div>
       </div>
     </div>
