@@ -1,16 +1,11 @@
-from flask import session, jsonify, redirect, request, Response, abort
+from flask import jsonify, redirect, request, Response, abort
 from flask_login import current_user
-from werkzeug.utils import secure_filename
 from functools import wraps
-from core.objects import User
-from core.database import db, Base
+from core.database import db
 from core.config import _cfg
 
 import json
 import urllib
-import requests
-import xml.etree.ElementTree as ET
-import hashlib
 
 
 def firstparagraph(text):
