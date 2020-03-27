@@ -30,7 +30,6 @@ from core.forms import (
     ResetPasswordForm,
 )
 from core.stats import gen_chart
-from core.forms import NewProjectForm, ProjectForm
 
 import os
 import locale
