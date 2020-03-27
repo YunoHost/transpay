@@ -1,4 +1,15 @@
 (function() {
+    // csrf configuration
+    var csrftoken = $('meta[name=csrf-token]').attr('content')
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken)
+            }
+        }
+    })
+
     var donation = {
         type: window.default_type,
         amount: window.default_amount * 100, // cents
@@ -113,6 +124,7 @@
                         e.target.textContent = i18n["Donate"];
                     }
                 };
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
                 xhr.send(data);
             }
         });

@@ -340,7 +340,6 @@ def logout():
 
 @html.route("/donate", methods=["POST"])
 @json_output
-@csrf.exempt
 def donate():
     email = request.form.get("email")
     stripe_token = request.form.get("stripe_token")

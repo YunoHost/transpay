@@ -7,6 +7,7 @@
         {% block title %}
         <title>{%trans%}Donate to{%endtrans%} {{_cfg("your-name")}}</title>
         {% endblock %}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="/static/bootstrap.min.css" />
         {% block styles %}{% endblock %}
     </head>
