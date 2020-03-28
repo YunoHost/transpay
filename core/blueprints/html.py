@@ -105,7 +105,7 @@ def index():
     liberapay = _cfg("liberapay-campaign")
     if liberapay:
         lp = (
-            requests.get("https://liberapay.com/{}/public.json".format(liberapay))
+            requests.get("https://liberapay.com/{}/public.json".format(liberapay), timeout=5)
         ).json()
         lp_count = lp["npatrons"]
         lp_sum = int(float(lp["receiving"]["amount"]) * 100)
