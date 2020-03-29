@@ -35,6 +35,7 @@ import hashlib
 import stripe
 import binascii
 import requests
+import traceback
 import sqlalchemy
 
 encoding = locale.getdefaultlocale()[1]
@@ -104,13 +105,20 @@ def index():
 
     liberapay = _cfg("liberapay-campaign")
     if liberapay:
-        lp = (
-            requests.get("https://liberapay.com/{}/public.json".format(liberapay), timeout=5)
-        ).json()
-        lp_count = lp["npatrons"]
-        lp_sum = int(float(lp["receiving"]["amount"]) * 100)
-        # Convert from weekly to monthly
-        lp_sum = lp_sum * 52 // 12
+        try:
+            lp = (
+                requests.get("https://liberapay.com/{}/public.json".format(liberapay), timeout=5)
+            ).json()
+        except Exception:
+            traceback.print_exc()
+            print("Error while trying to get data from liberapay")
+            lp_count = 0
+            lp_sum = 0
+        else:
+            lp_count = lp["npatrons"]
+            lp_sum = int(float(lp["receiving"]["amount"]) * 100)
+            # Convert from weekly to monthly
+            lp_sum = lp_sum * 52 // 12
     else:
         lp_count = 0
         lp_sum = 0
