@@ -413,8 +413,12 @@ def donate():
 
     db.commit()
 
-    send_thank_you(user, amount, type == DonationType.monthly)
-    send_new_donation(user, donation)
+    try:
+        send_thank_you(user, amount, type == DonationType.monthly)
+        send_new_donation(user, donation)
+    except Exception:
+        traceback.print_exc()
+        print("Error while trying to send a email")
 
     if new_account:
         return {
